@@ -1,0 +1,29 @@
+body {
+  margin: 10px;
+}
+
+#top-nav {
+  border: 1px solid gray;
+  font-family: "Arial", sans-serif;
+  color: #666; 
+  padding: 10px;
+}
+
+#top-nav a {
+  margin-right: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited {
+  color: #333;
+}
+
+a:active,
+a:hover {
+  color: #000;
+}
+
