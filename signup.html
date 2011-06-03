@@ -8,14 +8,30 @@
 	
   <!-- CSS for this site -->
 	<link rel="stylesheet" type="text/css" href="css/main.css"> 
+	<link rel="stylesheet" type="text/css" href="css/signup.css"> 
 </head>
 <body> 
   <nav id="top-nav">
     <a href="/">Home</a>
     <a href="/signup.html">Sign Up</a>
+    <a href="/tour.html">Tour</a>
   </nav>
   <section>
     <h1>Sign up for an Ellipse Tour</h1>
     <form>
+      <div>
+        Your Name	<input type="text" required>
+      </div>
+      <div>
+        Email <input type="email" required>
+      </div>
+      <div>
+        How Many People <input type="number" min="1" required>
+      </div>
+      <div>
+        <input type="submit" value="Sign Up">
+      </div>
+    </form>
+  </section>
 </body>
 </html>

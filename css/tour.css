@@ -1,0 +1,9 @@
+#tour {
+  position: relative;
+  margin-top: 20px;
+}
+
+#tour img {
+  position: absolute;
+  cursor: pointer;
+}

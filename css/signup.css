@@ -1,0 +1,9 @@
+form div {
+  position: relative; 
+  height: 34px;
+}
+
+form input {
+  position: absolute;
+  left: 150px;
+}
