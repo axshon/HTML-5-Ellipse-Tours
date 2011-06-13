@@ -1,3 +1,7 @@
+// tour.js
+// Copyright 2011, Ian Gilman
+// Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+
 // ##########
 // ----------
 Tour = {
