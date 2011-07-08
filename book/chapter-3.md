@@ -1,18 +1,18 @@
 # Listing 3.13 Using the setTimeout() and clearTimeout() methods
 
 ```javascript
-var timerID = null;		                // Define and initialize our variable. 			
+var timerID = null;                   
 
 function toggleTimeout() {
   if (timerID) {                      // If we have a timer,
     clearTimeout(timerID);            //   cancel it,
     console.log("cancelled");         //   log it for debugging,
-    timerID = null;	                  //   and clear our variable so we know it's not valid.
+    timerID = null;                   //   and clear our variable so we know it's not valid.
   } else {                            // Otherwise, if we have no timer,
     timerID = setTimeout(function() { //   make a new timer with an anonymous function
       console.log("expired");         //   that when fired, logs a message 
       timerID = null;                 //   and clears our variable.
-    }, 3000);	                        // 3000 milliseconds = 3 seconds.
+    }, 3000);                         // 3000 milliseconds = 3 seconds.
     console.log("started");           // Now that the timer is created, log a message.
   }
 }
@@ -29,12 +29,12 @@ var intervalCount = 0;
 
 var intervalID = setInterval(function() { // Make a new interval that when fired
   intervalCount++;                        //   increments the count
-  console.log("Count: " + intervalCount); //   logs the count.
+  console.log("Count: " + intervalCount); //   and logs the count.
   if(intervalCount == 10) {               // If this is our 10th time through,
-    clearInterval(intervalID);            //   cancel the interval, 
+    clearInterval(intervalID);            //   cancel the interval 
     intervalID = null;                    //   and clear our variable. 
   }
-}, 2000);                                 // 2000 milliseconds = 2 seconds
+}, 2000);                                 // 2000 milliseconds = 2 seconds.
 
 // The log will show "Count: 1" through "Count: 10", over the course of 20 seconds.
 ```
