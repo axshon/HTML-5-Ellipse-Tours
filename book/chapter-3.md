@@ -129,7 +129,7 @@ Counter.prototype = {
 var counter = new Counter();
 ```
 
-#Listing 3.26 Script loader that does not block processing in the host application
+# Listing 3.26 Script loader that does not block processing in the host application
 
 ```javascript
 function addScript(url) {
@@ -143,4 +143,47 @@ function addScript(url) {
     document.getElementsByTagName("head")[0].appendChild(element);	
   }
 }
+```
+
+# Instances with object members
+
+```javascript
+function Truck() {
+  this.engine = {on: false};
+}
+
+var ford = new Truck();
+console.log(ford.engine.on); // false
+
+var chevy = new Truck();
+chevy.engine.on = true;
+console.log(ford.engine.on); // false
+console.log(chevy.engine.on); // true
+
+Truck.prototype.engine.on = true; // throws exception: Truck.prototype.engine is undefined
+```
+
+# Prototypes with object members
+
+```javascript
+function Truck() {
+}
+
+Truck.prototype.cab = {seats: 2};
+
+var ford = new Truck();
+console.log(ford.cab.seats); // 2
+
+var chevy = new Truck();
+chevy.cab.seats = 3;
+console.log(ford.cab.seats); // 3
+console.log(chevy.cab.seats); // 3
+
+ford.cab = {seats: 4};
+console.log(ford.cab.seats); // 4
+console.log(chevy.cab.seats); // 3
+
+chevy.cab.seats = 5;
+console.log(ford.cab.seats); // 4
+console.log(chevy.cab.seats); // 5
 ```
