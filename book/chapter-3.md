@@ -128,3 +128,19 @@ Counter.prototype = {
 
 var counter = new Counter();
 ```
+
+#Listing 3.26 Script loader that does not block processing in the host application
+
+```javascript
+function addScript(url) {
+  var id = url.replace(/[^\w]/gi, "");
+  var element = document.getElementById(id);
+  if (!element) {
+    element = document.createElement("script");
+    element.type = "text/javascript";
+    element.src = url;
+    element.id = id;
+    document.getElementsByTagName("head")[0].appendChild(element);	
+  }
+}
+```
