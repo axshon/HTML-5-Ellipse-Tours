@@ -1,0 +1,465 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ApplicationServer.Serialization</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DupEnumMemberValue(System.Object,System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Type '{2}' contains two members '{0}' 'and '{1}' with the same name '{3}'. Multiple members with the same name in one type are not supported. Consider changing one of the member names using EnumMemberAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Type '{2}' contains two members '{0}' 'and '{1}' with the same name '{3}'. Multiple members with the same name in one type are not supported. Consider changing one of the member names using EnumMemberAttribute attribute.</param>
+            <param name="param1">Parameter 1 for string: Type '{2}' contains two members '{0}' 'and '{1}' with the same name '{3}'. Multiple members with the same name in one type are not supported. Consider changing one of the member names using EnumMemberAttribute attribute.</param>
+            <param name="param2">Parameter 2 for string: Type '{2}' contains two members '{0}' 'and '{1}' with the same name '{3}'. Multiple members with the same name in one type are not supported. Consider changing one of the member names using EnumMemberAttribute attribute.</param>
+            <param name="param3">Parameter 3 for string: Type '{2}' contains two members '{0}' 'and '{1}' with the same name '{3}'. Multiple members with the same name in one type are not supported. Consider changing one of the member names using EnumMemberAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DupMemberName(System.Object,System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Type '{2}' contains two members '{0}' 'and '{1}' with the same data member name '{3}'. Multiple members with the same name in one type are not supported. Consider changing one of the member names using DataMemberAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Type '{2}' contains two members '{0}' 'and '{1}' with the same data member name '{3}'. Multiple members with the same name in one type are not supported. Consider changing one of the member names using DataMemberAttribute attribute.</param>
+            <param name="param1">Parameter 1 for string: Type '{2}' contains two members '{0}' 'and '{1}' with the same data member name '{3}'. Multiple members with the same name in one type are not supported. Consider changing one of the member names using DataMemberAttribute attribute.</param>
+            <param name="param2">Parameter 2 for string: Type '{2}' contains two members '{0}' 'and '{1}' with the same data member name '{3}'. Multiple members with the same name in one type are not supported. Consider changing one of the member names using DataMemberAttribute attribute.</param>
+            <param name="param3">Parameter 3 for string: Type '{2}' contains two members '{0}' 'and '{1}' with the same data member name '{3}'. Multiple members with the same name in one type are not supported. Consider changing one of the member names using DataMemberAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.ISerializableCannotHaveDataContract(System.Object)">
+            <summary>Gets localized string like: Type '{0}' cannot be ISerializable and have DataContractAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' cannot be ISerializable and have DataContractAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.AttributedTypesCannotInheritFromNonAttributedSerializableTypes(System.Object,System.Object)">
+            <summary>Gets localized string like: Type '{0}' cannot inherit from a type that is not marked with DataContractAttribute or SerializableAttribute.  Consider marking the base type '{1}' with DataContractAttribute or SerializableAttribute, or removing them from the derived type.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' cannot inherit from a type that is not marked with DataContractAttribute or SerializableAttribute.  Consider marking the base type '{1}' with DataContractAttribute or SerializableAttribute, or removing them from the derived type.</param>
+            <param name="param1">Parameter 1 for string: Type '{0}' cannot inherit from a type that is not marked with DataContractAttribute or SerializableAttribute.  Consider marking the base type '{1}' with DataContractAttribute or SerializableAttribute, or removing them from the derived type.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.OnlyDataContractTypesCanHaveExtensionData(System.Object)">
+            <summary>Gets localized string like: Type '{0}' does not have DataContractAttribute attribute and therefore cannot support IExtensibleDataObject. </summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' does not have DataContractAttribute attribute and therefore cannot support IExtensibleDataObject. </param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InconsistentIsReference(System.Object,System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: The IsReference setting for type '{0}' is '{1}', but the same setting for its parent class '{2}' is '{3}'. Derived types must have the same value for IsReference as the base type. Change the setting on type '{0}' to '{3}', or on type '{2}' to '{1}', or do not set IsReference explicitly.</summary>
+            <param name="param0">Parameter 0 for string: The IsReference setting for type '{0}' is '{1}', but the same setting for its parent class '{2}' is '{3}'. Derived types must have the same value for IsReference as the base type. Change the setting on type '{0}' to '{3}', or on type '{2}' to '{1}', or do not set IsReference explicitly.</param>
+            <param name="param1">Parameter 1 for string: The IsReference setting for type '{0}' is '{1}', but the same setting for its parent class '{2}' is '{3}'. Derived types must have the same value for IsReference as the base type. Change the setting on type '{0}' to '{3}', or on type '{2}' to '{1}', or do not set IsReference explicitly.</param>
+            <param name="param2">Parameter 2 for string: The IsReference setting for type '{0}' is '{1}', but the same setting for its parent class '{2}' is '{3}'. Derived types must have the same value for IsReference as the base type. Change the setting on type '{0}' to '{3}', or on type '{2}' to '{1}', or do not set IsReference explicitly.</param>
+            <param name="param3">Parameter 3 for string: The IsReference setting for type '{0}' is '{1}', but the same setting for its parent class '{2}' is '{3}'. Derived types must have the same value for IsReference as the base type. Change the setting on type '{0}' to '{3}', or on type '{2}' to '{1}', or do not set IsReference explicitly.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.ValueTypeCannotHaveIsReference(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Value type '{0}' cannot have the IsReference setting of '{1}'. Either change the setting to '{2}', or remove it completely.</summary>
+            <param name="param0">Parameter 0 for string: Value type '{0}' cannot have the IsReference setting of '{1}'. Either change the setting to '{2}', or remove it completely.</param>
+            <param name="param1">Parameter 1 for string: Value type '{0}' cannot have the IsReference setting of '{1}'. Either change the setting to '{2}', or remove it completely.</param>
+            <param name="param2">Parameter 2 for string: Value type '{0}' cannot have the IsReference setting of '{1}'. Either change the setting to '{2}', or remove it completely.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.TooManyDataMembers(System.Object,System.Object)">
+            <summary>Gets localized string like: Member '{0}.{1}' has more than one DataMemberAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Member '{0}.{1}' has more than one DataMemberAttribute attribute.</param>
+            <param name="param1">Parameter 1 for string: Member '{0}.{1}' has more than one DataMemberAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.NoGetMethodForProperty(System.Object,System.Object)">
+            <summary>Gets localized string like: No get method for property '{1}' in type '{0}'.</summary>
+            <param name="param0">Parameter 0 for string: No get method for property '{1}' in type '{0}'.</param>
+            <param name="param1">Parameter 1 for string: No get method for property '{1}' in type '{0}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.NoSetMethodForProperty(System.Object,System.Object)">
+            <summary>Gets localized string like: No set method for property '{1}' in type '{0}'.</summary>
+            <param name="param0">Parameter 0 for string: No set method for property '{1}' in type '{0}'.</param>
+            <param name="param1">Parameter 1 for string: No set method for property '{1}' in type '{0}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.IndexedPropertyCannotBeSerialized(System.Object,System.Object)">
+            <summary>Gets localized string like: Property '{1}' in type '{0}' cannot be serialized because serialization of indexed properties is not supported.</summary>
+            <param name="param0">Parameter 0 for string: Property '{1}' in type '{0}' cannot be serialized because serialization of indexed properties is not supported.</param>
+            <param name="param1">Parameter 1 for string: Property '{1}' in type '{0}' cannot be serialized because serialization of indexed properties is not supported.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidMember(System.Object,System.Object)">
+            <summary>Gets localized string like: Member '{0}.{1}' cannot be serialized since it is neither a field nor a property, and therefore cannot be marked with the DataMemberAttribute attribute. Remove the DataMemberAttribute attribute from the '{1}' member.</summary>
+            <param name="param0">Parameter 0 for string: Member '{0}.{1}' cannot be serialized since it is neither a field nor a property, and therefore cannot be marked with the DataMemberAttribute attribute. Remove the DataMemberAttribute attribute from the '{1}' member.</param>
+            <param name="param1">Parameter 1 for string: Member '{0}.{1}' cannot be serialized since it is neither a field nor a property, and therefore cannot be marked with the DataMemberAttribute attribute. Remove the DataMemberAttribute attribute from the '{1}' member.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.IsRequiredDataMemberOnIsReferenceDataContractType(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: '{0}.{1}' has the IsRequired setting of '{2}. However, '{0}' has the IsReference setting of '{2}', because either it is set explicitly, or it is derived from a base class. Set IsRequired on '{0}.{1}' to false, or disable IsReference on '{0}'. </summary>
+            <param name="param0">Parameter 0 for string: '{0}.{1}' has the IsRequired setting of '{2}. However, '{0}' has the IsReference setting of '{2}', because either it is set explicitly, or it is derived from a base class. Set IsRequired on '{0}.{1}' to false, or disable IsReference on '{0}'. </param>
+            <param name="param1">Parameter 1 for string: '{0}.{1}' has the IsRequired setting of '{2}. However, '{0}' has the IsReference setting of '{2}', because either it is set explicitly, or it is derived from a base class. Set IsRequired on '{0}.{1}' to false, or disable IsReference on '{0}'. </param>
+            <param name="param2">Parameter 2 for string: '{0}.{1}' has the IsRequired setting of '{2}. However, '{0}' has the IsReference setting of '{2}', because either it is set explicitly, or it is derived from a base class. Set IsRequired on '{0}.{1}' to false, or disable IsReference on '{0}'. </param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.TooManyIgnoreDataMemberAttributes(System.Object,System.Object)">
+            <summary>Gets localized string like: Member '{0}.{1}' has more than one IgnoreDataMemberAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Member '{0}.{1}' has more than one IgnoreDataMemberAttribute attribute.</param>
+            <param name="param1">Parameter 1 for string: Member '{0}.{1}' has more than one IgnoreDataMemberAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.NonOptionalFieldMemberOnIsReferenceSerializableType(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: '{0}.{1}' is not marked with OptionalFieldAttribute, thus indicating that it must be serialized. However, '{0}' derives from a class marked with DataContractAttribute and an IsReference setting of '{2}'. It is not possible to have required data members on IsReference classes. Either decorate '{0}.{1}' with OptionalFieldAttribute, or disable the IsReference setting on the appropriate parent class.</summary>
+            <param name="param0">Parameter 0 for string: '{0}.{1}' is not marked with OptionalFieldAttribute, thus indicating that it must be serialized. However, '{0}' derives from a class marked with DataContractAttribute and an IsReference setting of '{2}'. It is not possible to have required data members on IsReference classes. Either decorate '{0}.{1}' with OptionalFieldAttribute, or disable the IsReference setting on the appropriate parent class.</param>
+            <param name="param1">Parameter 1 for string: '{0}.{1}' is not marked with OptionalFieldAttribute, thus indicating that it must be serialized. However, '{0}' derives from a class marked with DataContractAttribute and an IsReference setting of '{2}'. It is not possible to have required data members on IsReference classes. Either decorate '{0}.{1}' with OptionalFieldAttribute, or disable the IsReference setting on the appropriate parent class.</param>
+            <param name="param2">Parameter 2 for string: '{0}.{1}' is not marked with OptionalFieldAttribute, thus indicating that it must be serialized. However, '{0}' derives from a class marked with DataContractAttribute and an IsReference setting of '{2}'. It is not possible to have required data members on IsReference classes. Either decorate '{0}.{1}' with OptionalFieldAttribute, or disable the IsReference setting on the appropriate parent class.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DuplicateExtensionDataSetMethod(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Invalid IExtensibleDataObject. Both '{0}' and '{1}' in type '{2}' provide property setter.</summary>
+            <param name="param0">Parameter 0 for string: Invalid IExtensibleDataObject. Both '{0}' and '{1}' in type '{2}' provide property setter.</param>
+            <param name="param1">Parameter 1 for string: Invalid IExtensibleDataObject. Both '{0}' and '{1}' in type '{2}' provide property setter.</param>
+            <param name="param2">Parameter 2 for string: Invalid IExtensibleDataObject. Both '{0}' and '{1}' in type '{2}' provide property setter.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.ExtensionDataSetMustReturnVoid(System.Object,System.Object)">
+            <summary>Gets localized string like: IExtensibleDataObject property setter '{1}' in type '{0}' must return void.</summary>
+            <param name="param0">Parameter 0 for string: IExtensibleDataObject property setter '{1}' in type '{0}' must return void.</param>
+            <param name="param1">Parameter 1 for string: IExtensibleDataObject property setter '{1}' in type '{0}' must return void.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.ExtensionDataSetParameterInvalid(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: IExtensibleDataObject property setter '{1}' in type '{0}' must have a single parameter of type '{2}'.</summary>
+            <param name="param0">Parameter 0 for string: IExtensibleDataObject property setter '{1}' in type '{0}' must have a single parameter of type '{2}'.</param>
+            <param name="param1">Parameter 1 for string: IExtensibleDataObject property setter '{1}' in type '{0}' must have a single parameter of type '{2}'.</param>
+            <param name="param2">Parameter 2 for string: IExtensibleDataObject property setter '{1}' in type '{0}' must have a single parameter of type '{2}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DuplicateCallback(System.Object,System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Invalid attribute. Both '{0}' and '{1}' in type '{2}' have '{3}'.</summary>
+            <param name="param0">Parameter 0 for string: Invalid attribute. Both '{0}' and '{1}' in type '{2}' have '{3}'.</param>
+            <param name="param1">Parameter 1 for string: Invalid attribute. Both '{0}' and '{1}' in type '{2}' have '{3}'.</param>
+            <param name="param2">Parameter 2 for string: Invalid attribute. Both '{0}' and '{1}' in type '{2}' have '{3}'.</param>
+            <param name="param3">Parameter 3 for string: Invalid attribute. Both '{0}' and '{1}' in type '{2}' have '{3}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DuplicateAttribute(System.Object,System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Invalid Callback. Method '{3}' in type '{2}' has both '{0}' and '{1}'.</summary>
+            <param name="param0">Parameter 0 for string: Invalid Callback. Method '{3}' in type '{2}' has both '{0}' and '{1}'.</param>
+            <param name="param1">Parameter 1 for string: Invalid Callback. Method '{3}' in type '{2}' has both '{0}' and '{1}'.</param>
+            <param name="param2">Parameter 2 for string: Invalid Callback. Method '{3}' in type '{2}' has both '{0}' and '{1}'.</param>
+            <param name="param3">Parameter 3 for string: Invalid Callback. Method '{3}' in type '{2}' has both '{0}' and '{1}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CallbacksCannotBeVirtualMethods(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Virtual Method '{0}' of type '{1}' cannot be marked with '{2}' attribute.</summary>
+            <param name="param0">Parameter 0 for string: Virtual Method '{0}' of type '{1}' cannot be marked with '{2}' attribute.</param>
+            <param name="param1">Parameter 1 for string: Virtual Method '{0}' of type '{1}' cannot be marked with '{2}' attribute.</param>
+            <param name="param2">Parameter 2 for string: Virtual Method '{0}' of type '{1}' cannot be marked with '{2}' attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CallbackMustReturnVoid(System.Object,System.Object)">
+            <summary>Gets localized string like: Serialization Callback '{1}' in type '{0}' must return void.</summary>
+            <param name="param0">Parameter 0 for string: Serialization Callback '{1}' in type '{0}' must return void.</param>
+            <param name="param1">Parameter 1 for string: Serialization Callback '{1}' in type '{0}' must return void.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CallbackParameterInvalid(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Serialization Callback '{1}' in type '{0}' must have a single parameter of type '{2}'.</summary>
+            <param name="param0">Parameter 0 for string: Serialization Callback '{1}' in type '{0}' must have a single parameter of type '{2}'.</param>
+            <param name="param1">Parameter 1 for string: Serialization Callback '{1}' in type '{0}' must have a single parameter of type '{2}'.</param>
+            <param name="param2">Parameter 2 for string: Serialization Callback '{1}' in type '{0}' must have a single parameter of type '{2}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.ValueTypeCannotHaveBaseType(System.Object,System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Data contract '{0}' from namespace '{1}' is a value type and cannot have base contract '{2}' from namespace '{3}'.</summary>
+            <param name="param0">Parameter 0 for string: Data contract '{0}' from namespace '{1}' is a value type and cannot have base contract '{2}' from namespace '{3}'.</param>
+            <param name="param1">Parameter 1 for string: Data contract '{0}' from namespace '{1}' is a value type and cannot have base contract '{2}' from namespace '{3}'.</param>
+            <param name="param2">Parameter 2 for string: Data contract '{0}' from namespace '{1}' is a value type and cannot have base contract '{2}' from namespace '{3}'.</param>
+            <param name="param3">Parameter 3 for string: Data contract '{0}' from namespace '{1}' is a value type and cannot have base contract '{2}' from namespace '{3}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.ReadOnlyClassDeserialization(System.Object)">
+            <summary>Gets localized string like: {0} The class cannot be deserialized.</summary>
+            <param name="param0">Parameter 0 for string: {0} The class cannot be deserialized.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.NonAttributedSerializableTypesMustHaveDefaultConstructor(System.Object)">
+            <summary>Gets localized string like: The Type '{0}' must have a parameterless constructor.</summary>
+            <param name="param0">Parameter 0 for string: The Type '{0}' must have a parameterless constructor.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CollectionTypeCannotBeBuiltIn(System.Object)">
+            <summary>Gets localized string like: {0} is a built-in type and cannot be a collection.</summary>
+            <param name="param0">Parameter 0 for string: {0} is a built-in type and cannot be a collection.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CollectionTypeCannotHaveDataContract(System.Object)">
+            <summary>Gets localized string like: {0} has DataContractAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: {0} has DataContractAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CollectionTypeIsNotIEnumerable(System.Object)">
+            <summary>Gets localized string like: {0} does not implement IEnumerable interface.</summary>
+            <param name="param0">Parameter 0 for string: {0} does not implement IEnumerable interface.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CollectionTypeDoesNotHaveDefaultCtor(System.Object)">
+            <summary>Gets localized string like: {0} does not have a default constructor.</summary>
+            <param name="param0">Parameter 0 for string: {0} does not have a default constructor.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CollectionTypeDoesNotHaveAddMethod(System.Object,System.Object)">
+            <summary>Gets localized string like: {0} does not have a valid Add method with parameter of type '{1}'.</summary>
+            <param name="param0">Parameter 0 for string: {0} does not have a valid Add method with parameter of type '{1}'.</param>
+            <param name="param1">Parameter 1 for string: {0} does not have a valid Add method with parameter of type '{1}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CollectionTypeHasMultipleDefinitionsOfInterface(System.Object,System.Object)">
+            <summary>Gets localized string like: {0} has multiple definitions of interface '{1}'.</summary>
+            <param name="param0">Parameter 0 for string: {0} has multiple definitions of interface '{1}'.</param>
+            <param name="param1">Parameter 1 for string: {0} has multiple definitions of interface '{1}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidCollectionDataContract(System.Object)">
+            <summary>Gets localized string like: Type '{0}' with CollectionDataContractAttribute attribute is an invalid collection type since it</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' with CollectionDataContractAttribute attribute is an invalid collection type since it</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidCollectionType(System.Object)">
+            <summary>Gets localized string like: Type '{0}' is an invalid collection type since it</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' is an invalid collection type since it</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.ReadOnlyCollectionDeserialization(System.Object)">
+            <summary>Gets localized string like: Collection type '{0}' cannot be deserialized since it</summary>
+            <param name="param0">Parameter 0 for string: Collection type '{0}' cannot be deserialized since it</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidCollectionContractKeyNoDictionary(System.Object,System.Object)">
+            <summary>Gets localized string like: The collection data contract type '{0}' specifies '{1}' for the KeyName property. This is not allowed since the type is not IDictionary. Remove the setting for the KeyName property.</summary>
+            <param name="param0">Parameter 0 for string: The collection data contract type '{0}' specifies '{1}' for the KeyName property. This is not allowed since the type is not IDictionary. Remove the setting for the KeyName property.</param>
+            <param name="param1">Parameter 1 for string: The collection data contract type '{0}' specifies '{1}' for the KeyName property. This is not allowed since the type is not IDictionary. Remove the setting for the KeyName property.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidCollectionContractValueNoDictionary(System.Object,System.Object)">
+            <summary>Gets localized string like: The collection data contract type '{0}' specifies '{1}' for the ValueName property. This is not allowed since the type is not IDictionary. Remove the setting for the ValueName property.</summary>
+            <param name="param0">Parameter 0 for string: The collection data contract type '{0}' specifies '{1}' for the ValueName property. This is not allowed since the type is not IDictionary. Remove the setting for the ValueName property.</param>
+            <param name="param1">Parameter 1 for string: The collection data contract type '{0}' specifies '{1}' for the ValueName property. This is not allowed since the type is not IDictionary. Remove the setting for the ValueName property.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CollectionMustHaveGetEnumeratorMethod(System.Object)">
+            <summary>Gets localized string like: Collection type '{0}' does not have a valid GetEnumerator method.</summary>
+            <param name="param0">Parameter 0 for string: Collection type '{0}' does not have a valid GetEnumerator method.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CollectionMustHaveItemType(System.Object)">
+            <summary>Gets localized string like: Collection type '{0}' must have a non-null item type.</summary>
+            <param name="param0">Parameter 0 for string: Collection type '{0}' must have a non-null item type.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.CollectionMustHaveAddMethod(System.Object)">
+            <summary>Gets localized string like: Collection type '{0}' does not have a valid Add method.</summary>
+            <param name="param0">Parameter 0 for string: Collection type '{0}' does not have a valid Add method.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DupKeyValueName(System.Object,System.Object)">
+            <summary>Gets localized string like: The collection data contract type '{0}' specifies the same value '{1}' for both the KeyName and the ValueName properties. This is not allowed. Consider changing either the KeyName or the ValueName property.</summary>
+            <param name="param0">Parameter 0 for string: The collection data contract type '{0}' specifies the same value '{1}' for both the KeyName and the ValueName properties. This is not allowed. Consider changing either the KeyName or the ValueName property.</param>
+            <param name="param1">Parameter 1 for string: The collection data contract type '{0}' specifies the same value '{1}' for both the KeyName and the ValueName properties. This is not allowed. Consider changing either the KeyName or the ValueName property.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.ClassDataContractReturnedForGetOnlyCollection(System.Object)">
+            <summary>Gets localized string like: The use of type '{0}' as a get-only collection is not supported with NetDataContractSerializer.  Consider marking the type with the CollectionDataContractAttribute attribute or the SerializableAttribute attribute or adding a setter to the property.</summary>
+            <param name="param0">Parameter 0 for string: The use of type '{0}' as a get-only collection is not supported with NetDataContractSerializer.  Consider marking the type with the CollectionDataContractAttribute attribute or the SerializableAttribute attribute or adding a setter to the property.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.RecursiveCollectionType(System.Object)">
+            <summary>Gets localized string like: Type '{0}' is a recursive collection data contract which is not supported. Consider modifying the definition of collection '{0}' to remove references to itself.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' is a recursive collection data contract which is not supported. Consider modifying the definition of collection '{0}' to remove references to itself.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.TooManyCollectionContracts(System.Object)">
+            <summary>Gets localized string like: Type '{0}' has more than one CollectionDataContractAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' has more than one CollectionDataContractAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.TooManyDataContracts(System.Object)">
+            <summary>Gets localized string like: Type '{0}' has more than one DataContractAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' has more than one DataContractAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DataContractNamespaceIsNotValid(System.Object)">
+            <summary>Gets localized string like: DataContract namespace '{0}' is not a valid URI.</summary>
+            <param name="param0">Parameter 0 for string: DataContract namespace '{0}' is not a valid URI.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DataContractNamespaceReserved(System.Object)">
+            <summary>Gets localized string like: DataContract namespace '{0}' cannot be specified since it is reserved.</summary>
+            <param name="param0">Parameter 0 for string: DataContract namespace '{0}' cannot be specified since it is reserved.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidGlobalDataContractNamespace(System.Object)">
+            <summary>Gets localized string like: CLR namespace '{0}' cannot have ContractNamespace set to null.</summary>
+            <param name="param0">Parameter 0 for string: CLR namespace '{0}' cannot have ContractNamespace set to null.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DataContractNamespaceAlreadySet(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: ContractNamespaceAttribute attribute maps CLR namespace '{2}' to multiple data contract namespaces '{0}' and '{1}'. You can map a CLR namespace to only one data contract namespace.</summary>
+            <param name="param0">Parameter 0 for string: ContractNamespaceAttribute attribute maps CLR namespace '{2}' to multiple data contract namespaces '{0}' and '{1}'. You can map a CLR namespace to only one data contract namespace.</param>
+            <param name="param1">Parameter 1 for string: ContractNamespaceAttribute attribute maps CLR namespace '{2}' to multiple data contract namespaces '{0}' and '{1}'. You can map a CLR namespace to only one data contract namespace.</param>
+            <param name="param2">Parameter 2 for string: ContractNamespaceAttribute attribute maps CLR namespace '{2}' to multiple data contract namespaces '{0}' and '{1}'. You can map a CLR namespace to only one data contract namespace.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.GenericNameBraceMismatch(System.Object,System.Object)">
+            <summary>Gets localized string like: The data contract name '{0}' for type '{1}' has a curly brace that is not matched with a closing curly brace. Curly braces have special meaning in data contract names - they are used to customize the naming of data contracts for generic types.</summary>
+            <param name="param0">Parameter 0 for string: The data contract name '{0}' for type '{1}' has a curly brace that is not matched with a closing curly brace. Curly braces have special meaning in data contract names - they are used to customize the naming of data contracts for generic types.</param>
+            <param name="param1">Parameter 1 for string: The data contract name '{0}' for type '{1}' has a curly brace that is not matched with a closing curly brace. Curly braces have special meaning in data contract names - they are used to customize the naming of data contracts for generic types.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.TypeNotSerializable(System.Object)">
+            <summary>Gets localized string like: Type '{0}' cannot be serialized. Consider marking it with the DataContractAttribute attribute, and marking all of its members you want serialized with the DataMemberAttribute attribute.  If the type is a collection, consider marking it with the CollectionDataContractAttribute.  See the Microsoft .NET Framework documentation for other supported types.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' cannot be serialized. Consider marking it with the DataContractAttribute attribute, and marking all of its members you want serialized with the DataMemberAttribute attribute.  If the type is a collection, consider marking it with the CollectionDataContractAttribute.  See the Microsoft .NET Framework documentation for other supported types.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.GenericParameterNotValid(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: In the data contract name for type '{1}', there are curly braces with '{0}' inside, which is an invalid value. Curly braces have special meaning in data contract names - they are used to customize the naming of data contracts for generic types. Based on the number of generic parameters this type has, the contents of the curly braces must either be a number between 0 and '{2}' to insert the name of the generic parameter at that index or the '#' symbol to insert a digest of the generic parameter namespaces.</summary>
+            <param name="param0">Parameter 0 for string: In the data contract name for type '{1}', there are curly braces with '{0}' inside, which is an invalid value. Curly braces have special meaning in data contract names - they are used to customize the naming of data contracts for generic types. Based on the number of generic parameters this type has, the contents of the curly braces must either be a number between 0 and '{2}' to insert the name of the generic parameter at that index or the '#' symbol to insert a digest of the generic parameter namespaces.</param>
+            <param name="param1">Parameter 1 for string: In the data contract name for type '{1}', there are curly braces with '{0}' inside, which is an invalid value. Curly braces have special meaning in data contract names - they are used to customize the naming of data contracts for generic types. Based on the number of generic parameters this type has, the contents of the curly braces must either be a number between 0 and '{2}' to insert the name of the generic parameter at that index or the '#' symbol to insert a digest of the generic parameter namespaces.</param>
+            <param name="param2">Parameter 2 for string: In the data contract name for type '{1}', there are curly braces with '{0}' inside, which is an invalid value. Curly braces have special meaning in data contract names - they are used to customize the naming of data contracts for generic types. Based on the number of generic parameters this type has, the contents of the curly braces must either be a number between 0 and '{2}' to insert the name of the generic parameter at that index or the '#' symbol to insert a digest of the generic parameter namespaces.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeAttributeEmptyString(System.Object)">
+            <summary>Gets localized string like: Method name specified by KnownTypeAttribute attribute on type '{0}' cannot be the empty string.</summary>
+            <param name="param0">Parameter 0 for string: Method name specified by KnownTypeAttribute attribute on type '{0}' cannot be the empty string.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeAttributeUnknownMethod(System.Object,System.Object)">
+            <summary>Gets localized string like: KnownTypeAttribute attribute on type '{1}' specifies a method named '{0}' to provide known types. Static method '{0}()' was not found on this type. Ensure that the method exists and is marked as static.</summary>
+            <param name="param0">Parameter 0 for string: KnownTypeAttribute attribute on type '{1}' specifies a method named '{0}' to provide known types. Static method '{0}()' was not found on this type. Ensure that the method exists and is marked as static.</param>
+            <param name="param1">Parameter 1 for string: KnownTypeAttribute attribute on type '{1}' specifies a method named '{0}' to provide known types. Static method '{0}()' was not found on this type. Ensure that the method exists and is marked as static.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeAttributeReturnType(System.Object,System.Object)" -->
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeAttributeOneScheme(System.Object)">
+            <summary>Gets localized string like: Type '{0}': If a KnownTypeAttribute attribute specifies a method it must be the only KnownTypeAttribute attribute on that type.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}': If a KnownTypeAttribute attribute specifies a method it must be the only KnownTypeAttribute attribute on that type.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeAttributeValidMethodTypes(System.Object)">
+            <summary>Gets localized string like: Method specified by KnownTypeAttribute attribute on type '{0}' does not expose valid types.</summary>
+            <param name="param0">Parameter 0 for string: Method specified by KnownTypeAttribute attribute on type '{0}' does not expose valid types.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeAttributeNoData(System.Object)">
+            <summary>Gets localized string like: KnownTypeAttribute attribute on type '{0}' contains no data.</summary>
+            <param name="param0">Parameter 0 for string: KnownTypeAttribute attribute on type '{0}' contains no data.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeAttributeMethodNull(System.Object)">
+            <summary>Gets localized string like: Method specified by KnownTypeAttribute attribute on type '{0}' returned null.</summary>
+            <param name="param0">Parameter 0 for string: Method specified by KnownTypeAttribute attribute on type '{0}' returned null.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.TypeMustBeConcrete(System.Object)">
+            <summary>Gets localized string like: Error while getting known types for Type '{0}'. The type must not be an open or partial generic class.</summary>
+            <param name="param0">Parameter 0 for string: Error while getting known types for Type '{0}'. The type must not be an open or partial generic class.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeConfigClosedGenericDeclared(System.Object)">
+            <summary>Gets localized string like: Declared type '{0}' in config cannot be a closed or partial generic type.</summary>
+            <param name="param0">Parameter 0 for string: Declared type '{0}' in config cannot be a closed or partial generic type.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.ApplicationServer.Serialization.SR.DupContractInKnownTypes(System.Object,System.Object,System.Object,System.Object)" -->
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.TypeMustNotBeOpenGeneric(System.Object)">
+            <summary>Gets localized string like: Type '{0}' is not a fully instantiated generic class.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' is not a fully instantiated generic class.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.GenericTypeNotExportable(System.Object)">
+            <summary>Gets localized string like: Type '{0}' cannot be exported as a schema type because it is an open generic type. You can only export a generic type if all its generic parameter types are actual types.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' cannot be exported as a schema type because it is an open generic type. You can only export a generic type if all its generic parameter types are actual types.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DupContractInDataContractSet(System.Object,System.Object)">
+            <summary>Gets localized string like: DataContract with name '{0}' and namespace '{1}' cannot be added to DataContractSet since another contract with the same data contract name is already present and the contracts are not equivalent.</summary>
+            <param name="param0">Parameter 0 for string: DataContract with name '{0}' and namespace '{1}' cannot be added to DataContractSet since another contract with the same data contract name is already present and the contracts are not equivalent.</param>
+            <param name="param1">Parameter 1 for string: DataContract with name '{0}' and namespace '{1}' cannot be added to DataContractSet since another contract with the same data contract name is already present and the contracts are not equivalent.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DupTypeContractInDataContractSet(System.Object,System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: DataContract for type '{0}' cannot be added to DataContractSet since type '{1}' with the same data contract name '{2}' in namespace '{3}' is already present and the contracts are not equivalent.</summary>
+            <param name="param0">Parameter 0 for string: DataContract for type '{0}' cannot be added to DataContractSet since type '{1}' with the same data contract name '{2}' in namespace '{3}' is already present and the contracts are not equivalent.</param>
+            <param name="param1">Parameter 1 for string: DataContract for type '{0}' cannot be added to DataContractSet since type '{1}' with the same data contract name '{2}' in namespace '{3}' is already present and the contracts are not equivalent.</param>
+            <param name="param2">Parameter 2 for string: DataContract for type '{0}' cannot be added to DataContractSet since type '{1}' with the same data contract name '{2}' in namespace '{3}' is already present and the contracts are not equivalent.</param>
+            <param name="param3">Parameter 3 for string: DataContract for type '{0}' cannot be added to DataContractSet since type '{1}' with the same data contract name '{2}' in namespace '{3}' is already present and the contracts are not equivalent.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.SurrogatesWithGetOnlyCollectionsNotSupported(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Using surrogates with get-only collection properties is not supported.  Consider removing the surrogate associated with '{0}' or adding a setter to '{1}.{2}'.</summary>
+            <param name="param0">Parameter 0 for string: Using surrogates with get-only collection properties is not supported.  Consider removing the surrogate associated with '{0}' or adding a setter to '{1}.{2}'.</param>
+            <param name="param1">Parameter 1 for string: Using surrogates with get-only collection properties is not supported.  Consider removing the surrogate associated with '{0}' or adding a setter to '{1}.{2}'.</param>
+            <param name="param2">Parameter 2 for string: Using surrogates with get-only collection properties is not supported.  Consider removing the surrogate associated with '{0}' or adding a setter to '{1}.{2}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.AmbiguousReferencedTypes1(System.Object)">
+            <summary>Gets localized string like: List of referenced types contains more than one type with same data contract name. Need to exclude all but one of the following types. Only matching types can be valid references: {0}</summary>
+            <param name="param0">Parameter 0 for string: List of referenced types contains more than one type with same data contract name. Need to exclude all but one of the following types. Only matching types can be valid references: {0}</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.AmbiguousReferencedTypes3(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: List of referenced types contains more than one type with data contract name '{0}' in namespace '{1}'. Need to exclude all but one of the following types. Only matching types can be valid references: {2}</summary>
+            <param name="param0">Parameter 0 for string: List of referenced types contains more than one type with data contract name '{0}' in namespace '{1}'. Need to exclude all but one of the following types. Only matching types can be valid references: {2}</param>
+            <param name="param1">Parameter 1 for string: List of referenced types contains more than one type with data contract name '{0}' in namespace '{1}'. Need to exclude all but one of the following types. Only matching types can be valid references: {2}</param>
+            <param name="param2">Parameter 2 for string: List of referenced types contains more than one type with data contract name '{0}' in namespace '{1}'. Need to exclude all but one of the following types. Only matching types can be valid references: {2}</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.AmbiguousReferencedCollectionTypes1(System.Object)">
+            <summary>Gets localized string like: List of referenced collection types contains more than one type with same data contract name. Include only one of the following types. Only matching types can be valid references: {0}</summary>
+            <param name="param0">Parameter 0 for string: List of referenced collection types contains more than one type with same data contract name. Include only one of the following types. Only matching types can be valid references: {0}</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.AmbiguousReferencedCollectionTypes3(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: List of referenced collection types contains more than one type with data contract name '{0}' in namespace '{1}'. Include only one of the following types. Only matching types can be valid references: {2}</summary>
+            <param name="param0">Parameter 0 for string: List of referenced collection types contains more than one type with data contract name '{0}' in namespace '{1}'. Include only one of the following types. Only matching types can be valid references: {2}</param>
+            <param name="param1">Parameter 1 for string: List of referenced collection types contains more than one type with data contract name '{0}' in namespace '{1}'. Include only one of the following types. Only matching types can be valid references: {2}</param>
+            <param name="param2">Parameter 2 for string: List of referenced collection types contains more than one type with data contract name '{0}' in namespace '{1}'. Include only one of the following types. Only matching types can be valid references: {2}</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.XmlInvalidConversion(System.Object,System.Object)">
+            <summary>Gets localized string like: The value '{0}' cannot be parsed as the type '{1}'.</summary>
+            <param name="param0">Parameter 0 for string: The value '{0}' cannot be parsed as the type '{1}'.</param>
+            <param name="param1">Parameter 1 for string: The value '{0}' cannot be parsed as the type '{1}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.EnumTypeCannotHaveIsReference(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Enum type '{0}' cannot have the IsReference setting of '{1}'. Either change the setting to '{2}', or remove it completely.</summary>
+            <param name="param0">Parameter 0 for string: Enum type '{0}' cannot have the IsReference setting of '{1}'. Either change the setting to '{2}', or remove it completely.</param>
+            <param name="param1">Parameter 1 for string: Enum type '{0}' cannot have the IsReference setting of '{1}'. Either change the setting to '{2}', or remove it completely.</param>
+            <param name="param2">Parameter 2 for string: Enum type '{0}' cannot have the IsReference setting of '{1}'. Either change the setting to '{2}', or remove it completely.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidEnumBaseType(System.Object,System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Type '{0}' in namespace '{1}' is not a valid base type for enum '{2}' in namespace '{3}'.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' in namespace '{1}' is not a valid base type for enum '{2}' in namespace '{3}'.</param>
+            <param name="param1">Parameter 1 for string: Type '{0}' in namespace '{1}' is not a valid base type for enum '{2}' in namespace '{3}'.</param>
+            <param name="param2">Parameter 2 for string: Type '{0}' in namespace '{1}' is not a valid base type for enum '{2}' in namespace '{3}'.</param>
+            <param name="param3">Parameter 3 for string: Type '{0}' in namespace '{1}' is not a valid base type for enum '{2}' in namespace '{3}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.TooManyEnumMembers(System.Object,System.Object)">
+            <summary>Gets localized string like: Member '{0}.{1}' has more than one EnumMemberAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Member '{0}.{1}' has more than one EnumMemberAttribute attribute.</param>
+            <param name="param1">Parameter 1 for string: Member '{0}.{1}' has more than one EnumMemberAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.DataMemberOnEnumField(System.Object,System.Object)">
+            <summary>Gets localized string like: Member '{0}.{1}' has DataMemberAttribute attribute. Use EnumMemberAttribute attribute instead.</summary>
+            <param name="param0">Parameter 0 for string: Member '{0}.{1}' has DataMemberAttribute attribute. Use EnumMemberAttribute attribute instead.</param>
+            <param name="param1">Parameter 1 for string: Member '{0}.{1}' has DataMemberAttribute attribute. Use EnumMemberAttribute attribute instead.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidXmlDataContractName(System.Object)">
+            <summary>Gets localized string like: XML data contract Name for type '{0}' cannot be set to null or empty string.</summary>
+            <param name="param0">Parameter 0 for string: XML data contract Name for type '{0}' cannot be set to null or empty string.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidGetSchemaMethod(System.Object)">
+            <summary>Gets localized string like: Type '{0}' cannot have MethodName on XmlSchemaProviderAttribute attribute set to null or empty string.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' cannot have MethodName on XmlSchemaProviderAttribute attribute set to null or empty string.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.MissingGetSchemaMethod(System.Object,System.Object)">
+            <summary>Gets localized string like: Type '{0}' does not have a static method '{1}' that takes a parameter of type 'System.Xml.Schema.XmlSchemaSet' as specified by the XmlSchemaProviderAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' does not have a static method '{1}' that takes a parameter of type 'System.Xml.Schema.XmlSchemaSet' as specified by the XmlSchemaProviderAttribute attribute.</param>
+            <param name="param1">Parameter 1 for string: Type '{0}' does not have a static method '{1}' that takes a parameter of type 'System.Xml.Schema.XmlSchemaSet' as specified by the XmlSchemaProviderAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidReturnTypeOnGetSchemaMethod(System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: Method '{0}.{1}()' returns '{2}'. The return type must be compatible with '{3}' or '{4}'.</summary>
+            <param name="param0">Parameter 0 for string: Method '{0}.{1}()' returns '{2}'. The return type must be compatible with '{3}' or '{4}'.</param>
+            <param name="param1">Parameter 1 for string: Method '{0}.{1}()' returns '{2}'. The return type must be compatible with '{3}' or '{4}'.</param>
+            <param name="param2">Parameter 2 for string: Method '{0}.{1}()' returns '{2}'. The return type must be compatible with '{3}' or '{4}'.</param>
+            <param name="param3">Parameter 3 for string: Method '{0}.{1}()' returns '{2}'. The return type must be compatible with '{3}' or '{4}'.</param>
+            <param name="param4">Parameter 4 for string: Method '{0}.{1}()' returns '{2}'. The return type must be compatible with '{3}' or '{4}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidNonNullReturnValueByIsAny(System.Object,System.Object)">
+            <summary>Gets localized string like: Method '{0}.{1}()' returns a non-null value. The return value must be null since IsAny=true.</summary>
+            <param name="param0">Parameter 0 for string: Method '{0}.{1}()' returns a non-null value. The return value must be null since IsAny=true.</param>
+            <param name="param1">Parameter 1 for string: Method '{0}.{1}()' returns a non-null value. The return value must be null since IsAny=true.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.MissingSchemaType(System.Object,System.Object)">
+            <summary>Gets localized string like: Schema type '{0}' returned by CLR type '{1}' is not found in the XmlSchemaSet.</summary>
+            <param name="param0">Parameter 0 for string: Schema type '{0}' returned by CLR type '{1}' is not found in the XmlSchemaSet.</param>
+            <param name="param1">Parameter 1 for string: Schema type '{0}' returned by CLR type '{1}' is not found in the XmlSchemaSet.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.InvalidReturnSchemaOnGetSchemaMethod(System.Object)">
+            <summary>Gets localized string like: Method '{0}.GetSchema()' must return a schema with a valid Id.</summary>
+            <param name="param0">Parameter 0 for string: Method '{0}.GetSchema()' must return a schema with a valid Id.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.IXmlSerializableCannotHaveCollectionDataContract(System.Object)">
+            <summary>Gets localized string like: Type '{0}' cannot be IXmlSerializable and have CollectionDataContractAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' cannot be IXmlSerializable and have CollectionDataContractAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.IXmlSerializableCannotHaveDataContract(System.Object)">
+            <summary>Gets localized string like: Type '{0}' cannot be IXmlSerializable and have DataContractAttribute attribute.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' cannot be IXmlSerializable and have DataContractAttribute attribute.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.IsAnyCannotHaveXmlRoot(System.Object)">
+            <summary>Gets localized string like: Type '{0}' cannot specify an XmlRootAttribute attribute because its IsAny setting is 'true'. This type must write all its contents including the root element. Verify that the IXmlSerializable implementation is correct.</summary>
+            <param name="param0">Parameter 0 for string: Type '{0}' cannot specify an XmlRootAttribute attribute because its IsAny setting is 'true'. This type must write all its contents including the root element. Verify that the IXmlSerializable implementation is correct.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeConfigIndexOutOfBoundsZero(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: The type '{0}' in config has '{1}' generic parameters(s). Parameter '{2}' cannot be accessed.</summary>
+            <param name="param0">Parameter 0 for string: The type '{0}' in config has '{1}' generic parameters(s). Parameter '{2}' cannot be accessed.</param>
+            <param name="param1">Parameter 1 for string: The type '{0}' in config has '{1}' generic parameters(s). Parameter '{2}' cannot be accessed.</param>
+            <param name="param2">Parameter 2 for string: The type '{0}' in config has '{1}' generic parameters(s). Parameter '{2}' cannot be accessed.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeConfigIndexOutOfBounds(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: The type '{0}' in config has '{1}' generic parameters(s). Parameter '{2}' cannot be accessed. Parameter index must be greater than or equal to 0 and less than '{1}'.</summary>
+            <param name="param0">Parameter 0 for string: The type '{0}' in config has '{1}' generic parameters(s). Parameter '{2}' cannot be accessed. Parameter index must be greater than or equal to 0 and less than '{1}'.</param>
+            <param name="param1">Parameter 1 for string: The type '{0}' in config has '{1}' generic parameters(s). Parameter '{2}' cannot be accessed. Parameter index must be greater than or equal to 0 and less than '{1}'.</param>
+            <param name="param2">Parameter 2 for string: The type '{0}' in config has '{1}' generic parameters(s). Parameter '{2}' cannot be accessed. Parameter index must be greater than or equal to 0 and less than '{1}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Serialization.SR.KnownTypeConfigGenericParamMismatch(System.Object,System.Object,System.Object)">
+            <summary>Gets localized string like: The type '{0}' in config has '{1}' generic parameter(s) but '{2}' generic argument(s) were provided. The number of generic arguments must match the number of generic parameters.</summary>
+            <param name="param0">Parameter 0 for string: The type '{0}' in config has '{1}' generic parameter(s) but '{2}' generic argument(s) were provided. The number of generic arguments must match the number of generic parameters.</param>
+            <param name="param1">Parameter 1 for string: The type '{0}' in config has '{1}' generic parameter(s) but '{2}' generic argument(s) were provided. The number of generic arguments must match the number of generic parameters.</param>
+            <param name="param2">Parameter 2 for string: The type '{0}' in config has '{1}' generic parameter(s) but '{2}' generic argument(s) were provided. The number of generic arguments must match the number of generic parameters.</param>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Serialization.SR.SupportForMultidimensionalArraysNotPresent">
+            <summary>Gets localized string like: Multi-dimensional arrays are not supported.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Serialization.SR.ConfigDataContractSerializerSectionLoadError">
+            <summary>Gets localized string like: DataContractSerializer config section under System.Runtime.Serialization section group could not be loaded. Verify that machine.config is correctly set up.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Serialization.SR.DataContractCacheOverflow">
+            <summary>Gets localized string like: An internal error has occurred. DataContract cache overflow.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Serialization.SR.RequiresClassDataContractToSetIsISerializable">
+            <summary>Gets localized string like: Only classes can be generated as ISerializable.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Serialization.SR.ReferencedCollectionTypesCannotContainNull">
+            <summary>Gets localized string like: ReferencedCollectionTypes specified via ImportOptions must contain valid types. Cannot contain null.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Serialization.SR.ReferencedTypeMatchingMessage">
+            <summary>Gets localized string like: (matching)</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Serialization.SR.ReferencedTypeNotMatchingMessage">
+            <summary>Gets localized string like: (not matching)</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Serialization.SR.ReferencedTypesCannotContainNull">
+            <summary>Gets localized string like: ReferencedTypes specified via ImportOptions must contain valid types. Cannot contain null.</summary>
+        </member>
+    </members>
+</doc>

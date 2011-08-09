@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.ApplicationServer.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.ApplicationServer.Common.TraceCore">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.AppDomainUnload">
+            <summary>
+              Looks up a localized string similar to AppDomain unloading. AppDomain.FriendlyName {0}, ProcessName {1}, ProcessId {2}..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.HandledException">
+            <summary>
+              Looks up a localized string similar to Handling an exception..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.HandledExceptionWarning">
+            <summary>
+              Looks up a localized string similar to Handling an exception..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.MaxInstancesExceeded">
+            <summary>
+              Looks up a localized string similar to The system hit the limit set for throttle &apos;MaxConcurrentInstances&apos;. Limit for this throttle was set to {0}. Throttle value can be changed by modifying attribute &apos;maxConcurrentInstances&apos; in serviceThrottle element or by modifying &apos;MaxConcurrentInstances&apos; property on behavior ServiceThrottlingBehavior..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.ShipAssertExceptionMessage">
+            <summary>
+              Looks up a localized string similar to An unexpected failure occurred. Applications should not attempt to handle this error. For diagnostic purposes, this English message is associated with the failure: {0}..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.ThrowingException">
+            <summary>
+              Looks up a localized string similar to Throwing an exception. Source {0}..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.TraceCodeEventLogCritical">
+            <summary>
+              Looks up a localized string similar to Wrote to the EventLog..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.TraceCodeEventLogError">
+            <summary>
+              Looks up a localized string similar to Wrote to the EventLog..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.TraceCodeEventLogInfo">
+            <summary>
+              Looks up a localized string similar to Wrote to the EventLog..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.TraceCodeEventLogVerbose">
+            <summary>
+              Looks up a localized string similar to Wrote to the EventLog..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.TraceCodeEventLogWarning">
+            <summary>
+              Looks up a localized string similar to Wrote to the EventLog..
+            </summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.TraceCore.UnhandledException">
+            <summary>
+              Looks up a localized string similar to Unhandled exception..
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.#ctor(System.Guid)">
+            <summary>
+            Constructs a new EventProvider.  This causes the class to be registered with the OS
+            if an ETW controller turns on the logging then logging will start. 
+            </summary>
+            <param name="providerGuid">The GUID that identifies this provider to the system.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.EtwRegister">
+            <summary>
+            This method registers the controlGuid of this class with ETW.
+            We need to be running on Vista or above. If not a 
+            PlatformNotSupported exception will be thrown. 
+            If for some reason the ETW EtwRegister call failed
+            a NotSupported exception will be thrown. 
+            </summary>        
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.Close">
+            <summary>
+            This method deregisters the controlGuid of this class with ETW.        
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.Deregister">
+            <summary>
+            This method un-registers from ETW.
+            </summary>                
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.IsEnabled">
+            <summary>
+            IsEnabled, method used to test if provider is enabled
+            </summary>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.IsEnabled(System.Byte,System.Int64)">
+            <summary>
+            IsEnabled, method used to test if event is enabled
+            </summary>
+            <param name="level">
+            Level  to test
+            </param>
+            <param name="keywords">
+            Keyword  to test
+            </param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.EncodeObject(System.Object@,Microsoft.ApplicationServer.Common.Interop.UnsafeNativeMethods.EventData*,System.Byte*)">
+            <summary>
+            This routine is used by WriteEvent to unbox the object type and
+            to fill the passed in ETW data descriptor. 
+            </summary>
+            <param name="data">argument to be decoded</param>
+            <param name="dataDescriptor">pointer to the descriptor to be filled</param>
+            <param name="dataBuffer">storage buffer for storing user data, needed because cant get the address of the object</param>
+            <returns>null if the object is a basic type other than string. String otherwise</returns>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.WriteMessageEvent(System.String,System.Byte,System.Int64)">
+            <summary>
+            WriteMessageEvent, method to write a string with level and Keyword
+            </summary>
+            <param name="level">
+            Level  to test  
+            </param>
+            <param name="Keyword">
+            Keyword  to test 
+            </param>        
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.WriteMessageEvent(System.String)">
+            <summary>
+            WriteMessageEvent, method to write a string with level=0 and Keyword=0
+            </summary>
+            <param name="eventMessage">
+            Message to log  
+            </param> 
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Object[])">
+            <summary>
+            WriteEvent, method to write a parameters with event schema properties
+            </summary>
+            <param name="EventDescriptor">
+            Event Descriptor for this event. 
+            </param>        
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.String)">
+            <summary>
+            WriteEvent, method to write a string with event schema properties
+            </summary>
+            <param name="EventDescriptor">
+            Event Descriptor for this event. 
+            </param>
+            <param name="data">
+            string to log. 
+            </param> 
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Int32,System.IntPtr)">
+            <summary>
+            WriteEvent, method to be used by generated code on a derived class
+            </summary>
+            <param name="EventDescriptor">
+            Event Descriptor for this event. 
+            </param>
+            <param name="count">
+            number of event descriptors 
+            </param>
+            <param name="data">
+            pointer  do the event data
+            </param>                
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.Diagnostics.DiagnosticsEventProvider.WriteTransferEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Guid,System.Object[])">
+            <summary>
+            WriteTransferEvent, method to write a parameters with event schema properties
+            </summary>
+            <param name="eventDescriptor">
+            Event Descriptor for this event. 
+            </param>        
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.ArgumentNullOrEmpty(System.Object)">
+            <summary>Gets localized string like: The argument {0} is null or empty.</summary>
+            <param name="param0">Parameter 0 for string: The argument {0} is null or empty.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.ArgumentOutOfRange_NeedValidId(System.Object,System.Object)">
+            <summary>Gets localized string like: The argument passed must be in the range {0} - {1}.</summary>
+            <param name="param0">Parameter 0 for string: The argument passed must be in the range {0} - {1}.</param>
+            <param name="param1">Parameter 1 for string: The argument passed must be in the range {0} - {1}.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.AsyncResultCompletedTwice(System.Object)">
+            <summary>Gets localized string like: The IAsyncResult implementation '{0}' tried to complete a single operation multiple times. This could be caused by an incorrect application IAsyncResult implementation or other extensibility code, such as an IAsyncResult that returns incorrect CompletedSynchronously values or invokes the AsyncCallback multiple times.</summary>
+            <param name="param0">Parameter 0 for string: The IAsyncResult implementation '{0}' tried to complete a single operation multiple times. This could be caused by an incorrect application IAsyncResult implementation or other extensibility code, such as an IAsyncResult that returns incorrect CompletedSynchronously values or invokes the AsyncCallback multiple times.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.BufferAllocationFailed(System.Object)">
+            <summary>Gets localized string like: Failed to allocate a managed memory buffer of {0} bytes. The amount of available memory may be low.</summary>
+            <param name="param0">Parameter 0 for string: Failed to allocate a managed memory buffer of {0} bytes. The amount of available memory may be low.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.EtwAPIMaxStringCountExceeded(System.Object)">
+            <summary>Gets localized string like: Number of string arguments passed to Etw WriteEvent has exceeded the max allowed limit of {0}.</summary>
+            <param name="param0">Parameter 0 for string: Number of string arguments passed to Etw WriteEvent has exceeded the max allowed limit of {0}.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.EtwMaxNumberArgumentsExceeded(System.Object)">
+            <summary>Gets localized string like: Number of arguments passed to Etw WriteEvent has exceeded the max allowed limit of {0}.</summary>
+            <param name="param0">Parameter 0 for string: Number of arguments passed to Etw WriteEvent has exceeded the max allowed limit of {0}.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.EtwRegistrationFailed(System.Object)">
+            <summary>Gets localized string like: Etw registration failed with error code {0}.</summary>
+            <param name="param0">Parameter 0 for string: Etw registration failed with error code {0}.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.InvalidAsyncResultImplementation(System.Object)">
+            <summary>Gets localized string like: An incorrect implementation of the IAsyncResult interface may be returning incorrect values from the CompletedSynchronously property or calling the AsyncCallback more than once. The type {0} could be the incorrect implementation.</summary>
+            <param name="param0">Parameter 0 for string: An incorrect implementation of the IAsyncResult interface may be returning incorrect values from the CompletedSynchronously property or calling the AsyncCallback more than once. The type {0} could be the incorrect implementation.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.ShipAssertExceptionMessage(System.Object)">
+            <summary>Gets localized string like: An unexpected failure occurred. Applications should not attempt to handle this error. For diagnostic purposes, this English message is associated with the failure: {0}.</summary>
+            <param name="param0">Parameter 0 for string: An unexpected failure occurred. Applications should not attempt to handle this error. For diagnostic purposes, this English message is associated with the failure: {0}.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.TimeoutInputQueueDequeue(System.Object)">
+            <summary>Gets localized string like: A Dequeue operation timed out after {0}. The time allotted to this operation may have been a portion of a longer timeout.</summary>
+            <param name="param0">Parameter 0 for string: A Dequeue operation timed out after {0}. The time allotted to this operation may have been a portion of a longer timeout.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.TimeoutMustBeNonNegative(System.Object,System.Object)">
+            <summary>Gets localized string like: Argument {0} must be a non-negative timeout value. Provided value was {1}.</summary>
+            <param name="param0">Parameter 0 for string: Argument {0} must be a non-negative timeout value. Provided value was {1}.</param>
+            <param name="param1">Parameter 1 for string: Argument {0} must be a non-negative timeout value. Provided value was {1}.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.TimeoutMustBePositive(System.Object,System.Object)">
+            <summary>Gets localized string like: Argument {0} must be a positive timeout value. Provided value was {1}.</summary>
+            <param name="param0">Parameter 0 for string: Argument {0} must be a positive timeout value. Provided value was {1}.</param>
+            <param name="param1">Parameter 1 for string: Argument {0} must be a positive timeout value. Provided value was {1}.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.TimeoutOnOperation(System.Object)">
+            <summary>Gets localized string like: The operation did not complete within the allotted timeout of {0}. The time allotted to this operation may have been a portion of a longer timeout.</summary>
+            <param name="param0">Parameter 0 for string: The operation did not complete within the allotted timeout of {0}. The time allotted to this operation may have been a portion of a longer timeout.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.FailFastMessage(System.Object)">
+            <summary>Gets localized string like: An unrecoverable error occurred. For diagnostic purposes, this English message is associated with the failure: '{0}'.</summary>
+            <param name="param0">Parameter 0 for string: An unrecoverable error occurred. For diagnostic purposes, this English message is associated with the failure: '{0}'.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.BufferedOutputStreamQuotaExceeded(System.Object)">
+            <summary>Gets localized string like: The size quota for this stream ({0}) has been exceeded.</summary>
+            <param name="param0">Parameter 0 for string: The size quota for this stream ({0}) has been exceeded.</param>
+        </member>
+        <member name="M:Microsoft.ApplicationServer.Common.SRCore.CannotConvertObject(System.Object,System.Object)">
+            <summary>Gets localized string like: Cannot convert object '{0}' to type '{1}'.</summary>
+            <param name="param0">Parameter 0 for string: Cannot convert object '{0}' to type '{1}'.</param>
+            <param name="param1">Parameter 1 for string: Cannot convert object '{0}' to type '{1}'.</param>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.ActionItemIsAlreadyScheduled">
+            <summary>Gets localized string like: The ActionItem was already scheduled for execution that hasn't been completed yet.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.ArgumentOutOfRange_NeedNonNegNum">
+            <summary>Gets localized string like: The argument passed must be a non-negative number.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.AsyncCallbackThrewException">
+            <summary>Gets localized string like: Async Callback threw an exception.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.AsyncResultAlreadyEnded">
+            <summary>Gets localized string like: End cannot be called twice on an AsyncResult.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.AsyncTransactionException">
+            <summary>Gets localized string like: An exception was thrown from a TransactionScope used to flow a transaction into an asynchronous operation.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.BufferIsNotRightSizeForBufferManager">
+            <summary>Gets localized string like: This buffer cannot be returned to the buffer manager because it is the wrong size.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.InvalidAsyncResult">
+            <summary>Gets localized string like: An incorrect IAsyncResult was provided to an 'End' method. The IAsyncResult object passed to 'End' must be the one returned from the matching 'Begin' or passed to the callback provided to 'Begin'.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.InvalidAsyncResultImplementationGeneric">
+            <summary>Gets localized string like: An incorrect implementation of the IAsyncResult interface may be returning incorrect values from the CompletedSynchronously property or calling the AsyncCallback more than once.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.InvalidNullAsyncResult">
+            <summary>Gets localized string like: A null value was returned from an async 'Begin' method or passed to an AsyncCallback. Async 'Begin' implementations must return a non-null IAsyncResult and pass the same IAsyncResult object as the parameter to the AsyncCallback.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.InvalidSemaphoreExit">
+            <summary>Gets localized string like: Object synchronization method was called from an unsynchronized block of code.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.MustCancelOldTimer">
+            <summary>Gets localized string like: You must cancel the previous timer before setting a new one.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.DictionaryIsReadOnly">
+            <summary>Gets localized string like: This dictionary is read only and cannot be modified.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.ReadNotSupported">
+            <summary>Gets localized string like: Read not supported on this stream.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.SeekNotSupported">
+            <summary>Gets localized string like: Seek not supported on this stream.</summary>
+        </member>
+        <member name="P:Microsoft.ApplicationServer.Common.SRCore.ValueMustBeNonNegative">
+            <summary>Gets localized string like: Value must be non-negative.</summary>
+        </member>
+    </members>
+</doc>

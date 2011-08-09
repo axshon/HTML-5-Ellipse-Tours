@@ -1,0 +1,23 @@
+﻿@model Boolean
+@{
+	ViewBag.Title = "Confirmation";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Confirmation</h2>
+@{ if (Model)
+   {
+	   <p>Thanks for signing up!</p>
+   }
+   else 
+   { 
+	   <p>The email address already exists in our database. Please try again.</p>
+   }
+}
+<div class="waiting"><img src="@Url.Content("~/Content/waiting.gif")" alt="Please stand by" /></div>
+<button id="getAllUsers">Get All Users</button>
+<script type="text/javascript" src="@Url.Content("~/Scripts/htm5Net.js")" ></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		_app.initConfirm();
+	});
+</script>
