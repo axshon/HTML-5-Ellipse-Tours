@@ -1,0 +1,35 @@
+﻿@{
+}
+<section>
+@using (Html.BeginForm("SignupNow", "Home", FormMethod.Post, new { id = "signup" })) { 
+   <fieldset>
+      <legend>Sign Up to Receive Our Free Newsletter!</legend>
+      <div>
+         <label for="emailAddr">Email Address:</label>
+         <input id="emailAddr" name="emailAddr" type="text" />
+      </div>
+      <div>
+         <label for="fastName">First Name:</label>
+         <input id="firstName" name="firstName" type="text" />
+      </div>
+      <div>
+         <label for="lastName">Last Name:</label>
+         <input id="lastName" name="lastName" type="text" />
+      </div>
+      <div>
+         <input type="checkbox" id="chkAgree" name="chkAgree" />
+         <label for="chkAgree" id="lblAgree" class="lblCheck" >I agree with all terms and conditions</label>
+      </div>
+      <div>
+         <br />
+         <input type="submit" value="Join Now" />
+      </div>
+   </fieldset>
+}
+   <script type="text/javascript" src="@Url.Content("~/Scripts/htm5Net.js")" ></script>
+   <script type="text/javascript">
+   	$(document).ready(function () {
+   		_app.init();
+   	});
+   </script>
+</section>
