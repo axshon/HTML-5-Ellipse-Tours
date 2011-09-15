@@ -28,7 +28,7 @@ $(document).ready(function() {
   
   var maxVelocity = 10;
   var points = []; 
-  for (var a = 0; a < 5; a++) {
+  for (var a = 0; a < 6; a++) {
     points.push({
       x: Math.random() * w, 
       y: Math.random() * h,
@@ -39,10 +39,21 @@ $(document).ready(function() {
   
   var radians = 0; // 2 * Math.PI is a complete circle
   var text = "hello!";
+  var spotlightRadius = Math.min(w, h) / 2;
   
   function frame() {
+    context.save();
+  
     // ___ clear
-    context.fillStyle = "rgba(255, 255, 255, 0.2)"; // 20% opaque white 
+    context.fillStyle = "rgba(0, 0, 0, 1)"; // 100% opaque black 
+    context.fillRect(0, 0, w, h);
+    
+    // ___ spotlight
+   	context.beginPath();
+   	context.arc(points[5].x, points[5].y, spotlightRadius, 0, 360, false);
+    context.clip();
+    
+    context.fillStyle = "rgba(56, 56, 56, 1)"; // 100% opaque dark gray 
     context.fillRect(0, 0, w, h);
   
     // ___ lines
@@ -90,6 +101,8 @@ $(document).ready(function() {
     
     radians += 0.01;
     
+    context.restore();
+
     // ___ set up the next frame   
     setTimeout(frame, 30);
   }
