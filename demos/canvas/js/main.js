@@ -1,8 +1,31 @@
 $(document).ready(function() {
   var $canvas = $("#main");
   var context = $canvas[0].getContext("2d");
+  var $imageCanvas = null;
+  var imageContext = null;
   
-  var $image = $("<img src='img/smiley.png'>")
+  var $image = $("<img>")
+    .load(function() {
+      $imageCanvas = $("<canvas>")
+        .width($image.width())
+        .height($image.height());
+        
+      imageContext = $imageCanvas[0].getContext("2d");
+      imageContext.drawImage($image[0], 0, 0);
+      try {
+        var imageData = imageContext.getImageData(0, 0, $imageCanvas.width(), $imageCanvas.height());
+        for (var a = 0; a < imageData.data.length; a++) {
+          if (a % 4 != 3) // operate on R, G, B, but not A
+            imageData.data[a] = 255 - imageData.data[a]; // invert
+        }
+  
+        imageContext.putImageData(imageData, 0, 0);        
+      } catch(e) {
+        $("<div class='error'>Note: Direct manipulation of pixels loaded from image files isn't allowed when running locally</div>")
+          .appendTo("body");
+      }
+    })
+    .attr("src", "img/smiley.png") // kick off the loading after we've attached the event handler
     .hide()
     .appendTo("body"); // we can't get the image's width and height without attaching to the DOM
   
@@ -28,7 +51,7 @@ $(document).ready(function() {
   
   var maxVelocity = 10;
   var points = []; 
-  for (var a = 0; a < 6; a++) {
+  for (var a = 0; a < 7; a++) {
     points.push({
       x: Math.random() * w, 
       y: Math.random() * h,
@@ -71,6 +94,13 @@ $(document).ready(function() {
     context.rotate(radians);
     context.drawImage($image[0], -($image.width()) / 2, -($image.height()) / 2);
     context.restore();
+    
+    // ___ imageCanvas
+    if ($imageCanvas) {
+      context.drawImage($imageCanvas[0], 
+          points[6].x - ($imageCanvas.width() / 2), 
+          points[6].y - ($imageCanvas.height() / 2));
+    }
     
     // ___ text
     context.fillStyle = "#00a";
