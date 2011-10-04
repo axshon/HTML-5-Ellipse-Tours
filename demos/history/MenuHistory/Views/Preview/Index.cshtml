@@ -1,0 +1,7 @@
+﻿@model MenuHistory.Models.MenuItem
+<section>
+	<figure>
+		<img src="@Url.Content("~/Images/" + Model.Key + ".jpg")" alt="@Html.Raw(Model.DishDescription)" />
+		<figcaption>@Html.Raw(Model.DishDescription)</figcaption>
+	</figure>
+</section>

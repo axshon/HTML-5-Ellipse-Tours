@@ -1,0 +1,41 @@
+﻿@model Menu
+@using MenuHistory.Models
+@{ ViewBag.Title = "Menu"; }
+<h2>HTML 5 Restaurant Menu</h2>
+@{
+	var selectedItem = Model.Items.Where(s => s.IsSelected == true).FirstOrDefault();
+	var selectedDish = selectedItem == null ? "none" : selectedItem.Key;
+	List<List<MenuItem>> menuGroups = new List<List<MenuItem>>();
+	menuGroups.Add((from i in Model.Items where i.Meal == "Breakfast" select i).ToList<MenuItem>());
+	menuGroups.Add((from i in Model.Items where i.Meal == "Lunch" select i).ToList<MenuItem>());
+	menuGroups.Add((from i in Model.Items where i.Meal == "Dinner" select i).ToList<MenuItem>());
+}
+
+<aside class="previewDish">
+@{
+	if (selectedItem != null)
+	{
+		Html.RenderAction(
+			"Index", 
+			"Preview", 
+			new { id = selectedItem.Key }
+		);
+	}
+}
+</aside>
+@foreach (var mealList in menuGroups) { 
+	var titleClass = Model.SelectedMeal == mealList.First().Meal ? "active" : "inactive";
+	<section class="menu @titleClass">
+		<h3>@mealList.First().Meal</h3>
+		<ul>
+			@foreach (var item in mealList) {
+			   var itemClass = selectedDish == item.Key ? "selected" : "unselected";
+				<li class="@itemClass">@Html.RouteLink(
+						item.DishName, 
+						"Menus", 
+						new { meal = item.Meal, dish = item.Key }
+					)</li>
+			}
+		</ul>
+	</section>
+}
