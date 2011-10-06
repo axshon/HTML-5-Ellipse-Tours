@@ -30,7 +30,7 @@
 		<ul>
 			@foreach (var item in mealList) {
 			   var itemClass = selectedDish == item.Key ? "selected" : "unselected";
-				<li class="@itemClass">@Html.RouteLink(
+				<li class="menu-item @itemClass" data-meal="@item.Meal" data-dish="@item.DishName">@Html.RouteLink(
 						item.DishName, 
 						"Menus", 
 						new { meal = item.Meal, dish = item.Key }
