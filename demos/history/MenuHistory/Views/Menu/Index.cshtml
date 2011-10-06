@@ -25,12 +25,12 @@
 </aside>
 @foreach (var mealList in menuGroups) { 
 	var titleClass = Model.SelectedMeal == mealList.First().Meal ? "active" : "inactive";
-	<section class="menu @titleClass">
+	<section class="menu @titleClass" data-meal="@mealList.First().Meal">
 		<h3>@mealList.First().Meal</h3>
 		<ul>
 			@foreach (var item in mealList) {
 			   var itemClass = selectedDish == item.Key ? "selected" : "unselected";
-				<li class="menu-item @itemClass" data-meal="@item.Meal" data-dish="@item.DishName">@Html.RouteLink(
+				<li class="menu-item @itemClass" data-dish="@item.Key">@Html.RouteLink(
 						item.DishName, 
 						"Menus", 
 						new { meal = item.Meal, dish = item.Key }
