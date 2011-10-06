@@ -7,3 +7,5 @@
 * Clear out console calls
 * Try on other browsers
 * Feature testing for graceful degradation
+* jQuery history plugin?
+* Media query for mobile?
