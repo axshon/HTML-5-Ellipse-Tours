@@ -325,43 +325,46 @@ div#title {
 
 
 
+section.menu h3 {
+  color: gray;
+}
+
 section.menu a:link,
- section.menu a:visited {
+section.menu a:visited {
 	text-decoration: none;
-	color: black;
+	color: grey;
+}
+
+section.menu.active {
+	margin-left: 20px;
 }
 
 section.menu.active h3 {
+  color: black;
 	font-weight: bold;
 	font-size: larger;
-	margin-left: 20px;
 }
 
-section.menu.active ul {
-	margin-left: 20px;
+section.menu.active a:link,
+section.menu.active a:visited {
+  color: black;
 }
 
-section.menu.inactive h3, 
- section.menu.inactive a:link,
- section.menu.inactive a:visited {
-	color: gray;
+section.menu li { 
+	font-style: italic;
 }
 
 section.menu li.selected {
+	font-style: normal;
 	font-size: larger;
 	margin-left: 20px;
 }
 
-section.menu li.unselected { 
-	font-style: oblique;
-}
-
-
-.previewDish {
+.preview-dish {
 	float: right;
 }
 
-.previewDish section {
+.preview-dish section {
 	border: 1px solid black;
 	height: 380px;
 	width: 480px;

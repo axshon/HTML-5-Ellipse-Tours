@@ -1,11 +1,10 @@
 # To Do
 
 * Cool transition between previews
-* Actually load the previews
 * Add MIT license
-* Update menus as well
-* Clear out console calls
 * Try on other browsers
 * Feature testing for graceful degradation
 * jQuery history plugin?
 * Media query for mobile?
+* Deal properly with no dish states (and make it easier to get to them?)
+* show the right dish when you return to the initial state

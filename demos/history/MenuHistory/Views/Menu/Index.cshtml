@@ -11,7 +11,7 @@
 	menuGroups.Add((from i in Model.Items where i.Meal == "Dinner" select i).ToList<MenuItem>());
 }
 
-<aside class="previewDish">
+<aside class="preview-dish">
 @{
 	if (selectedItem != null)
 	{
@@ -24,12 +24,12 @@
 }
 </aside>
 @foreach (var mealList in menuGroups) { 
-	var titleClass = Model.SelectedMeal == mealList.First().Meal ? "active" : "inactive";
+	var titleClass = Model.SelectedMeal == mealList.First().Meal ? "active" : "";
 	<section class="menu @titleClass" data-meal="@mealList.First().Meal">
 		<h3>@mealList.First().Meal</h3>
 		<ul>
 			@foreach (var item in mealList) {
-			   var itemClass = selectedDish == item.Key ? "selected" : "unselected";
+			   var itemClass = selectedDish == item.Key ? "selected" : "";
 				<li class="menu-item @itemClass" data-dish="@item.Key">@Html.RouteLink(
 						item.DishName, 
 						"Menus", 
