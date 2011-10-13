@@ -361,11 +361,15 @@ section.menu li.selected {
 }
 
 .preview-dish {
+  position: relative;
 	float: right;
+	height: 380px;
+	width: 480px;
 }
 
 .preview-dish section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 	border: 1px solid black;
-	height: 380px;
-	width: 480px;
 }
