@@ -1,0 +1,18 @@
+﻿aside {
+	position: absolute;
+	left: 300px;
+	top: 0px;
+	width: 250px;
+	z-index: 2;
+	background-color: Gray;
+}
+
+#mapContainer {
+	background-color: Red;
+	z-index: 1;
+}
+
+button { 
+	width: 220px;
+	margin-left: 10px;
+}
