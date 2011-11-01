@@ -1,25 +1,27 @@
 ﻿/// <reference path="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.js" />
 /// <reference path="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" />
 
-
+// ----------
 $(document).ready(function () {
+	function resize(event) {
+		var left = $("#mainMap").width() - 250;
+		$("aside").css("left", left);
+	}
+
 	$(window).resize(resize);
-	function resize(e) {
-		var lft = $("#mainMap").width() - 250;
-		$("aside").css("left", lft + "px");
-	};
 	resize();
 	gis.init();
 });
 
+// ----------
 var gis = {
 	map: null,
 	m: Microsoft.Maps,
 	dirMgr: null,
 	mode: "MapClick",
-
 	distPoints: [],
 
+	// ----------
 	init: function () {
 		var self = this;
 		self.map = new self.m.Map(
@@ -69,8 +71,36 @@ var gis = {
 			self.m.Events.addHandler(self.map, "click", self.getRouteBetweenAddresses);
 		});
 		self.resetMapEnvelope();
+		
+		// ___ geolocation
+		if (Modernizr.geolocation) {
+		  function updateForPosition(position) {
+    		var loc = new self.m.Location(position.coords.latitude, position.coords.longitude);
+    		var a = Math.min(25000, position.coords.accuracy) / 5000;
+    		var zoom = 16 - Math.round(a);
+    		self.map.setView(
+    			{
+    				zoom: zoom,
+    				center: loc,
+    			}
+    		);
+  		}
+  		
+  		function positionError(error) {
+  		  if (error.code == 1)
+  		    alert("please enable geolocation!");
+  		}
+  		
+  		var options = {
+  		  enableHighAccuracy: true, 
+  		  maximumAge: 30000
+  		};
+  		
+  		var wpid = navigator.geolocation.watchPosition(updateForPosition, positionError, options);
+    }
 	},
 
+	// ----------
 	removeEvents: function () {
 		var self = window.gis;
 		switch (self.mode) {
@@ -95,6 +125,7 @@ var gis = {
 		}
 	},
 
+	// ----------
 	resetMapEnvelope: function () {
 		var self = this;
 		self.map.setView(
@@ -107,6 +138,7 @@ var gis = {
 		self.map.entities.clear();
 	},
 
+	// ----------
 	mapClick: function (e) {
 		var self = window.gis;
 		if (e.targetType == "map") {
@@ -120,6 +152,7 @@ var gis = {
 		}
 	},
 
+	// ----------
 	mapLocationAndZoom: function () {
 		var self = window.gis;
 		var loc = new self.m.Location(37.982, -76.017);
@@ -140,6 +173,7 @@ var gis = {
 		self.map.entities.push(pin);
 	},
 
+	// ----------
 	mapStraightLines: function (e) {
 		var self = window.gis;
 		if (e.targetType == "map") {
@@ -160,6 +194,7 @@ var gis = {
 		}
 	},
 
+	// ----------
 	getLine: function (startLoc) {
 		var self = window.gis;
 		var lines = [];
@@ -194,6 +229,7 @@ var gis = {
 		return lines;
 	},
 
+	// ----------
 	getRouteBetweenAddresses: function () {
 		var self = window.gis;
 		if (self.dirMgr) {
@@ -217,6 +253,7 @@ var gis = {
 		}
 	},
 
+	// ----------
 	getRouteWithDirMgr: function () {
 		var self = window.gis;
 		self.map.setView(
@@ -244,11 +281,13 @@ var gis = {
 		self.dirMgr.calculateDirections();
 	},
 
+	// ----------
 	geoCodeAddress: function () {
 		alert("proxy the service using web apis");
 		//http://msdn.microsoft.com/en-us/library/cc966828.aspx
 	},
 
+	// ----------
 	getDistances: function (e) {
 		var self = window.gis;
 		if (e.targetType == "map") {
@@ -269,6 +308,7 @@ var gis = {
 		}
 	},
 
+	// ----------
 	getDistanceBetweenPoints: function (pointA, pointB) {
 		var latA = pointA.latitude;
 		var lonA = pointA.longitude;
@@ -293,6 +333,7 @@ var gis = {
 		return d;
 	},
 
+	// ----------
 	getAddressForPoint: function(e) {
 		var self = window.gis;
 		if (e.targetType == "map") {
@@ -306,9 +347,11 @@ var gis = {
 		} 
 	},
 
+	// ----------
 	getRateOfTravel: function () {
 	},
 
+	// ----------
 	createPolygonAroundPoint: function (e) {
 		var self = window.gis;
 		if (e.targetType == "map") {
@@ -353,5 +396,5 @@ var gis = {
 			self.map.entities.push(polygon);
 		}
 	}
-}
+};
 
