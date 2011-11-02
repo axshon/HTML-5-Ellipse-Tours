@@ -18,8 +18,9 @@
 		<div id="itinerary">Directions</div>
 	</aside>
 	<section id="mapContainer">
-		<div id="mainMap">Map failed to load.</div>
+		<div id="main-map">Map failed to load.</div>
 	</section>
+	<script src="Scripts/config.js" type="text/javascript"></script>
 	<script src="Scripts/main.js" type="text/javascript"></script>
 </body>
 </html>
