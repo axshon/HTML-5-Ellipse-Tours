@@ -11,3 +11,4 @@ Running demo: http://www.ellipsetours.com/Demos/geolocation/
 * Indicator/switch for auto-position
 * Clean up the resize handler
 * Prettier "failed to load map" indicator; don't show to user while still loading map
+* Use createPolygonAroundPoint
