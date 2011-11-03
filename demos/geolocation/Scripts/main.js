@@ -9,19 +9,13 @@ $(document).ready(function () {
 // ----------
 window.gis = {
 	map: null,
+	watchID: null,
+	$autoCheckbox: null, 
 
 	// ----------
 	init: function () {
 		var self = this;
     
-  	function resize(event) {
-  		var left = $("#main-map").width() - 250;
-  		$("aside").css("left", left);
-  	}
-  
-  	$(window).resize(resize);
-  	resize();
-
     // ___ map
 		this.map = new Microsoft.Maps.Map($("#main-map")[0], {credentials: config.mapKey});
 
@@ -38,9 +32,33 @@ window.gis = {
   			self.map.entities.push(pin);
   		}
 		});
+    
+    // ___ buttons
+    this.$autoCheckbox = $("#auto").change(function() {
+      self.setAutoLocate(self.$autoCheckbox[0].checked);
+    });
 
-		// ___ geolocation
-		if (Modernizr.geolocation) {
+		// ___ get started
+		if (Modernizr.geolocation)
+		  this.setAutoLocate(true);
+	}, 
+	
+	// ----------
+	setAutoLocate: function(value) {
+    var self = this;
+    
+    if (this.auto == value)
+      return;
+      
+    if (value && !Modernizr.geolocation) {
+      alert("This browser does not support geolocation.");
+      return;
+    }
+      
+    this.auto = value;
+    this.$autoCheckbox[0].checked = this.auto;
+    
+    if (this.auto) {
 		  function updateForPosition(position) {
     		var loc = new Microsoft.Maps.Location(position.coords.latitude, position.coords.longitude);
     		var a = Math.min(25000, position.coords.accuracy) / 5000;
@@ -53,15 +71,24 @@ window.gis = {
   		
   		function positionError(error) {
   		  if (error.code == 1)
-  		    alert("please enable geolocation!");
+  		    alert("Please enable geolocation!");
+  		  else if (error.code == 2)
+  		    alert("Unable to get location.");
+  		  else if (error.code == 3)
+  		    alert("Timeout while getting location.");
+  		  else
+  		    alert("Unknown error while getting location.");
+  		    
+  		  self.setAutoLocate(false);
   		}
   		
-  		var options = {
+  		this.watchID = navigator.geolocation.watchPosition(updateForPosition, positionError, {
   		  enableHighAccuracy: true, 
   		  maximumAge: 30000
-  		};
-
-  		var wpid = navigator.geolocation.watchPosition(updateForPosition, positionError, options);
+  		});
+    } else {
+      navigator.geolocation.clearWatch(this.watchID);
+      this.watchID = null;
     }
 	}
 };

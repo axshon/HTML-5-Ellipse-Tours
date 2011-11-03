@@ -1,10 +1,17 @@
-﻿aside {
+﻿html, body {
+	margin: 0;
+	padding: 0;
+}
+
+aside {
 	position: absolute;
-	left: 300px;
-	top: 0px;
+	right: 10px;
+	top: 10px;
 	width: 250px;
+	padding: 10px;
 	z-index: 2;
-	background-color: Gray;
+	background-color: #ddd;
+	border: 1px solid #333;
 }
 
 #mapContainer {
@@ -13,6 +20,5 @@
 }
 
 button { 
-	width: 220px;
-	margin-left: 10px;
+/* 	width: 220px; */
 }

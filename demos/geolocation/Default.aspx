@@ -9,6 +9,8 @@
 </head>
 <body>
 	<aside>
+    <input id="auto" type="checkbox" /><label for="auto">Auto-locate</label>
+<!--
 		<button id="cmdMapClick">Map Click</button>
 		<button id="cmdLocationAndZoom">Location and Zoom</button>
 		<button id="cmdStraightLines">Straight Lines</button>
@@ -16,6 +18,7 @@
 		<button id="cmdBufferPoint">Buffer a Point</button>
 		<button id="cmdRouteAddr">Route Between Addresses</button>
 		<div id="itinerary">Directions</div>
+-->
 	</aside>
 	<section id="mapContainer">
 		<div id="main-map">Map failed to load.</div>
