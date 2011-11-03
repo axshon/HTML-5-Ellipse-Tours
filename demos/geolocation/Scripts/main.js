@@ -73,13 +73,13 @@ window.gis = {
         self.updateForPosition(position);
       }, function(error) {
         if (error.code == 1)
-          this.$status.text("Please enable geolocation!");
+          self.$status.text("Please enable geolocation!");
         else if (error.code == 2)
-          this.$status.text("Unable to get location.");
+          self.$status.text("Unable to get location.");
         else if (error.code == 3)
-          this.$status.text("Timeout while getting location.");
+          self.$status.text("Timeout while getting location.");
         else
-          this.$status.text("Unknown error while getting location.");
+          self.$status.text("Unknown error while getting location.");
           
         self.setAutoLocate(false);
       }, {
