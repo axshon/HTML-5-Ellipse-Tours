@@ -11,6 +11,8 @@ window.gis = {
 	map: null,
 	watchID: null,
 	$autoCheckbox: null, 
+	distance: 0,
+	previousLocation: null,
 
 	// ----------
 	init: function () {
@@ -67,6 +69,18 @@ window.gis = {
   				zoom: zoom,
   				center: loc,
   			});
+
+        if (self.previousLocation) {
+  				var distance = self.computeDistance(self.previousLocation, loc);
+  				if (distance > 5) {
+    				var line = new Microsoft.Maps.Polyline([self.previousLocation, loc], null);
+    				self.map.entities.push(line);
+    		  }
+
+  				self.distance += distance;
+  		  }
+  		  
+  		  self.previousLocation = loc; 
   		}
   		
   		function positionError(error) {
@@ -90,6 +104,25 @@ window.gis = {
       navigator.geolocation.clearWatch(this.watchID);
       this.watchID = null;
     }
+	},
+
+	// ----------
+	computeDistance: function (locationA, locationB) {
+		var latA = locationA.latitude;
+		var lonA = locationA.longitude;
+		var latB = locationB.latitude;
+		var lonB = locationB.longitude;
+		var r = 6371; // Kilometers
+
+		var dLat = (latB - latA) * Math.PI / 180;
+		var dLon = (lonB - lonA) * Math.PI / 180;
+		var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+			Math.cos(latA * Math.PI / 180) * Math.cos(latB * Math.PI / 180) *
+			Math.sin(dLon / 2) * Math.sin(dLon / 2);
+		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		var d = (r * c);
+		var meters = Math.round((d * 1000) * 10) / 10;
+		return meters;
 	}
 };
 
