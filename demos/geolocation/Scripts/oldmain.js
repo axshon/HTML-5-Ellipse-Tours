@@ -308,30 +308,30 @@ var gis = {
 		}
 	},
 
-	// ----------
-	getDistanceBetweenPoints: function (pointA, pointB) {
-		var latA = pointA.latitude;
-		var lonA = pointA.longitude;
-		var latB = pointB.latitude;
-		var lonB = pointB.longitude;
-		var r = 6371; // Kilometers
+  // ----------
+  getDistanceBetweenPoints: function (pointA, pointB) {
+    var latA = pointA.latitude;
+    var lonA = pointA.longitude;
+    var latB = pointB.latitude;
+    var lonB = pointB.longitude;
+    var r = 6371; // Kilometers
 
-		var dLat = (latB - latA) * Math.PI / 180;
-		var dLon = (lonB - lonA) * Math.PI / 180;
-		var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-			Math.cos(latA * Math.PI / 180) * Math.cos(latB * Math.PI / 180) *
-			Math.sin(dLon / 2) * Math.sin(dLon / 2);
-		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-		var d = (r * c);
+    var dLat = (latB - latA) * Math.PI / 180;
+    var dLon = (lonB - lonA) * Math.PI / 180;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(latA * Math.PI / 180) * Math.cos(latB * Math.PI / 180) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = (r * c);
 
-		if (d > 1) {
-			d = Math.round(d * 100) / 100 + " km";
-		}
-		else if (d <= 1) {
-			d = Math.round((d * 1000) * 10) / 10 + " m";
-		}
-		return d;
-	},
+    if (d > 1) {
+      d = Math.round(d * 100) / 100 + " km";
+    }
+    else if (d <= 1) {
+      d = Math.round((d * 1000) * 10) / 10 + " m";
+    }
+    return d;
+  },
 
 	// ----------
 	getAddressForPoint: function(e) {

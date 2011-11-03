@@ -1,24 +1,24 @@
 ﻿html, body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 aside {
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	width: 250px;
-	padding: 10px;
-	z-index: 2;
-	background-color: #ddd;
-	border: 1px solid #333;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 250px;
+  padding: 10px;
+  z-index: 2;
+  background-color: #ddd;
+  border: 1px solid #333;
 }
 
 #mapContainer {
-	background-color: Red;
-	z-index: 1;
+  background-color: Red;
+  z-index: 1;
 }
 
 button { 
-/* 	width: 220px; */
+/*  width: 220px; */
 }
