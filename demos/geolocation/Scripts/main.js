@@ -11,12 +11,15 @@ window.gis = {
   map: null,
   watchID: null,
   $autoCheckbox: null, 
+  $status: null,
   distance: 0,
   previousLocation: null,
 
   // ----------
   init: function () {
     var self = this;
+    
+    this.$status = $("#status");
     
     // ___ map
     this.map = new Microsoft.Maps.Map($("#main-map")[0], {credentials: config.mapKey});
@@ -80,7 +83,8 @@ window.gis = {
           self.distance += distance;
         }
         
-        self.previousLocation = loc; 
+        self.previousLocation = loc;
+        self.$status.text("distance: " + self.distance); 
       }
       
       function positionError(error) {
@@ -96,6 +100,7 @@ window.gis = {
         self.setAutoLocate(false);
       }
       
+      this.$status.text("locating");
       this.watchID = navigator.geolocation.watchPosition(updateForPosition, positionError, {
         enableHighAccuracy: true, 
         maximumAge: 30000
