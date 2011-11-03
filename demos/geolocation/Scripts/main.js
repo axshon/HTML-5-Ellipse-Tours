@@ -12,6 +12,7 @@ window.gis = {
   watchID: null,
   $autoCheckbox: null, 
   $status: null,
+  startTime: 0,
   distance: 0,
   previousLocation: null,
 
@@ -75,16 +76,28 @@ window.gis = {
 
         if (self.previousLocation) {
           var distance = self.computeDistance(self.previousLocation, loc);
-          if (distance > 5) {
+          if (distance > position.coords.accuracy / 2) { // threshold to filter out noise
             var line = new Microsoft.Maps.Polyline([self.previousLocation, loc], null);
             self.map.entities.push(line);
+  
+            self.distance += distance;
+            self.previousLocation = loc;
           }
-
-          self.distance += distance;
+          
+          var millisecondsPerHour = 1000 * 60 * 60;
+          var hours = ($.now() - self.startTime) / millisecondsPerHour;
+          var kilometerDistance = self.distance / 1000;
+          var speed = kilometerDistance / hours;
+          self.$status.html("distance:&nbsp;" 
+            + (Math.round(self.distance * 10) / 10) 
+            + "&nbsp;m, speed:&nbsp;"
+            + (Math.round(speed * 10) / 10)
+            + "&nbsp;km/h"); 
+        } else {
+          self.previousLocation = loc;
+          self.startTime = $.now();
+          self.$status.text("located"); 
         }
-        
-        self.previousLocation = loc;
-        self.$status.text("distance: " + self.distance); 
       }
       
       function positionError(error) {
@@ -100,7 +113,7 @@ window.gis = {
         self.setAutoLocate(false);
       }
       
-      this.$status.text("locating");
+      this.$status.text("locating...");
       this.watchID = navigator.geolocation.watchPosition(updateForPosition, positionError, {
         enableHighAccuracy: true, 
         maximumAge: 30000
@@ -125,8 +138,8 @@ window.gis = {
       Math.cos(latA * Math.PI / 180) * Math.cos(latB * Math.PI / 180) *
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = (r * c);
-    var meters = Math.round((d * 1000) * 10) / 10;
+    var meters = r * c * 1000;
+
     return meters;
   }
 };

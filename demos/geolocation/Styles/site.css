@@ -24,16 +24,12 @@ aside {
 }
 
 .box-shadow {
-  -webkit-box-shadow: 3px 3px 5px #000; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-     -moz-box-shadow: 3px 3px 5px #000; /* FF3.5 - 3.6 */
-          box-shadow: 3px 3px 5px #000; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+     -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* FF3.5 - 3.6 */
+          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
 }
 
 #mapContainer {
   background-color: Red;
   z-index: 1;
-}
-
-button { 
-/*  width: 220px; */
 }
