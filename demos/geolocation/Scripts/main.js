@@ -1,4 +1,7 @@
-﻿/// <reference path="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.js" />
+﻿/// Copyright 2011, Ian Gilman
+/// Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+///
+/// <reference path="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.js" />
 /// <reference path="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" />
 
 // ----------
@@ -30,16 +33,16 @@ window.gis = {
         var point = new Microsoft.Maps.Point(event.getX(), event.getY());
         var loc = event.target.tryPixelToLocation(point);
         var pin = new Microsoft.Maps.Pushpin(loc, {
-          icon: "Images/SmithIsland.gif",
-          width: 73,
-          height: 94
+          icon: "Images/html5.png",
+          width: 32,
+          height: 32
         });
         
         self.map.entities.push(pin);
       }
     });
     
-    // ___ buttons
+    // ___ button
     this.$autoCheckbox = $("#auto").change(function() {
       self.setAutoLocate(self.$autoCheckbox[0].checked);
     });
@@ -57,7 +60,7 @@ window.gis = {
       return;
       
     if (value && !Modernizr.geolocation) {
-      alert("This browser does not support geolocation.");
+      this.$status.text("This browser does not support geolocation.");
       return;
     }
       
@@ -65,56 +68,21 @@ window.gis = {
     this.$autoCheckbox[0].checked = this.auto;
     
     if (this.auto) {
-      function updateForPosition(position) {
-        var loc = new Microsoft.Maps.Location(position.coords.latitude, position.coords.longitude);
-        var a = Math.min(25000, position.coords.accuracy) / 5000;
-        var zoom = 16 - Math.round(a);
-        self.map.setView({
-          zoom: zoom,
-          center: loc,
-        });
-
-        if (self.previousLocation) {
-          var distance = self.computeDistance(self.previousLocation, loc);
-          if (distance > position.coords.accuracy / 2) { // threshold to filter out noise
-            var line = new Microsoft.Maps.Polyline([self.previousLocation, loc], null);
-            self.map.entities.push(line);
-  
-            self.distance += distance;
-            self.previousLocation = loc;
-          }
-          
-          var millisecondsPerHour = 1000 * 60 * 60;
-          var hours = ($.now() - self.startTime) / millisecondsPerHour;
-          var kilometerDistance = self.distance / 1000;
-          var speed = kilometerDistance / hours;
-          self.$status.html("distance:&nbsp;" 
-            + (Math.round(self.distance * 10) / 10) 
-            + "&nbsp;m, speed:&nbsp;"
-            + (Math.round(speed * 10) / 10)
-            + "&nbsp;km/h"); 
-        } else {
-          self.previousLocation = loc;
-          self.startTime = $.now();
-          self.$status.text("located"); 
-        }
-      }
-      
-      function positionError(error) {
+      this.$status.text("locating...");
+      this.watchID = navigator.geolocation.watchPosition(function(position) {
+        self.updateForPosition(position);
+      }, function(error) {
         if (error.code == 1)
-          alert("Please enable geolocation!");
+          this.$status.text("Please enable geolocation!");
         else if (error.code == 2)
-          alert("Unable to get location.");
+          this.$status.text("Unable to get location.");
         else if (error.code == 3)
-          alert("Timeout while getting location.");
+          this.$status.text("Timeout while getting location.");
         else
-          alert("Unknown error while getting location.");
+          this.$status.text("Unknown error while getting location.");
           
         self.setAutoLocate(false);
-      }
-      
-      this.$status.text("locating...");
-      this.watchID = navigator.geolocation.watchPosition(updateForPosition, positionError, {
+      }, {
         enableHighAccuracy: true, 
         maximumAge: 30000
       });
@@ -125,12 +93,48 @@ window.gis = {
   },
 
   // ----------
+  updateForPosition: function(position) {
+    var loc = new Microsoft.Maps.Location(position.coords.latitude, position.coords.longitude);
+    var a = Math.min(25000, position.coords.accuracy) / 5000;
+    var zoom = 16 - Math.round(a);
+    this.map.setView({
+      zoom: zoom,
+      center: loc,
+    });
+
+    if (this.previousLocation) {
+      var distance = this.computeDistance(this.previousLocation, loc);
+      if (distance > position.coords.accuracy / 2) { // threshold to filter out noise
+        var line = new Microsoft.Maps.Polyline([this.previousLocation, loc], null);
+        this.map.entities.push(line);
+
+        this.distance += distance;
+        this.previousLocation = loc;
+      }
+      
+      var millisecondsPerHour = 1000 * 60 * 60;
+      var hours = ($.now() - this.startTime) / millisecondsPerHour;
+      var kilometerDistance = this.distance / 1000;
+      var speed = kilometerDistance / hours;
+      this.$status.html("distance:&nbsp;" 
+        + (Math.round(this.distance * 10) / 10) 
+        + "&nbsp;m, speed:&nbsp;"
+        + (Math.round(speed * 10) / 10)
+        + "&nbsp;km/h"); 
+    } else {
+      this.previousLocation = loc;
+      this.startTime = $.now();
+      this.$status.text("located"); 
+    }
+  },
+    
+  // ----------
   computeDistance: function (locationA, locationB) {
     var latA = locationA.latitude;
     var lonA = locationA.longitude;
     var latB = locationB.latitude;
     var lonB = locationB.longitude;
-    var r = 6371; // Kilometers
+    var kilometerConversion = 6371;
 
     var dLat = (latB - latA) * Math.PI / 180;
     var dLon = (lonB - lonA) * Math.PI / 180;
@@ -138,7 +142,7 @@ window.gis = {
       Math.cos(latA * Math.PI / 180) * Math.cos(latB * Math.PI / 180) *
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var meters = r * c * 1000;
+    var meters = c * kilometerConversion * 1000;
 
     return meters;
   }

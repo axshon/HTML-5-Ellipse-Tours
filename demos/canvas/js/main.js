@@ -1,3 +1,9 @@
+/// Copyright 2011, Ian Gilman
+/// Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+///
+/// <reference path="http://code.jquery.com/jquery-1.6.1.min.js" />
+
+// ----------
 $(document).ready(function() {
   var $canvas = $("#main");
   var context = $canvas[0].getContext("2d");

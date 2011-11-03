@@ -1,4 +1,11 @@
-﻿html, body {
+﻿html, 
+body,
+#main-map {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   margin: 0;
   padding: 0;
 }
@@ -9,7 +16,7 @@ aside {
   bottom: 10px;
   width: 250px;
   padding: 10px;
-  z-index: 2;
+  z-index: 1;
   background-color: #ddd;
   border: 1px solid #333;
 }
@@ -27,9 +34,4 @@ aside {
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
      -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* FF3.5 - 3.6 */
           box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
-}
-
-#mapContainer {
-  background-color: Red;
-  z-index: 1;
 }
