@@ -18,6 +18,7 @@ window.gis = {
   startTime: 0,
   distance: 0,
   previousLocation: null,
+  pins: [],
 
   // ----------
   init: function () {
@@ -29,17 +30,7 @@ window.gis = {
     this.map = new Microsoft.Maps.Map($("#main-map")[0], {credentials: config.mapKey});
 
     Microsoft.Maps.Events.addHandler(this.map, "click", function(event) {
-      if (event.targetType == "map") {
-        var point = new Microsoft.Maps.Point(event.getX(), event.getY());
-        var loc = event.target.tryPixelToLocation(point);
-        var pin = new Microsoft.Maps.Pushpin(loc, {
-          icon: "Images/html5.png",
-          width: 32,
-          height: 32
-        });
-        
-        self.map.entities.push(pin);
-      }
+      self.handleClick(event);
     });
     
     // ___ button
@@ -50,6 +41,47 @@ window.gis = {
     // ___ get started
     if (Modernizr.geolocation)
       this.setAutoLocate(true);
+  },
+  
+  // ----------
+  handleClick: function(event) {
+    var self = this;
+    
+    if (event.targetType != "map") 
+      return;
+      
+    if (this.pins.length >= 2) {
+      $.each(this.pins, function(index, pin) {
+        self.map.entities.remove(pin);
+      });
+      
+      this.pins = [];
+    }
+      
+    var point = new Microsoft.Maps.Point(event.getX(), event.getY());
+    var loc = event.target.tryPixelToLocation(point);
+    var pin = new Microsoft.Maps.Pushpin(loc, {
+      icon: "Images/html5.png",
+      width: 32,
+      height: 32
+    });
+    
+    this.map.entities.push(pin);
+    this.pins.push(pin);
+    
+    if (this.pins.length == 2) {
+      alert("This is where we would fetch directions");
+/*
+      $.ajax({
+        url: "",
+        data: {
+        },
+        success: function(data, textStatus, jqXHR) {
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+        }
+      });
+*/
   }, 
   
   // ----------
