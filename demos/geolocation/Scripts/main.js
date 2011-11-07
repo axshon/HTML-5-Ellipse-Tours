@@ -57,13 +57,8 @@ window.gis = {
     if (event.targetType != "map") 
       return;
       
-    if (this.places.length >= 2) {
-      $.each(this.places, function(index, place) {
-        self.map.entities.remove(place.pin);
-      });
-      
-      this.places = [];
-    }
+    if (this.places.length >= 2)
+      this.clearPlaces();
       
     var point = new Microsoft.Maps.Point(event.getX(), event.getY());
     var loc = event.target.tryPixelToLocation(point);
@@ -103,6 +98,18 @@ window.gis = {
   }, 
   
   // ----------
+  clearPlaces: function() {
+    var self = this;
+    
+    $.each(this.places, function(index, place) {
+      self.map.entities.remove(place.pin);
+    });
+    
+    this.places = [];
+    this.clearDirections();  
+  },
+
+  // ----------
   getDirections: function(addressA, addressB) {
     var self = this;
     
@@ -138,12 +145,22 @@ window.gis = {
           
           Microsoft.Maps.Events.addHandler(self.directionsManager, "directionsError", function(error) {
             alert("Unable to get directions: " + error.message);
+            self.clearPlaces();
           });
           
           getRoute();
         }
       });
     }
+  },
+  
+  // ----------
+  clearDirections: function() {
+    if (!this.directionsManager)
+      return;
+      
+    this.directionsManager.resetDirections();
+    this.$itinerary.fadeOut();
   },
 
   // ----------
