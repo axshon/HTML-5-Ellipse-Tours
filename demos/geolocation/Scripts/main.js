@@ -18,7 +18,7 @@ window.gis = {
   startTime: 0,
   distance: 0,
   previousLocation: null,
-  pins: [],
+  places: [],
 
   // ----------
   init: function () {
@@ -50,12 +50,12 @@ window.gis = {
     if (event.targetType != "map") 
       return;
       
-    if (this.pins.length >= 2) {
-      $.each(this.pins, function(index, pin) {
-        self.map.entities.remove(pin);
+    if (this.places.length >= 2) {
+      $.each(this.places, function(index, place) {
+        self.map.entities.remove(place.pin);
       });
       
-      this.pins = [];
+      this.places = [];
     }
       
     var point = new Microsoft.Maps.Point(event.getX(), event.getY());
@@ -66,22 +66,34 @@ window.gis = {
       height: 32
     });
     
-    this.map.entities.push(pin);
-    this.pins.push(pin);
+    var place = {
+      pin: pin
+    };
     
-    if (this.pins.length == 2) {
-      alert("This is where we would fetch directions");
-/*
-      $.ajax({
-        url: "",
-        data: {
-        },
-        success: function(data, textStatus, jqXHR) {
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
+    this.map.entities.push(pin);
+    this.places.push(place);
+    
+    $.ajax({
+      url: "/GeoService/GetAddress",
+      data: {
+        latitude: loc.latitude,
+        longitude: loc.longitude
+      },
+      success: function(data, textStatus, jqXHR) {
+        place.address = data;
+        if (self.places.length == 2) {
+          alert("directions");
         }
-      });
-*/
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert("unable to get address: " + errorThrown);
+        var index = $.inArray(place, self.places);
+        if (index != -1) {
+          self.places.splice(index, 1);
+          self.map.entities.remove(place.pin);
+        }
+      }
+    });
   }, 
   
   // ----------
@@ -104,11 +116,11 @@ window.gis = {
       this.watchID = navigator.geolocation.watchPosition(function(position) {
         self.updateForPosition(position);
       }, function(error) {
-        if (error.code == 1)
+        if (error.code == error.PERMISSION_DENIED)
           self.$status.text("Please enable geolocation!");
-        else if (error.code == 2)
+        else if (error.code == error.POSITION_UNAVAILABLE)
           self.$status.text("Unable to get location.");
-        else if (error.code == 3)
+        else if (error.code == error.TIMEOUT)
           self.$status.text("Timeout while getting location.");
         else
           self.$status.text("Unknown error while getting location.");
