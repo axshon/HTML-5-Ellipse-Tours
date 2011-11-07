@@ -15,16 +15,23 @@ window.gis = {
   watchID: null,
   $autoCheckbox: null, 
   $status: null,
+  $itinerary: null,
   startTime: 0,
   distance: 0,
   previousLocation: null,
   places: [],
+  directionsManager: null, 
 
   // ----------
   init: function () {
     var self = this;
     
     this.$status = $("#status");
+
+    this.$itinerary = $("#itinerary")
+      .click(function() {
+        self.$itinerary.fadeOut();
+      });
     
     // ___ map
     this.map = new Microsoft.Maps.Map($("#main-map")[0], {credentials: config.mapKey});
@@ -81,9 +88,8 @@ window.gis = {
       },
       success: function(data, textStatus, jqXHR) {
         place.address = data;
-        if (self.places.length == 2) {
-          alert("directions");
-        }
+        if (self.places.length == 2)
+          self.getDirections(self.places[0].address, self.places[1].address);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert("unable to get address: " + errorThrown);
@@ -96,6 +102,50 @@ window.gis = {
     });
   }, 
   
+  // ----------
+  getDirections: function(addressA, addressB) {
+    var self = this;
+    
+    function getRoute() {
+      self.directionsManager.resetDirections();
+  
+      self.directionsManager.setRequestOptions({ 
+        routeMode: Microsoft.Maps.Directions.RouteMode.driving 
+      });
+
+      self.directionsManager.setRenderOptions({ 
+        itineraryContainer: self.$itinerary[0] 
+      });
+
+      self.directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ 
+        address: addressA.FormattedAddress 
+      }));
+  
+      self.directionsManager.addWaypoint(new Microsoft.Maps.Directions.Waypoint({ 
+        address: addressB.FormattedAddress 
+      }));
+  
+      self.$itinerary.fadeIn();
+      self.directionsManager.calculateDirections();
+    }
+    
+    if (this.directionsManager) {
+      getRoute();
+    } else {
+      Microsoft.Maps.loadModule("Microsoft.Maps.Directions", {
+        callback: function () {
+          self.directionsManager = new Microsoft.Maps.Directions.DirectionsManager(self.map);
+          
+          Microsoft.Maps.Events.addHandler(self.directionsManager, "directionsError", function(error) {
+            alert("Unable to get directions: " + error.message);
+          });
+          
+          getRoute();
+        }
+      });
+    }
+  },
+
   // ----------
   setAutoLocate: function(value) {
     var self = this;
