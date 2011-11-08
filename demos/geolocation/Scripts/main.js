@@ -69,7 +69,8 @@ window.gis = {
     });
     
     var place = {
-      pin: pin
+      pin: pin, 
+      address: null
     };
     
     this.map.entities.push(pin);
@@ -82,20 +83,30 @@ window.gis = {
         longitude: loc.longitude
       },
       success: function(data, textStatus, jqXHR) {
+        if (!data || !data.FormattedAddress) {
+          self.removePlace(place);
+          return;
+        }
+        
         place.address = data;
-        if (self.places.length == 2)
+        if (self.places.length == 2 && self.places[0].address && self.places[1].address)
           self.getDirections(self.places[0].address, self.places[1].address);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         alert("unable to get address: " + errorThrown);
-        var index = $.inArray(place, self.places);
-        if (index != -1) {
-          self.places.splice(index, 1);
-          self.map.entities.remove(place.pin);
-        }
+        self.removePlace(place);
       }
     });
   }, 
+  
+  // ----------
+  removePlace: function(place) {
+    var index = $.inArray(place, this.places);
+    if (index != -1) {
+      this.places.splice(index, 1);
+      this.map.entities.remove(place.pin);
+    }    
+  },
   
   // ----------
   clearPlaces: function() {

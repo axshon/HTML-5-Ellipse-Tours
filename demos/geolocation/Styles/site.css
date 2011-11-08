@@ -30,6 +30,12 @@ aside {
   z-index: 2;
   background-color: #ddd;
   border: 1px solid #333;
+  font-size: smaller;
+}
+
+#itinerary .close {
+  float: right;
+  cursor: pointer;
 }
 
 .box-round {
