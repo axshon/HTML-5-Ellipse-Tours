@@ -6,8 +6,10 @@ Running demo: http://www.ellipsetours.com/Demos/drag-workers/
 
 * Learn more about file reader
 * Be able to drag images within the page (and from other pages?)
-* Draw the image into a canvas and mess with it
-* Web workers (blur, lighten, sharpen, find edges)
+* More Web workers (blur, lighten, sharpen, find edges)
+* Clean up site look
+* Clean up code
+* Use an interval or timeout in the worker to avoid "unresponsive script"
 
 # Reference
 

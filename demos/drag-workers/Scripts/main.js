@@ -47,27 +47,25 @@ window.dragWorkers = {
           reader.onload = function(loadEvent) {
             var $image = $("<img>")
               .load(function() {
+                var w = $image.width();
+                var h = $image.height();
                 var $imageCanvas = $("#list")
-                  .width($image.width())
-                  .height($image.height());
+                  .attr("width", w)
+                  .attr("height", h)
+                  .width(w)
+                  .height(h);
                   
                 var imageContext = $imageCanvas[0].getContext("2d");
-                imageContext.drawImage($image[0], 0, 0, $imageCanvas.width(), $imageCanvas.height());
-                try {
-                  var imageData = imageContext.getImageData(0, 0, $imageCanvas.width(), $imageCanvas.height());
-                  var worker = new Worker('Scripts/worker.js');  
-                  worker.onmessage = function(event) {  
-                    imageContext.putImageData(event.data, 0, 0);        
-                  };
-                  worker.postMessage(imageData);
-                } catch(e) {
-                  $("<div class='error'>Note: Direct manipulation of pixels loaded from image files isn't allowed when running locally</div>")
-                    .appendTo("body");
-                }
+                imageContext.drawImage($image[0], 0, 0, w, h);
+                var imageData = imageContext.getImageData(0, 0, w, h);
+                var worker = new Worker('Scripts/worker.js');  
+                worker.onmessage = function(event) {  
+                  imageContext.putImageData(event.data, 0, 0);        
+                };
+                worker.postMessage(imageData);
               })
-              .attr("src", loadEvent.target.result) // kick off the loading after we've attached the event handler
-              .appendTo("#drop1"); // we can't get the image's width and height without attaching to the DOM
-
+              .attr("src", loadEvent.target.result) 
+              .appendTo("#drop1"); 
           };
 
           reader.readAsDataURL(file);
