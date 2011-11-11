@@ -45,34 +45,28 @@ window.dragWorkers = {
     
           var reader = new FileReader();
           reader.onload = function(loadEvent) {
-            $("#drop1").append("<img src='" + loadEvent.target.result + "'>");
-
-/*
-  var $image = $("<img>")
-    .load(function() {
-      $imageCanvas = $("<canvas>")
-        .width($image.width())
-        .height($image.height());
-        
-      imageContext = $imageCanvas[0].getContext("2d");
-      imageContext.drawImage($image[0], 0, 0);
-      try {
-        var imageData = imageContext.getImageData(0, 0, $imageCanvas.width(), $imageCanvas.height());
-        for (var a = 0; a < imageData.data.length; a++) {
-          if (a % 4 != 3) // operate on R, G, B, but not A
-            imageData.data[a] = 255 - imageData.data[a]; // invert
-        }
-  
-        imageContext.putImageData(imageData, 0, 0);        
-      } catch(e) {
-        $("<div class='error'>Note: Direct manipulation of pixels loaded from image files isn't allowed when running locally</div>")
-          .appendTo("body");
-      }
-    })
-    .attr("src", "img/smiley.png") // kick off the loading after we've attached the event handler
-    .hide()
-    .appendTo("body"); // we can't get the image's width and height without attaching to the DOM
-*/
+            var $image = $("<img>")
+              .load(function() {
+                var $imageCanvas = $("#list")
+                  .width($image.width())
+                  .height($image.height());
+                  
+                var imageContext = $imageCanvas[0].getContext("2d");
+                imageContext.drawImage($image[0], 0, 0, $imageCanvas.width(), $imageCanvas.height());
+                try {
+                  var imageData = imageContext.getImageData(0, 0, $imageCanvas.width(), $imageCanvas.height());
+                  var worker = new Worker('Scripts/worker.js');  
+                  worker.onmessage = function(event) {  
+                    imageContext.putImageData(event.data, 0, 0);        
+                  };
+                  worker.postMessage(imageData);
+                } catch(e) {
+                  $("<div class='error'>Note: Direct manipulation of pixels loaded from image files isn't allowed when running locally</div>")
+                    .appendTo("body");
+                }
+              })
+              .attr("src", loadEvent.target.result) // kick off the loading after we've attached the event handler
+              .appendTo("#drop1"); // we can't get the image's width and height without attaching to the DOM
 
           };
 
