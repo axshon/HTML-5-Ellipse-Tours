@@ -9,19 +9,36 @@ body {
   padding: 0;
 }
 
-#drop1 {
-  width: 500px;
-  height: 500px;
-  margin: 10px;
-  border: 1px solid #333;
+.unit {
+  position: absolute;
 }
 
-#drag1 {
-  width: 50px;
-  height: 50px;
-  margin: 10px;
-  background: red;
-  border: 1px solid #333;  
+#unit1 {
+  left: 2%;
+  top: 2%;
+  right: 51%;
+  bottom: 51%;
+}
+
+#unit2 {
+  left: 51%;
+  top: 2%;
+  right: 2%;
+  bottom: 51%;
+}
+
+#unit3 {
+  left: 2%;
+  top: 51%;
+  right: 51%;
+  bottom: 2%;
+}
+
+#unit4 {
+  left: 51%;
+  top: 51%;
+  right: 2%;
+  bottom: 2%;
 }
 
 .box-round {

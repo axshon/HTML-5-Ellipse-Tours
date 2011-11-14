@@ -1,20 +1,46 @@
 self.onmessage = function(event) {  
-  var imageData = event.data;
+  var data = event.data;
+  switch(event.data.method) {
+    case "setType":
+      Main.setType(data.type);
+      break;
+    case "setImageData":
+      Main.setImageData(data.imageData);
+      break;
+    case "nextFrame":
+      Main.nextFrame();
+      break;
+  }  
+};  
+
+// ----------
+self.Main = {
+  type: null,
+  imageData: null,
   
-  while (true) {
-    var changed = false;
-    for (var a = 0; a < imageData.data.length; a++) {
+  // ----------
+  setType: function(type) {
+    this.type = type;
+  },
+  
+  // ----------
+  setImageData: function(imageData) {
+    this.imageData = imageData;
+    this.nextFrame();
+  },
+  
+  // ----------
+  nextFrame: function() {
+    for (var a = 0; a < this.imageData.data.length; a++) {
       if (a % 4 != 3) { // operate on R, G, B, but not A
-        if (imageData.data[a]) {
-          changed = true;
-          imageData.data[a] = Math.max(0, imageData.data[a] - 1);
-        }
+        var value = this.imageData.data[a] - 1;
+        if (value < 0)
+          value = 255;
+          
+        this.imageData.data[a] = value;
       }
     }
-    
-    if (!changed)
-      break;
-      
-    self.postMessage(imageData);  
+
+    self.postMessage(this.imageData);  
   }
-};  
+};
