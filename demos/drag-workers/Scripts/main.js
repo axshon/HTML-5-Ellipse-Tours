@@ -21,9 +21,9 @@ window.DragMain = {
     
     var types = [
       "cycle", 
-      "blur", 
-      "edges", 
-      "blur"
+      "sharpen", 
+      "sort", 
+      "diffuse"
     ];
     
     var a;
@@ -121,8 +121,8 @@ window.Unit = function($container, type) {
               }
             })
             .error(function() {
-              alert("Unable to load that image");
-            });
+              alert("Unable to load " + url);
+            })
             .attr("src", url);
       }
             

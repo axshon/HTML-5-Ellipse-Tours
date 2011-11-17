@@ -4,12 +4,13 @@ Running demo: http://www.ellipsetours.com/Demos/drag-workers/
 
 # To Do
 
-* Improve effects and add 1 more
-* Clean up code
-
-* Need to handle resize somehow? 
-* Sometimes the drop target color change leaves too soon… go back to using "over"?
-* Explanatory text?
+* Cut it down to just two boxes: cycle and diffuse; clean up remaining worker code
+* Add a bar at the top with explanation and a couple images to drag
+* Internal drag isn't working on Safari
+* Drop isn't working on IE9
+* alert if you dropped non-image files from desktop
+* Deal with multiple files from desktop properly
+* Remove commented out code
 
 # Reference
 
