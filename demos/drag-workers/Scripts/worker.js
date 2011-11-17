@@ -1,32 +1,23 @@
 // ----------
-self.onmessage = function(event) {  
-  var data = event.data;
-  switch(event.data.method) {
-    case "setType":
-      Main.setType(data.type);
-      break;
-    case "setImageData":
-      Main.setImageData(data.imageData);
-      break;
-    case "nextFrame":
-      Main.nextFrame();
-      break;
-  }  
-};  
+addEventListener("message", function(event) {  
+  var method = event.data.method;
+  if (typeof method == "string" && method in DragWorker)
+    DragWorker[method].call(DragWorker, event.data);
+}, false);
 
 // ----------
-self.Main = {
+var DragWorker = {
   type: null,
   imageData: null,
   
   // ----------
-  setType: function(type) {
-    this.type = type;
+  setType: function(data) {
+    this.type = data.type;
   },
   
   // ----------
-  setImageData: function(imageData) {
-    this.imageData = imageData;
+  setImageData: function(data) {
+    this.imageData = data.imageData;
     this.nextFrame();
   },
   
@@ -120,7 +111,7 @@ self.Main = {
         break;
     }
 
-    self.postMessage(this.imageData);  
+    postMessage(this.imageData);  
   }, 
   
   // ----------

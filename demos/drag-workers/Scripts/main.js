@@ -5,11 +5,11 @@
 
 // ----------
 $(document).ready(function () {
-  dragWorkers.init();
+  DragMain.init();
 });
 
 // ----------
-window.dragWorkers = {
+window.DragMain = {
   // ----------
   init: function () {
     var self = this;
@@ -70,17 +70,17 @@ window.Unit = function($container, type) {
   // ___ as a drop target
   this.$container
     .bind("dragenter", function(event) {
-      $(this).css({background: "blue"});
+      self.$container.addClass("drag-over");
     })
     .bind("dragover", function(event) {
       event.preventDefault();
       event.stopPropagation();
     })
     .bind("dragleave", function(event) {
-      $(this).css({background: "white"});
+      self.$container.removeClass("drag-over");
     })
     .bind("drop", function(event) {
-      $(this).css({background: "white"});
+      self.$container.removeClass("drag-over");
   
       var data = event.originalEvent.dataTransfer;
       if (!data)
@@ -93,10 +93,16 @@ window.Unit = function($container, type) {
           var $image = $("<img>")
             .load(function() {
               var img = $image[0];
-              var w = img.naturalWidth || img.width || img.clientWidth || img.scrollWidth;
-              var h = img.naturalHeight || img.height || img.clientHeight || img.scrollHeight;
-              w *= 0.5;
-              h *= 0.5;
+              var w = img.width;
+              var h = img.height;
+              var cw = self.$container.width();
+              var ch = self.$container.height();
+              var scale = cw / w;
+              if (h * scale > ch)
+                scale = ch / h;
+                
+              w *= scale;
+              h *= scale;
               self.$canvas
                 .attr("width", w)
                 .attr("height", h)
@@ -104,22 +110,29 @@ window.Unit = function($container, type) {
                 .height(h);
                 
               self.context.drawImage($image[0], 0, 0, w, h);
-              var imageData = self.context.getImageData(0, 0, w, h);
-              self.worker.postMessage({
-                method: "setImageData",
-                imageData: imageData
-              });
+              try {
+                var imageData = self.context.getImageData(0, 0, w, h);
+                self.worker.postMessage({
+                  method: "setImageData",
+                  imageData: imageData
+                });
+              } catch (e) {
+                alert("Not allowed to manipulate images from other sites.");
+              }
             })
+            .error(function() {
+              alert("Unable to load that image");
+            });
             .attr("src", url);
       }
             
-      var urlList = data.getData("text/uri-list");
-      if (urlList) {
-        doImage(urlList);
+      var url = data.getData("URL");
+      if (url && url.indexOf("file://") != 0) {
+        doImage(url);
       } else if ("FileReader" in window) {
         var files = data.files;
         $.each(files, function(index, file) {
-          if (!file.type.match('image.*')) 
+          if (!file.type.match("image.*")) 
             return;
     
           var reader = new FileReader();
@@ -129,6 +142,8 @@ window.Unit = function($container, type) {
     
           reader.readAsDataURL(file);
         });
+      } else {
+        alert("This browser doesn't support dragging from the desktop");
       }
     });
 };

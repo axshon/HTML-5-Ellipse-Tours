@@ -11,6 +11,12 @@ body {
 
 .unit {
   position: absolute;
+  padding: 4px;
+  border: 2px solid #ccc;
+}
+
+.unit.drag-over {
+  border: 2px solid #99f;
 }
 
 #unit1 {
