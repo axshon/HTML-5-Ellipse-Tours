@@ -19,15 +19,22 @@ window.dragWorkers = {
       return;
     }
     
+    var types = [
+      "cycle", 
+      "blur", 
+      "edges", 
+      "blur"
+    ];
+    
     var a;
-    for (a = 1; a <= 4; a++) {
-      new Unit($("#unit" + a));
+    for (a = 0; a < 4; a++) {
+      new Unit($("#unit" + (a + 1)), types[a]);
     }
   }
 };
 
 // ----------
-window.Unit = function($container) {
+window.Unit = function($container, type) {
   if (!(this instanceof arguments.callee))
    throw new Error("Don't forget to use 'new'!");
    
@@ -49,13 +56,15 @@ window.Unit = function($container) {
   
   this.worker.postMessage({
     method: "setType", 
-    type: "cycle"
+    type: type
   });
   
   // ___ as a draggable object
   this.$container
     .bind("dragstart", function(event) {
-      $(this).css({opacity:0.5});
+      var url = self.$canvas[0].toDataURL();
+      event.originalEvent.dataTransfer.setData("text/uri-list", url);    
+/*       event.originalEvent.dataTransfer.dropEffect = 'move';   */
     });
     
   // ___ as a drop target
@@ -80,13 +89,7 @@ window.Unit = function($container) {
       event.preventDefault();
       event.stopPropagation();
       
-      var files = data.files;
-      $.each(files, function(index, file) {
-        if (!file.type.match('image.*')) 
-          return;
-  
-        var reader = new FileReader();
-        reader.onload = function(loadEvent) {
+      function doImage(url) {
           var $image = $("<img>")
             .load(function() {
               var img = $image[0];
@@ -107,10 +110,25 @@ window.Unit = function($container) {
                 imageData: imageData
               });
             })
-            .attr("src", loadEvent.target.result);
-        };
-  
-        reader.readAsDataURL(file);
-      });
+            .attr("src", url);
+      }
+            
+      var urlList = data.getData("text/uri-list");
+      if (urlList) {
+        doImage(urlList);
+      } else if ("FileReader" in window) {
+        var files = data.files;
+        $.each(files, function(index, file) {
+          if (!file.type.match('image.*')) 
+            return;
+    
+          var reader = new FileReader();
+          reader.onload = function(loadEvent) {
+            doImage(loadEvent.target.result);
+          };
+    
+          reader.readAsDataURL(file);
+        });
+      }
     });
 };
