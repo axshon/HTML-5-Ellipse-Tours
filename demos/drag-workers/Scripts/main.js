@@ -19,17 +19,13 @@ window.DragMain = {
       return;
     }
     
-    var types = [
-      "cycle", 
-      "sharpen", 
-      "sort", 
-      "diffuse"
-    ];
-    
-    var a;
-    for (a = 0; a < 4; a++) {
-      new Unit($("#unit" + (a + 1)), types[a]);
+    if (!Modernizr.webworkers) {
+      alert("This browser does not support web workers");
+      return;
     }
+    
+    new Unit($("#unit1"), "cycle");
+    new Unit($("#unit2"), "diffuse");
   }
 };
 
@@ -45,7 +41,7 @@ window.Unit = function($container, type) {
  
   // ___ worker
   this.worker = new Worker('Scripts/worker.js');  
-  this.worker.onmessage = function(event) {  
+  this.worker.onmessage = function(event) {
     self.context.putImageData(event.data, 0, 0); 
     setTimeout(function() {       
       self.worker.postMessage({
@@ -64,15 +60,12 @@ window.Unit = function($container, type) {
     .bind("dragstart", function(event) {
       var url = self.$canvas[0].toDataURL();
       event.originalEvent.dataTransfer.setData("text/uri-list", url);    
-/*       event.originalEvent.dataTransfer.dropEffect = 'move';   */
     });
     
   // ___ as a drop target
   this.$container
-    .bind("dragenter", function(event) {
-      self.$container.addClass("drag-over");
-    })
     .bind("dragover", function(event) {
+      self.$container.addClass("drag-over");
       event.preventDefault();
       event.stopPropagation();
     })
@@ -89,61 +82,74 @@ window.Unit = function($container, type) {
       event.preventDefault();
       event.stopPropagation();
       
-      function doImage(url) {
-          var $image = $("<img>")
-            .load(function() {
-              var img = $image[0];
-              var w = img.width;
-              var h = img.height;
-              var cw = self.$container.width();
-              var ch = self.$container.height();
-              var scale = cw / w;
-              if (h * scale > ch)
-                scale = ch / h;
-                
-              w *= scale;
-              h *= scale;
-              self.$canvas
-                .attr("width", w)
-                .attr("height", h)
-                .width(w)
-                .height(h);
-                
-              self.context.drawImage($image[0], 0, 0, w, h);
-              try {
-                var imageData = self.context.getImageData(0, 0, w, h);
-                self.worker.postMessage({
-                  method: "setImageData",
-                  imageData: imageData
-                });
-              } catch (e) {
-                alert("Not allowed to manipulate images from other sites.");
-              }
-            })
-            .error(function() {
-              alert("Unable to load " + url);
-            })
-            .attr("src", url);
-      }
-            
       var url = data.getData("URL");
       if (url && url.indexOf("file://") != 0) {
-        doImage(url);
+        self.useImage(url);
       } else if ("FileReader" in window) {
         var files = data.files;
-        $.each(files, function(index, file) {
+        var found = false;
+        var a; 
+        for (a = 0; a < files.length; a++) {
+          var file = files[a];
           if (!file.type.match("image.*")) 
-            return;
+            continue;
     
           var reader = new FileReader();
           reader.onload = function(loadEvent) {
-            doImage(loadEvent.target.result);
+            self.useImage(loadEvent.target.result);
           };
     
           reader.readAsDataURL(file);
-        });
+          found = true;
+          break;
+        }
+        
+        if (!found)
+          alert("No image files dropped");
       } else {
         alert("This browser doesn't support dragging from the desktop");
       }
     });
+};
+
+// ----------
+Unit.prototype = {
+  // ----------
+  useImage: function(url) {
+    var self = this;
+    var $image = $("<img>")
+      .load(function() {
+        var img = $image[0];
+        var w = img.width;
+        var h = img.height;
+        var cw = self.$container.width();
+        var ch = self.$container.height();
+        var scale = cw / w;
+        if (h * scale > ch)
+          scale = ch / h;
+          
+        w *= scale;
+        h *= scale;
+        self.$canvas
+          .attr("width", w)
+          .attr("height", h)
+          .width(w)
+          .height(h);
+          
+        self.context.drawImage($image[0], 0, 0, w, h);
+        try {
+          var imageData = self.context.getImageData(0, 0, w, h);
+          self.worker.postMessage({
+            method: "setImageData",
+            imageData: imageData
+          });
+        } catch (e) {
+          alert("Not allowed to manipulate images from other sites.");
+        }
+      })
+      .error(function() {
+        alert("Unable to load " + url);
+      })
+      .attr("src", url);
+  }
 };
