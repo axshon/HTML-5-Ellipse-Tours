@@ -5,6 +5,7 @@ Running demo: http://www.ellipsetours.com/Demos/drag-workers/
 # To Do
 
 * Animation isn't working on the right unit in Safari
+* There's a little stutter when you drop something new on a unit; due to the last frame already being in progress
 
 # Reference
 
