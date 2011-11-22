@@ -31,7 +31,7 @@ window.DragMain = {
 
 // ----------
 window.Unit = function($container, type) {
-  if (!(this instanceof arguments.callee))
+  if (!(this instanceof Unit))
    throw new Error("Don't forget to use 'new'!");
    
   var self = this;
