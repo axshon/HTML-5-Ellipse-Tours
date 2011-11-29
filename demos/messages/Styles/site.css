@@ -5,6 +5,59 @@
 
 html, 
 body {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+#login {
+  position: absolute;
+  width: 250px;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  margin-left: -125px;
+  margin-top: -50px;
+  border: 1px solid #999;
+  padding: 10px;
+}
+
+#chat {
+  display: none;
+}
+
+#users {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  bottom: 0;
+  border-right: 1px solid black;
+  padding: 10px;
+}
+
+#log {
+  position: absolute;
+  left: 121px;
+  top: 0;
+  right: 0;
+  bottom: 21px;
+  padding: 10px;
+}
+
+#input {
+  position: absolute;
+  left: 121px;
+  height: 20px;
+  right: 0;
+  bottom: 0;
+}
+
+#entry {
+  width: 100%;
 }
 
 .box-round {

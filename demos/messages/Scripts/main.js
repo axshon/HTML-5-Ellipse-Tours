@@ -10,42 +10,44 @@ $(document).ready(function () {
 
 // ----------
 window.Main = {
+  name: "", 
+  
   // ----------
   init: function () {
     var self = this;
     
-    this.$output = $("#output");
-    
-    if (!Modernizr.postmessage) {
-      alert("This browser does not support web messaging");
-      return;
-    }
+    this.$output = $("#log");
+    this.$users = $("#users");
     
     if (!Modernizr.websockets) {
       alert("This browser does not support web sockets");
       return;
     }
     
-    $("#spawn").click(function() {
-      self.childWindow = window.open(location.href);
-    });
+    this.$entry = $("#entry")
+      .keypress(function(event) {
+        if (event.which == 13) { // return key
+          var message = self.$entry.val();
+          self.$entry.val(""); 
+          self.$output.append("<p>" + self.name + ": " + message + "</p>");
+        }
+      });
     
-    this.$entry = $("#entry").keypress(function(event) {
-      if (event.which == 13) { // return key
-        var message = self.$entry.val();
-        self.$entry.val(""); 
-        self.$output.append("<p>" + message + "</p>");
-        if (self.childWindow)
-          self.childWindow.postMessage(message, location.href); 
-      }
-    });
-    
-    $(window).bind("message", function(event) {
-      if (event.originalEvent.origin != location.protocol + "//" + location.hostname)
-        return;
-
-      self.$output.append("<p>" + event.originalEvent.data + "</p>");
-    });
+    this.$name = $("#name")
+      .keypress(function(event) {
+        if (event.which == 13) { // return key
+          self.name = self.$name.val();
+          self.$users.append("<p>" + self.name + "</p>");
+          $("#login").hide();
+          $("#chat").show();
+          self.$entry.focus();
+        }
+      })
+      .focus();
+  },
+  
+  // ----------
+  message: function() {
   }
 };
 
