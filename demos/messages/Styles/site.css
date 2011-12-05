@@ -15,21 +15,25 @@ body {
 
 #login {
   position: absolute;
-  width: 250px;
-  height: 100px;
+  width: 200px;
+  height: 60px;
   left: 50%;
   top: 50%;
-  margin-left: -125px;
-  margin-top: -50px;
+  margin-left: -100px;
+  margin-top: -30px;
   border: 1px solid #999;
   padding: 10px;
+}
+
+#login p {
+  margin-bottom: 0.5em;
 }
 
 #chat {
   display: none;
 }
 
-#users {
+#members {
   position: absolute;
   left: 0;
   top: 0;
