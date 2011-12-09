@@ -14,8 +14,26 @@ window.Main = {
   members: [], 
   
   // ----------
-  init: function() {
+  init: function(useLoopback) {
     var self = this;
+    
+    function receive(method, data) { 
+      if (method == "memberEnter")
+        self.addMember(data);
+      else if (method == "memberExit")
+        self.removeMember(data);
+      else if (method == "message")
+        self.addMessage(data);
+    }
+
+    if (useLoopback)
+      this.server = new LoopbackServer(receive);
+/*
+    else if (Modernizr.websockets) 
+      this.server = new SocketServer(receive);
+*/
+    else
+      this.server = new PollingServer(receive);
     
     this.$output = $("#log");
     this.$members = $("#members");
@@ -25,7 +43,7 @@ window.Main = {
         if (event.which == 13) { // return key
           var name = self.$name.val();
           if (name) {
-            Server.send("connect", {
+            self.server.send("connect", {
               name: name
             }, function(result) {
               if (result && result.code == "success") {
@@ -45,8 +63,8 @@ window.Main = {
         if (event.which == 13) { // return key
           var message = self.$entry.val();
           self.$entry.val(""); 
-          Server.send("message", {
-            memberID: self.user.id, 
+          self.server.send("message", {
+            user: self.user, 
             message: message
           });
         }
@@ -54,19 +72,10 @@ window.Main = {
       
     $(window).bind("beforeunload", function() {
       if (self.user) {
-        Server.send("disconnect", {
+        self.server.send("disconnect", {
           memberID: self.user.id 
         });
       }
-    });
-      
-    Server.receive(function(method, data) { 
-      if (method == "memberEnter")
-        self.addMember(data);
-      else if (method == "memberExit")
-        self.removeMember(data);
-      else if (method == "message")
-        self.addMessage(data);
     });
   },
   

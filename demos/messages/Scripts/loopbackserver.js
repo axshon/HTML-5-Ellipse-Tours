@@ -4,22 +4,13 @@
 /// <reference path="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.js" />
 
 // ----------
-window.Server = {
-  callback: null, 
-  nextID: 1, 
-    
-  // ----------
-  receive: function(callback) {
+window.LoopbackServer = function(callback) {
     this.callback = callback;
+    this.nextID = 1;
+};
 
-/*
-    if (!Modernizr.websockets) {
-      alert("This browser does not support web sockets");
-      return;
-    }
-*/
-  },
-  
+// ----------
+LoopbackServer.prototype = {
   // ----------
   send: function(method, data, complete) {
     if (method == "connect") {
@@ -28,6 +19,7 @@ window.Server = {
       data.code = "success";
       complete(data);
     } else if (method == "message") {
+      data.memberID = data.user.id;
       this.callback("message", data);
     }
   }
