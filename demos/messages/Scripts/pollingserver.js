@@ -21,14 +21,13 @@ PollingServer.prototype = {
         user: data.From, 
         message: data.Message 
       }, function (data) {
-/*
         if (!data.result) {
-          self.displayMessage("Error posting message");
+          self.callback("message", {
+            From: "Server", 
+            Message: "Error posting message"
+          });
         }
-*/
       });
-
-			this.callback(method, data);
     }
   }, 
   

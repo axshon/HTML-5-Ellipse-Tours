@@ -16,11 +16,11 @@ body {
 #login {
   position: absolute;
   width: 200px;
-  height: 70px;
+  height: 90px;
   left: 50%;
   top: 50%;
   margin-left: -100px;
-  margin-top: -35px;
+  margin-top: -45px;
   border: 1px solid #999;
   padding: 10px;
 }
@@ -29,8 +29,13 @@ body {
   margin-bottom: 0.5em;
 }
 
-#login-status {
+#sockets-label {
+  display: block;
   margin-top: 0.5em;
+}
+
+#login-status {
+  margin-top: 0.4em;
 }
 
 #chat {

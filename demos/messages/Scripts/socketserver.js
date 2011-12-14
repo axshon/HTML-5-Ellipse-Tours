@@ -6,7 +6,7 @@
 // ----------
 window.SocketServer = function(callback) {
   this.callback = callback;
-  this.connectionection = null;
+  this.connection = null;
 };
 
 // ----------
@@ -46,7 +46,6 @@ SocketServer.prototype = {
         return;
 
 			this.connection.send(JSON.stringify(data));
-			this.callback(method, data);
     }
   }
 };

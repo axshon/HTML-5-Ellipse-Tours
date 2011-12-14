@@ -14,7 +14,7 @@ window.Main = {
   members: [], 
   
   // ----------
-  init: function(useLoopback) {
+  init: function() {
     var self = this;
     
     function receive(method, data) { 
@@ -26,13 +26,6 @@ window.Main = {
         self.addMessage(data);
     }
 
-    if (useLoopback)
-      this.server = new LoopbackServer(receive);
-    else if (Modernizr.websockets) 
-      this.server = new SocketServer(receive);
-    else
-      this.server = new PollingServer(receive);
-    
     this.$output = $("#log");
     this.$members = $("#members");
     
@@ -41,14 +34,14 @@ window.Main = {
         if (event.which == 13) { // return key
           var name = self.$name.val();
           if (name) {
-            if (name.length < 4) {
-              alert("Name must be at least 4 characters.");
-              return;
-            }
-            
             var $status = $("#login-status")
               .text("Connecting…");
             
+            if (self.$socketsCheckbox.prop("checked"))
+              self.server = new SocketServer(receive);
+            else
+              self.server = new PollingServer(receive);
+
             self.server.send("connect", {
               From: name
             }, function(result) {
@@ -65,16 +58,35 @@ window.Main = {
         }
       })
       .focus();
+      
+    this.$socketsCheckbox = $("#sockets")
+      .change(function() {
+        if (self.$socketsCheckbox.prop("checked")) {
+          if (!Modernizr.websockets) {
+            alert("Your browser doesn't support WebSockets.");
+            self.$socketsCheckbox.prop("checked", false);
+          } else if (location.hostname == "www.ellipsetours.com") {
+            alert("This server doesn't support WebSockets. Please run the example locally.");
+            self.$socketsCheckbox.prop("checked", false);
+          }
+        }
+      });
     
     this.$entry = $("#entry")
       .keypress(function(event) {
         if (event.which == 13) { // return key
           var message = self.$entry.val();
-          self.$entry.val(""); 
-          self.server.send("message", {
-            From: self.user.name, 
-            Message: message
-          });
+          if (message) {
+            self.$entry.val(""); 
+            
+            var data = {
+              From: self.user.name, 
+              Message: message
+            };
+            
+            self.server.send("message", data);
+            self.addMessage(data);
+          }
         }
       });
       
