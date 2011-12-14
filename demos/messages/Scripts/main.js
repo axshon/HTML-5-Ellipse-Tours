@@ -28,10 +28,8 @@ window.Main = {
 
     if (useLoopback)
       this.server = new LoopbackServer(receive);
-/*
     else if (Modernizr.websockets) 
       this.server = new SocketServer(receive);
-*/
     else
       this.server = new PollingServer(receive);
     
@@ -43,14 +41,24 @@ window.Main = {
         if (event.which == 13) { // return key
           var name = self.$name.val();
           if (name) {
+            if (name.length < 4) {
+              alert("Name must be at least 4 characters.");
+              return;
+            }
+            
+            var $status = $("#login-status")
+              .text("Connecting…");
+            
             self.server.send("connect", {
-              name: name
+              From: name
             }, function(result) {
               if (result && result.code == "success") {
                 self.user = self.addMember(result);
                 $("#login").hide();
                 $("#chat").show();
                 self.$entry.focus();
+              } else {
+                $status.text("Failed to connect.");
               }
             });
           }
@@ -64,8 +72,8 @@ window.Main = {
           var message = self.$entry.val();
           self.$entry.val(""); 
           self.server.send("message", {
-            user: self.user, 
-            message: message
+            From: self.user.name, 
+            Message: message
           });
         }
       });
@@ -73,7 +81,7 @@ window.Main = {
     $(window).bind("beforeunload", function() {
       if (self.user) {
         self.server.send("disconnect", {
-          memberID: self.user.id 
+          From: self.user.name
         });
       }
     });
@@ -82,8 +90,7 @@ window.Main = {
   // ----------
   addMember: function(data) {
     var member = {
-      name: data.name, 
-      id: data.id
+      name: data.From
     };
     
     member.$element = $("<p>" + member.name + "</p>")
@@ -98,7 +105,7 @@ window.Main = {
     var a; 
     for (a = 0; a < this.members.length; a++) {
       var member = this.members[a];
-      if (member.id == data.member) {
+      if (member.name == data.From) {
         member.$element.remove();
         this.members.splice(a, 1);
         break;
@@ -108,14 +115,7 @@ window.Main = {
 
   // ----------
   addMessage: function(data) {
-    var a; 
-    for (a = 0; a < this.members.length; a++) {
-      var member = this.members[a];
-      if (member.id == data.memberID) {
-        this.$output.append("<p>" + member.name + ": " + data.message + "</p>");
-        break;
-      }
-    }
+    this.$output.append("<p>" + data.From + ": " + data.Message + "</p>");
   }
 };
 

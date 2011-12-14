@@ -6,7 +6,6 @@
 // ----------
 window.PollingServer = function(callback) {
     this.callback = callback;
-    this.nextID = 1;
 };
 
 // ----------
@@ -14,14 +13,13 @@ PollingServer.prototype = {
   // ----------
   send: function(method, data, complete) {
     if (method == "connect") {
-      data.id = data.name;
       data.code = "success";
       complete(data);
-      this.getMessages(data.name);
+      this.getMessages(data.From);
     } else if (method == "message") {
       $.post("/SimpleChat/SendMessage", { 
-        user: data.user.name, 
-        message: data.message 
+        user: data.From, 
+        message: data.Message 
       }, function (data) {
 /*
         if (!data.result) {
@@ -29,6 +27,8 @@ PollingServer.prototype = {
         }
 */
       });
+
+			this.callback(method, data);
     }
   }, 
   
@@ -38,17 +38,13 @@ PollingServer.prototype = {
     $.post("/SimpleChat/GetMessages", {
       user: userName 
     }, function (data) {
-      for (var i = 0; i < data.length; i++) {
-        self.callback("message", {
-          memberID: data[i].From,
-          message: data[i].Message
-        });
-      }
+      for (var i = 0; i < data.length; i++)
+        self.callback("message", data[i]);
 
       setTimeout(function () {
         self.getMessages(userName);
       }, 1000);
     });
-  },
+  }
 };
 
