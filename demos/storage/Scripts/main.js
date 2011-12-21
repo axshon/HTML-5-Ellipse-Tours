@@ -29,20 +29,17 @@ window.Main = {
     
     this.$boxes = $(".box").draggable({
       stop: function(event, ui) {
-        var worldState = {
-          boxes: []
-        };
-        
-        self.$boxes.each(function(index, box) {
-          var $box = $(box);
+        var boxes = [];
+        self.$boxes.each(function(index, boxElement) {
+          var $box = $(boxElement);
           var position = $box.position();
-          worldState.boxes.push({
+          boxes.push({
             left: position.left, 
             top: position.top
           });
         });
         
-        localStorage.worldState = JSON.stringify(worldState);
+        localStorage.boxes = JSON.stringify(boxes);
         localStorage.modificationTime = self.modificationTime = $.now();
       }
     });
@@ -55,31 +52,31 @@ window.Main = {
           top: 10
         });
         
-        x += 250;
+        x += 210;
       });
     }
     
     this.$boxes.show();
     
     setInterval(function() {
-      var storedTime = parseInt(localStorage.modificationTime, 10);
-      if (storedTime > self.modificationTime)
+      if (parseInt(localStorage.modificationTime, 10) > self.modificationTime)
         self.loadState();
     }, 500);
   }, 
   
   // ----------
   loadState: function() {
-    var data = localStorage.worldState; 
+    var data = localStorage.boxes; 
     if (!data) 
       return false;
 
-    var worldState = JSON.parse(data);
+    var boxes = JSON.parse(data);
     var a;
-    for (a = 0; a < worldState.boxes.length; a++) {
+    for (a = 0; a < boxes.length; a++) {
+      var box = boxes[a];
       this.$boxes.eq(a).css({
-        left: worldState.boxes[a].left, 
-        top: worldState.boxes[a].top
+        left: box.left, 
+        top: box.top
       }); 
     }
     
