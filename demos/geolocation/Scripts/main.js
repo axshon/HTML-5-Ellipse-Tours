@@ -256,7 +256,7 @@ window.gis = {
     var lonA = locationA.longitude;
     var latB = locationB.latitude;
     var lonB = locationB.longitude;
-    var kilometerConversion = 6371;
+    var earthRadiusInKilometers = 6371;
 
     var dLat = (latB - latA) * Math.PI / 180;
     var dLon = (lonB - lonA) * Math.PI / 180;
@@ -264,7 +264,7 @@ window.gis = {
       Math.cos(latA * Math.PI / 180) * Math.cos(latB * Math.PI / 180) *
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var meters = c * kilometerConversion * 1000;
+    var meters = c * earthRadiusInKilometers * 1000;
 
     return meters;
   }
