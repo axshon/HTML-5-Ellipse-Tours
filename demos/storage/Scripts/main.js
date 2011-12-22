@@ -42,13 +42,19 @@ window.Main = {
     
     this.$boxes.each(function(index, boxElement) {
       var $box = $(boxElement);
-      $box.find("button")
+      var $button = $box.find("button")
         .button()
         .click(function() {
-          $("#dialog")
+          var $dialog = $("#dialog")
             .dialog({
               resizable: false
             });
+            
+          var buttonPosition = $button.offset(); 
+          $dialog.dialog("option", "position", [
+            buttonPosition.left + (($button.outerWidth() - $dialog.outerWidth()) / 2), 
+            buttonPosition.top + ($button.outerHeight() * 1.5)
+          ]);
       
           self.$selectedBox = $box;
           self.$slider.slider("value", self.$selectedBox.data("hue")); 
