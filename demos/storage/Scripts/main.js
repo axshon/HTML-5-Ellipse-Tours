@@ -61,7 +61,7 @@ window.Main = {
         });
     });
     
-    self.$slider = $("#hue")
+    this.$slider = $("#hue")
       .slider({
         min: 0, 
         max: 360, 
