@@ -16,12 +16,12 @@ window.Main = {
   init: function() {
     var self = this;
     
-/*
     if (!Modernizr.localstorage) {
       alert("This browser does not support local storage.");
       return;
     }
-*/
+
+/*     navigator.onLine */
 
     this.$input = $("#input")
       .keypress(function(event) {
