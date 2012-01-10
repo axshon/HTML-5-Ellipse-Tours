@@ -11,25 +11,44 @@ $(document).ready(function () {
 // ----------
 window.Main = {
   $input: null,
-  shoppingItems: [],  
+  shoppingItems: [], 
+  itemActions: [],  
   
   // ----------
   init: function() {
     var self = this;
     
+    if (!Modernizr.applicationcache) {
+      alert("This browser does not support the application cache.");
+      return;
+    }
+
     if (!Modernizr.localstorage) {
       alert("This browser does not support local storage.");
       return;
     }
 
-/*     navigator.onLine */
-
+    if (!window.JSON) {
+      alert("This browser does not support JSON.");
+      return;
+    }
+    
     this.$input = $("#input")
       .keypress(function(event) {
         if (event.which == 13) { // return key
           var value = self.$input.val();
           if (value) {
-            self.newItem(value);
+            var item = self.newItem(value);
+            
+            if (false && navigator.onLine) {
+              // send to server
+            } else {
+              self.itemActions.push({
+                type: "add", 
+                title: item.title
+              });
+            }
+            
             self.saveState();
             self.$input.val("");
           }
@@ -37,7 +56,11 @@ window.Main = {
       })
       .focus();
       
-    this.loadState();
+    if (false && navigator.onLine) {
+/*       syncWithServer */
+    } else {
+      this.loadState();
+    }
   }, 
 
   // ----------
@@ -62,14 +85,28 @@ window.Main = {
           self.shoppingItems.splice(index, 1);
           
         item.$element.remove();
+
+        if (false && navigator.onLine) {
+          // send to server
+        } else {
+          self.itemActions.push({
+            type: "delete", 
+            title: item.title
+          });
+        }
+        
         self.saveState();
       });
       
     this.shoppingItems.push(item);
+    return item;
   },
   
   // ----------
   loadState: function() {
+    if (localStorage.itemActions)
+      this.itemActions = JSON.parse(localStorage.itemActions);
+      
     var data = localStorage.shoppingItems; 
     if (!data) 
       return false;
@@ -84,6 +121,8 @@ window.Main = {
   
   // ----------
   saveState: function() {
+    localStorage.itemActions = JSON.stringify(this.itemActions);
+    
     var items = [];
     var a; 
     for (a = 0; a < this.shoppingItems.length; a++)
