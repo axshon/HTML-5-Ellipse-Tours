@@ -10,7 +10,8 @@ $(document).ready(function () {
 
 // ----------
 window.Main = {
-  $input: null, 
+  $input: null,
+  shoppingItems: [],  
   
   // ----------
   init: function() {
@@ -28,23 +29,67 @@ window.Main = {
         if (event.which == 13) { // return key
           var value = self.$input.val();
           if (value) {
-            var html = "<div class='item box-round box-shadow'>"
-              + value
-              + "<button class='close'>x</button></div>";
-              
-            var $item = $(html)
-              .prependTo("#items");
-            
-            $item.find(".close")
-              .click(function() {
-                $item.remove();
-              });
-            
+            self.newItem(value);
+            self.saveState();
             self.$input.val("");
           }
         }
       })
       .focus();
+      
+    this.loadState();
+  }, 
+
+  // ----------
+  newItem: function(title) {
+    var self = this;
+    
+    var item = {
+      title: title
+    };
+    
+    var html = "<div class='item box-round box-shadow'>"
+      + title
+      + "<button class='close'>x</button></div>";
+      
+    item.$element = $(html)
+      .prependTo("#items");
+    
+    item.$element.find(".close")
+      .click(function() {
+        var index = $.inArray(item, self.shoppingItems);
+        if (index != -1)
+          self.shoppingItems.splice(index, 1);
+          
+        item.$element.remove();
+        self.saveState();
+      });
+      
+    this.shoppingItems.push(item);
+  },
+  
+  // ----------
+  loadState: function() {
+    var data = localStorage.shoppingItems; 
+    if (!data) 
+      return false;
+
+    var items = JSON.parse(data);
+    var a;
+    for (a = 0; a < items.length; a++)
+      this.newItem(items[a]);
+    
+    return true;
+  },
+  
+  // ----------
+  saveState: function() {
+    var items = [];
+    var a; 
+    for (a = 0; a < this.shoppingItems.length; a++)
+      items.push(this.shoppingItems[a].title);
+    
+    localStorage.shoppingItems = JSON.stringify(items);
   }
 };
 
