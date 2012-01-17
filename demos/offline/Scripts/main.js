@@ -56,11 +56,10 @@ window.Main = {
       })
       .focus();
       
-    if (false && navigator.onLine) {
-/*       syncWithServer */
-    } else {
-      this.loadState();
-    }
+    this.loadState();
+
+    if (navigator.onLine)
+      this.syncWithServer();
   }, 
 
   // ----------
@@ -129,6 +128,23 @@ window.Main = {
       items.push(this.shoppingItems[a].title);
     
     localStorage.shoppingItems = JSON.stringify(items);
+  },
+  
+  // ----------
+  syncWithServer: function() {
+    $.ajax({
+      url: "/ShoppingList/SyncShoppingList", 
+      type: "POST", 
+      data: JSON.stringify(this.itemActions),
+      success: function(data, textStatus, jqXHR) {
+/*
+        console.dir(data);
+*/
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+/*         console.dir(errorThrown); */
+      }
+    });
   }
 };
 
