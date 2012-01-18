@@ -160,8 +160,10 @@ window.Main = {
         itemActions: this.itemActions
       }),
       success: function(data, textStatus, jqXHR) {
-        if (!data || !data.length)
+        if (!data || !"length" in data) {
+          alert("Unable to synch with server");
           return;
+        }
           
         var a;
         for (a = 0; a < self.shoppingItems.length; a++)

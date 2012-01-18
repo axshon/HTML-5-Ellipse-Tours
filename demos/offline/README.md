@@ -5,6 +5,7 @@ Running demo: http://www.ellipsetours.com/Demos/offline/
 # To Do
 
 * Clean up
+* Get versus synch?
 
 # Reference
 
