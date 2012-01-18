@@ -10,6 +10,7 @@ $(document).ready(function () {
 
 // ----------
 window.Main = {
+  $status: null,
   $input: null,
   shoppingItems: [], 
   itemActions: [],  
@@ -33,6 +34,8 @@ window.Main = {
       return;
     }
     
+    this.$status = $("#status");
+    
     this.$input = $("#input")
       .keypress(function(event) {
         if (event.which == 13) { // return key
@@ -40,27 +43,42 @@ window.Main = {
           if (value) {
             var item = self.newItem(value);
             
-            if (false && navigator.onLine) {
-              // send to server
-            } else {
-              self.itemActions.push({
-                type: "add", 
-                title: item.title
-              });
-            }
+            self.itemActions.push({
+              type: "add", 
+              title: item.title
+            });
             
             self.saveState();
             self.$input.val("");
+            
+            if (navigator.onLine)
+              self.syncWithServer();
           }
         }
       })
       .focus();
       
+    $(window)
+      .bind("online", function() {
+        self.updateForNetStatus(true);
+      })
+      .bind("offline", function() {
+        self.updateForNetStatus(false);
+      });
+      
     this.loadState();
-
-    if (navigator.onLine)
-      this.syncWithServer();
+    this.updateForNetStatus(navigator.onLine);
   }, 
+
+  // ----------
+  updateForNetStatus: function(connected) {
+    if (connected) {
+      this.$status.text("(online)");
+      this.syncWithServer();
+    } else {
+      this.$status.text("(offline)");
+    }
+  },
 
   // ----------
   newItem: function(title) {
@@ -85,16 +103,15 @@ window.Main = {
           
         item.$element.remove();
 
-        if (false && navigator.onLine) {
-          // send to server
-        } else {
-          self.itemActions.push({
-            type: "delete", 
-            title: item.title
-          });
-        }
-        
+        self.itemActions.push({
+          type: "delete", 
+          title: item.title
+        });
+
         self.saveState();
+        
+        if (navigator.onLine)
+          self.syncWithServer();
       });
       
     this.shoppingItems.push(item);
@@ -132,17 +149,34 @@ window.Main = {
   
   // ----------
   syncWithServer: function() {
+    var self = this;
+    
     $.ajax({
       url: "/ShoppingList/SyncShoppingList", 
       type: "POST", 
-      data: JSON.stringify(this.itemActions),
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify({
+        itemActions: this.itemActions
+      }),
       success: function(data, textStatus, jqXHR) {
-/*
-        console.dir(data);
-*/
+        if (!data || !data.length)
+          return;
+          
+        var a;
+        for (a = 0; a < self.shoppingItems.length; a++)
+          self.shoppingItems[a].$element.remove();
+          
+        self.shoppingItems = [];
+
+        for (a = 0; a < data.length; a++)
+          self.newItem(data[a]);
+    
+        self.itemActions = [];
+        self.saveState();
       },
       error: function(jqXHR, textStatus, errorThrown) {
-/*         console.dir(errorThrown); */
+        alert("Unable to sync with server: " + errorThrown);
       }
     });
   }
