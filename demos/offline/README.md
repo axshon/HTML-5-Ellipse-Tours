@@ -4,9 +4,6 @@ Running demo: http://www.ellipsetours.com/Demos/offline/
 
 # To Do
 
-* Clean up
-* Get versus synch?
-
 # Reference
 
 * https://developer.mozilla.org/en/Using_Application_Cache
