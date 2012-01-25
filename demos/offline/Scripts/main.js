@@ -151,8 +151,14 @@ window.Main = {
   syncWithServer: function() {
     var self = this;
     
-    var request = {
+    $.ajax({
+      url: "/ShoppingList/SyncShoppingList",
+      type: "POST",
       dataType: "json", 
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify({
+        itemActions: this.itemActions
+      }),
       success: function(data, textStatus, jqXHR) {
         if (!data || !"length" in data) {
           alert("Unable to synch with server");
@@ -174,21 +180,7 @@ window.Main = {
       error: function(jqXHR, textStatus, errorThrown) {
         alert("Unable to sync with server: " + errorThrown);
       }
-    };
-    
-    if (this.itemActions.length) {
-      request.url = "/ShoppingList/SyncShoppingList";
-      request.type = "POST";
-      request.contentType = "application/json; charset=utf-8";
-      request.data = JSON.stringify({
-        itemActions: this.itemActions
-      });
-    } else {
-      request.url = "/ShoppingList/GetShoppingList";
-      request.type = "GET";
-    }
-    
-    $.ajax(request);
+    });
   }
 };
 

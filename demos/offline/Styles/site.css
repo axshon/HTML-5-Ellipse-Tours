@@ -31,6 +31,7 @@ h1 {
 
 .item .close {
   float: right;
+  padding: 3px;
 }
 
 .box-round {
