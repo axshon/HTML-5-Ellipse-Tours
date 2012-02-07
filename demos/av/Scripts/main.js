@@ -24,30 +24,84 @@ window.Main = {
       return;
     }
     
-    this.$play = $("#play")
+    this.video = this.initMedia("video");
+    this.audio = this.initMedia("audio");    
+    
+    this.$volume = $("#volume");
+    
+    this.$volumeUp = $("#volume-up")
       .click(function() {
-        if (self.video.paused)
-          self.video.play();
-        else
-          self.video.pause();
+        self.audio.media.muted = false;
+        self.audio.media.volume += 0.1;
+      });
+
+    this.$volumeDown = $("#volume-down")
+      .click(function() {
+        self.audio.media.muted = false;
+        self.audio.media.volume -= 0.1;
       });
       
-    this.$video = $("#video1")
+    this.$mute = $("#mute")
+      .click(function() {
+        self.audio.media.muted = !self.audio.media.muted;
+      });
+      
+    this.audio.$media
+      .bind("volumechange", function() {
+        self.showVolume();    
+      });
+      
+    this.showVolume();    
+  },
+  
+  // ----------
+  initMedia: function(name) {
+    var result = {};
+    result.$media = $("#" + name);
+    result.media = result.$media[0];
+    result.$controls = $("#" + name + "-controls");
+    result.$play = result.$controls.find(".play");
+    result.$time = result.$controls.find(".time");
+    
+    result.$play
+      .click(function() {
+        if (result.media.paused)
+          result.media.play();
+        else
+          result.media.pause();
+      });
+      
+    result.$media
       .bind("playing", function() {
-        self.$play.text("pause");
+        result.$play.text("pause");
       })
       .bind("pause", function() {
-        self.$play.text("play");
+        result.$play.text("play");
+      })
+      .bind("ended", function() {
+        result.media.play();
+      })
+      .bind("timeupdate", function() {
+        var prettyTime = Math.round(result.media.currentTime * 100) / 100;
+        result.$time
+          .text("time: " + prettyTime + "s");
       });
       
-    this.video = this.$video[0];
+    result.media.play();
+    return result;
+  }, 
+  
+  // ----------
+  showVolume: function() {
+    var prettyVolume = Math.round(this.audio.media.volume * 10) / 10;
+    if (this.audio.media.muted) {
+      prettyVolume = 0;
+      this.$mute.text("unmute");
+    } else {
+      this.$mute.text("mute");
+    }
     
-/*
-	<button onclick="document.getElementById('player').play()">Play</button>
-	<button onclick="document.getElementById('player').pause()">Pause</button>
-	<button onclick="document.getElementById('player').volume+=0.1">Volume Up</button>
-	<button onclick="document.getElementById('player').volume-=0.1">Volume Down</button>
-*/
+    this.$volume.text(prettyVolume);  
   }
 };
 
