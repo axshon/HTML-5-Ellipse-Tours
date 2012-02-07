@@ -4,8 +4,9 @@ Running demo: http://www.ellipsetours.com/Demos/av/
 
 # To Do
 
-* Find suitable audio and video to use
-* Our own controls
+* IE
+* iOS
+* Canvas + video
 
 # Reference
 
@@ -16,3 +17,4 @@ Running demo: http://www.ellipsetours.com/Demos/av/
 * http://www.w3schools.com/html5/html5_video.asp
 * http://www.html5rocks.com/en/tutorials/video/basics/
 * https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMHTMLMediaElement
+* https://developer.mozilla.org/en/DOM/Media_events
