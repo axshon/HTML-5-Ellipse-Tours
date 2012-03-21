@@ -160,7 +160,7 @@ window.Main = {
         itemActions: this.itemActions
       }),
       success: function(data, textStatus, jqXHR) {
-        if (!data || !"length" in data) {
+        if (!data || !("length" in data)) {
           alert("Unable to synch with server");
           return;
         }
