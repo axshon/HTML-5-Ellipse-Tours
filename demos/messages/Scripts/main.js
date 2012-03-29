@@ -30,34 +30,35 @@ window.Main = {
     this.$members = $("#members");
     
     this.$name = $("#name")
-      .keypress(function(event) {
-        if (event.which == 13) { // return key
-          var name = self.$name.val();
-          if (name) {
-            var $status = $("#login-status")
-              .text("Connecting…");
-            
-            if (self.$socketsCheckbox.prop("checked"))
-              self.server = new SocketServer(receive);
-            else
-              self.server = new PollingServer(receive);
-
-            self.server.send("connect", {
-              From: name
-            }, function(result) {
-              if (result && result.code == "success") {
-                self.user = self.addMember(result);
-                $("#login").hide();
-                $("#chat").show();
-                self.$entry.focus();
-              } else {
-                $status.text("Failed to connect.");
-              }
-            });
-          }
-        }
-      })
       .focus();
+      
+    $("#login")
+      .submit(function(event) {
+        event.preventDefault();
+        var name = self.$name.val();
+        if (name) {
+          var $status = $("#login-status")
+            .text("Connecting…");
+          
+          if (self.$socketsCheckbox.prop("checked"))
+            self.server = new SocketServer(receive);
+          else
+            self.server = new PollingServer(receive);
+
+          self.server.send("connect", {
+            From: name
+          }, function(result) {
+            if (result && result.code == "success") {
+              self.user = self.addMember(result);
+              $("#login").hide();
+              $("#chat").show();
+              self.$entry.focus();
+            } else {
+              $status.text("Failed to connect.");
+            }
+          });
+        }
+      });
       
     this.$socketsCheckbox = $("#sockets")
       .change(function() {
