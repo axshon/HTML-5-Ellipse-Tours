@@ -113,7 +113,7 @@ window.Main = {
   },
   
   // ----------
-  deleteMember: function(data) {
+  removeMember: function(data) {
     var a; 
     for (a = 0; a < this.members.length; a++) {
       var member = this.members[a];

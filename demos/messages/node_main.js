@@ -1,43 +1,94 @@
 // ==========
 // web server 
-var app = require("express").createServer();
+var webServer = require("express").createServer();
 
-app.get("/", function (req, res) {
+webServer.get("/", function (req, res) {
   res.sendfile(__dirname + "/index.html");
 });
 
-app.get("/:dir/:path", function (req, res) {
+webServer.get("/:dir/:path", function (req, res) {
   res.sendfile(__dirname + "/" + req.params.dir + "/" + req.params.path);
 });
 
-app.listen(8080);
+webServer.listen(8080);
 
 // ==========
 // socket server
-var WebSocketServer = require("ws").Server;
-var wss = new WebSocketServer({port: 4502});
-var sockets = [];
+var ws = require("ws");
+var socketServer = new ws.Server({port: 4502});
 
-wss.on("connection", function(ws) {
-  sockets.push(ws);
+socketServer.on("connection", function(socket) {
+  chatServer.addUser(socket);
+});
 
-  ws.on("message", function(message) {
-    var a; 
-    for (a = 0; a < sockets.length; a++) {
-      var socket = sockets[a];
-      if (socket != ws)
-        socket.send(message);
-    }
-  });
+// ==========
+// chat server
+var chatServer = {
+  users: [], 
   
-  ws.on("close", function() {
-    var a; 
-    for (a = 0; a < sockets.length; a++) {
-      var socket = sockets[a];
-      if (socket == ws) {
-        sockets.splice(a, 1);
+  // ----------
+  addUser: function(socket) {
+    var self = this;
+    
+    var user = {
+      socket: socket
+    };
+    
+    this.users.push(user);
+  
+    socket.on("message", function(message) {
+      var envelope = JSON.parse(message);
+      if (envelope.method == "memberEnter") {
+        user.name = envelope.data.From;
+        self.sendMembersTo(user);
+      }
+        
+      self.sendToAllBut(user, message);
+    });
+   
+    socket.on("close", function() {
+      self.sendToAllBut(user, JSON.stringify({
+        method: "memberExit", 
+        data: {
+          From: user.name
+        }
+      }));
+      
+      self.removeUser(user);
+    });
+  },
+  
+  // ----------
+  removeUser: function(user) {
+    for (var a = 0; a < this.users.length; a++) {
+      if (this.users[a] == user) {
+        this.users.splice(a, 1);
         break;
       }
     }
-  });
-});
+  },
+  
+  // ----------
+  sendToAllBut: function(userException, message) {
+    for (var a = 0; a < this.users.length; a++) {
+      var user = this.users[a];
+      if (user != userException)
+        user.socket.send(message);
+    }
+  },
+  
+  // ----------
+  sendMembersTo: function(recipient) {
+    for (var a = 0; a < this.users.length; a++) {
+      var user = this.users[a];
+      if (user != recipient) {
+        recipient.socket.send(JSON.stringify({
+          method: "memberEnter", 
+          data: {
+            From: user.name
+          }
+        }));
+      }
+    }
+  }
+};

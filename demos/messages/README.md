@@ -4,8 +4,6 @@ Running demo: http://www.ellipsetours.com/Demos/messages/
 
 # To Do
 
-* Update list of users with socket server
-
 # Reference
 
 * http://stackoverflow.com/questions/1530023/do-i-need-a-server-to-use-html5s-websockets

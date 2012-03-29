@@ -19,18 +19,23 @@ SocketServer.prototype = {
       if (Socket) {
         var url = "ws://" 
           + location.hostname 
-          + ":4502/ChatServer?userName=" 
-          + data.From;
+          + ":4502";
           
         this.connection = new Socket(url);
         
         this.connection.onopen = function() { 
+          self.connection.send(JSON.stringify({
+            method: "memberEnter", 
+            data: data
+          }));
+          
           data.code = "success";
           complete(data);
         };
         
         this.connection.onmessage = function(event) { 
-          self.callback("message", JSON.parse(event.data));
+          var envelope = JSON.parse(event.data);
+          self.callback(envelope.method, envelope.data);
         };
         
         this.connection.onclose = function(event) { 
@@ -45,7 +50,10 @@ SocketServer.prototype = {
       if (this.connection.readyState != 1)
         return;
 
-			this.connection.send(JSON.stringify(data));
+			this.connection.send(JSON.stringify({
+        method: method, 
+        data: data
+      }));
     }
   }
 };
