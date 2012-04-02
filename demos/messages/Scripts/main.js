@@ -61,13 +61,11 @@ window.Main = {
       });
       
     this.$socketsCheckbox = $("#sockets")
+      .prop("checked", Modernizr.websockets)
       .change(function() {
         if (self.$socketsCheckbox.prop("checked")) {
           if (!Modernizr.websockets) {
             alert("Your browser doesn't support WebSockets.");
-            self.$socketsCheckbox.prop("checked", false);
-          } else if (location.hostname == "www.ellipsetours.com") {
-            alert("This server doesn't support WebSockets. Please run the example locally.");
             self.$socketsCheckbox.prop("checked", false);
           }
         }

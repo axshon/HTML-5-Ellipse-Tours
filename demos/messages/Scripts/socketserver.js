@@ -17,10 +17,7 @@ SocketServer.prototype = {
     if (method == "connect") {
       var Socket = window.WebSocket || window.MozWebSocket;
       if (Socket) {
-        var url = "ws://" 
-          + location.hostname 
-          + ":4502";
-          
+        var url = "ws://manning-socket-demo.nodester.com";
         this.connection = new Socket(url);
         
         this.connection.onopen = function() { 
