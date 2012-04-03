@@ -18,3 +18,4 @@ Running demo: http://www.ellipsetours.com/Demos/av/
 * http://www.html5rocks.com/en/tutorials/video/basics/
 * https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMHTMLMediaElement
 * https://developer.mozilla.org/en/DOM/Media_events
+* http://stackoverflow.com/questions/2602541/html5-video-volume
