@@ -39,19 +39,27 @@ window.Main = {
       alert("This browser does not support the application cache.");
       return;
     }
-
+    
     this.$log = $("#log");
     
     this.updateStatus();    
     
-    var appCache = window.applicationCache;
+    $("#update")
+      .click(function() {
+        try {
+          applicationCache.update();
+        } catch(e) {
+          self.log("error: " + e);
+        }
+      });
+
     $.each(this.eventNames, function(index, name) {
-      appCache.addEventListener(name, function() {
+      applicationCache.addEventListener(name, function() {
         self.log("event: " + name);           
         self.updateStatus();
         
         if (name == "updateready") {
-          appCache.swapCache();
+          applicationCache.swapCache();
           if (confirm("A new version of this site is available. Load it?")) 
             window.location.reload();
         }
@@ -62,9 +70,8 @@ window.Main = {
   // ----------
   updateStatus: function() {
     var statusText = "UNKNOWN"; 
-    var appCache = window.applicationCache;
     $.each(this.statusCodes, function(index, code) {
-      if (appCache.status === appCache[code])
+      if (applicationCache.status === applicationCache[code])
         statusText = code;
     });
     
