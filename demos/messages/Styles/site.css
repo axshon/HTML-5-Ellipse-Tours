@@ -16,22 +16,17 @@ body {
 #login {
   position: absolute;
   width: 200px;
-  height: 90px;
+  height: 74px;
   left: 50%;
   top: 50%;
   margin-left: -100px;
-  margin-top: -45px;
+  margin-top: -37px;
   border: 1px solid #999;
   padding: 10px;
 }
 
 #login p {
   margin-bottom: 0.5em;
-}
-
-#sockets-label {
-  display: block;
-  margin-top: 0.5em;
 }
 
 #login-status {

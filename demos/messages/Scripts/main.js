@@ -17,6 +17,11 @@ window.Main = {
   init: function() {
     var self = this;
     
+    if (!Modernizr.websockets) {
+      alert("Your browser doesn't support WebSockets.");
+      return;
+    }
+    
     function receive(method, data) { 
       if (method == "memberEnter")
         self.addMember(data);
@@ -40,11 +45,7 @@ window.Main = {
           var $status = $("#login-status")
             .text("Connecting…");
           
-          if (self.$socketsCheckbox.prop("checked"))
-            self.server = new SocketServer(receive);
-          else
-            self.server = new PollingServer(receive);
-
+          self.server = new SocketServer(receive);
           self.server.send("connect", {
             From: name
           }, function(result) {
@@ -60,17 +61,6 @@ window.Main = {
         }
       });
       
-    this.$socketsCheckbox = $("#sockets")
-      .prop("checked", Modernizr.websockets)
-      .change(function() {
-        if (self.$socketsCheckbox.prop("checked")) {
-          if (!Modernizr.websockets) {
-            alert("Your browser doesn't support WebSockets.");
-            self.$socketsCheckbox.prop("checked", false);
-          }
-        }
-      });
-    
     this.$entry = $("#entry")
       .keypress(function(event) {
         if (event.which == 13) { // return key
