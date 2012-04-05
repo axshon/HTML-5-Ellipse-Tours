@@ -1,7 +1,8 @@
 // ==========
 // socket server
 var ws = require("ws");
-var socketServer = new ws.Server({port: 16433}); // or whatever port you're using
+var port = 16433; // or whatever port your server is set up for
+var socketServer = new ws.Server({port: port}); 
 
 socketServer.on("connection", function(socket) {
   chatServer.addUser(socket);
@@ -78,3 +79,6 @@ var chatServer = {
     }
   }
 };
+
+// ==========
+console.log("Server started. Connect via ws://localhost:" + port);
