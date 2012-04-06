@@ -79,14 +79,6 @@ window.Main = {
           }
         }
       });
-      
-    $(window).bind("beforeunload", function() {
-      if (self.user) {
-        self.server.send("disconnect", {
-          From: self.user.name
-        });
-      }
-    });
   },
   
   // ----------
