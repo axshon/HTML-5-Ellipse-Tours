@@ -50,6 +50,7 @@ window.Main = {
             From: name
           }, function(result) {
             if (result && result.code == "success") {
+              result.local = true;
               self.user = self.addMember(result);
               $("#login").hide();
               $("#chat").show();
@@ -95,6 +96,7 @@ window.Main = {
     };
     
     member.$element = $("<p>" + member.name + "</p>")
+      .toggleClass("local-member", data.local || false)
       .appendTo(this.$members);
       
     this.members.push(member);
@@ -116,7 +118,9 @@ window.Main = {
 
   // ----------
   addMessage: function(data) {
-    this.$output.append("<p>" + data.From + ": " + data.Message + "</p>");
+    $("<p>" + data.From + ": " + data.Message + "</p>")
+      .toggleClass("local-member", data.From == this.user.name)
+      .appendTo(this.$output);
   }
 };
 

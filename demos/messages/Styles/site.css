@@ -47,6 +47,10 @@ body {
   padding: 10px;
 }
 
+.local-member { 
+  font-weight: bold;
+}
+
 #log {
   position: absolute;
   left: 121px;
