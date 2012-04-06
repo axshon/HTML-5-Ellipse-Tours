@@ -1,5 +1,7 @@
 {
-  "name":"manning-socket-demo",
-  "node":"0.6.12",
-  "author":"iangilman"
+  "name": "manning-socket-demo",
+  "node": "0.6.12",
+  "author": "iangilman",
+  "version": "0.0.1", 
+  "dependencies": ["ws"]
 }
