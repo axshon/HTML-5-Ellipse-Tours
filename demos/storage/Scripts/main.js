@@ -11,7 +11,6 @@ $(document).ready(function () {
 // ----------
 window.Main = {
   $boxes: null, 
-  modificationTime: 0,
   $slider: null,
   $selectedBox: null, 
   
@@ -86,10 +85,10 @@ window.Main = {
     
     this.$boxes.show();
     
-    setInterval(function() {
-      if (parseInt(localStorage.modificationTime, 10) > self.modificationTime)
+    $(window)
+      .bind("storage", function() {
         self.loadState();
-    }, 500);
+      });
   }, 
   
   // ----------
@@ -111,7 +110,6 @@ window.Main = {
       this.setHue($box, box.hue);
     }
     
-    this.modificationTime = parseInt(localStorage.modificationTime, 10);
     return true;
   },
   
@@ -129,7 +127,6 @@ window.Main = {
     });
     
     localStorage.boxes = JSON.stringify(boxes);
-    localStorage.modificationTime = this.modificationTime = $.now();
   }, 
 
   // ----------  
