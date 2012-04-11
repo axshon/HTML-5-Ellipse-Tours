@@ -33,33 +33,6 @@ window.Main = {
       return;
     }
     
-    this.$boxes = $(".box").draggable({
-      stop: function(event, ui) {
-        self.saveState();
-      }
-    });
-    
-    this.$boxes.each(function(index, boxElement) {
-      var $box = $(boxElement);
-      var $button = $box.find("button")
-        .button()
-        .click(function() {
-          var $dialog = $("#dialog")
-            .dialog({
-              resizable: false
-            });
-            
-          var buttonPosition = $button.offset(); 
-          $dialog.dialog("option", "position", [
-            buttonPosition.left + (($button.outerWidth() - $dialog.outerWidth()) / 2), 
-            buttonPosition.top + ($button.outerHeight() * 1.5)
-          ]);
-      
-          self.$selectedBox = $box;
-          self.$slider.slider("value", self.$selectedBox.data("hue")); 
-        });
-    });
-    
     this.$slider = $("#hue")
       .slider({
         min: 0, 
@@ -73,6 +46,12 @@ window.Main = {
         }
       });
       
+    $("#new")
+      .button()
+      .click(function() {
+        self.createBox();
+      });
+
     $("#reset")
       .button()
       .click(function() {
@@ -80,10 +59,10 @@ window.Main = {
         self.saveState();
       });
 
+    this.$boxes = $(".box"); // temp
+
     if (!this.loadState())
       this.resetState();
-    
-    this.$boxes.show();
     
     $(window)
       .bind("storage", function() {
@@ -147,6 +126,46 @@ window.Main = {
       x += 210;
       hue += 120;
     });
+  },
+  
+  // ----------
+  createBox: function() {
+    var self = this;
+    
+    var html = "<div class='box box-shadow box-round'>"
+      + "<div class='prompt'>Drag me or</div>"
+      + "<button>change color</button>"
+      + "</div>";
+    
+    var $box = $(html)
+      .draggable({
+        stop: function(event, ui) {
+          self.saveState();
+        }
+      })
+      .appendTo("body");
+      
+    this.setHue($box, 0);
+
+    var $button = $box.find("button")
+      .button()
+      .click(function() {
+        var $dialog = $("#dialog")
+          .dialog({
+            resizable: false
+          });
+          
+        var buttonPosition = $button.offset(); 
+        $dialog.dialog("option", "position", [
+          buttonPosition.left + (($button.outerWidth() - $dialog.outerWidth()) / 2), 
+          buttonPosition.top + ($button.outerHeight() * 1.5)
+        ]);
+    
+        self.$selectedBox = $box;
+        self.$slider.slider("value", self.$selectedBox.data("hue")); 
+      });
+      
+    this.$boxes = $(".box"); // temp
   },
   
   // ----------
