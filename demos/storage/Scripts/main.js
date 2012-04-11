@@ -10,7 +10,8 @@ $(document).ready(function () {
 
 // ----------
 window.Main = {
-  $boxes: null, 
+  nextBoxIndex: 0, 
+  offset: 0,
   $slider: null,
   $selectedBox: null, 
   
@@ -42,45 +43,49 @@ window.Main = {
         },
         change: function(event, ui) {
           self.setHue(self.$selectedBox, ui.value);
-          self.saveState();
+          self.saveBox(self.$selectedBox);
         }
       });
       
     $("#new")
       .button()
       .click(function() {
-        self.createBox();
+        var $box = self.createBox();
+        self.saveBox($box);
       });
 
     $("#reset")
       .button()
       .click(function() {
         self.resetState();
-        self.saveState();
       });
 
-    this.$boxes = $(".box"); // temp
-
-    if (!this.loadState())
-      this.resetState();
-    
     $(window)
       .bind("storage", function() {
         self.loadState();
       });
+
+    this.loadState();
   }, 
   
   // ----------
   loadState: function() {
-    var data = localStorage.boxes; 
-    if (!data) 
-      return false;
+    var ids = [];
+    for (var a = 0; a < localStorage.length; a++) {
+      var key = localStorage.key(a);
+      if (key.indexOf("box-") !== 0)
+        continue;
+        
+      var data = localStorage[key];
+      var box = JSON.parse(data);
+      var id = "#" + key;
+      ids.push(id);
+      
+      var $box = $(id);
+      if (!$box.length)
+        $box = this.createBox(key);
 
-    var boxes = JSON.parse(data);
-    var a;
-    for (a = 0; a < boxes.length; a++) {
-      var box = boxes[a];
-      var $box = this.$boxes.eq(a)
+      $box
         .css({
           left: box.left, 
           top: box.top
@@ -89,48 +94,29 @@ window.Main = {
       this.setHue($box, box.hue);
     }
     
-    return true;
+    var found = ids.join(", ");
+    $(".box").not(found).remove();
   },
   
-  // ----------
-  saveState: function() {
-    var boxes = [];
-    this.$boxes.each(function(index, boxElement) {
-      var $box = $(boxElement);
-      var position = $box.position();
-      boxes.push({
-        left: position.left, 
-        top: position.top,
-        hue: $box.data("hue")
-      });
-    });
-    
-    localStorage.boxes = JSON.stringify(boxes);
-  }, 
-
   // ----------  
   resetState: function() {
-    var self = this;
-    
-    var x = 10;
-    var hue = 0;
-    this.$boxes.each(function(index, box) {
-      var $box = $(box)
-        .css({
-          left: x, 
-          top: 10
-        });
-      
-      self.setHue($box, hue);
-      
-      x += 210;
-      hue += 120;
-    });
+    $(".box").remove();
+    localStorage.clear();
   },
   
   // ----------
-  createBox: function() {
+  createBox: function(key) {
     var self = this;
+    
+    if (key) {
+      var parts = key.split("-");
+      var index = parseInt(parts[1], 10);
+      this.nextBoxIndex = Math.max(index, this.nextBoxIndex) + 1;
+    } else {
+      key = "box-" + this.nextBoxIndex;
+      this.nextBoxIndex++;
+      this.offset += 20;
+    }
     
     var html = "<div class='box box-shadow box-round'>"
       + "<div class='prompt'>Drag me or</div>"
@@ -138,14 +124,19 @@ window.Main = {
       + "</div>";
     
     var $box = $(html)
+      .attr("id", key)
+      .css({
+        left: this.offset, 
+        top: this.offset
+      })
       .draggable({
         stop: function(event, ui) {
-          self.saveState();
+          self.saveBox($box);
         }
       })
       .appendTo("body");
       
-    this.setHue($box, 0);
+    this.setHue($box, this.offset);
 
     var $button = $box.find("button")
       .button()
@@ -165,13 +156,23 @@ window.Main = {
         self.$slider.slider("value", self.$selectedBox.data("hue")); 
       });
       
-    this.$boxes = $(".box"); // temp
+    return $box;
   },
   
   // ----------
-  setHue: function($element, hue) {
-    $element.data("hue", hue);
-    $element.css({
+  saveBox: function($box) {
+    var position = $box.position();
+    localStorage[$box.attr("id")] = JSON.stringify({
+      left: position.left, 
+      top: position.top,
+      hue: $box.data("hue")
+    });
+  }, 
+
+  // ----------
+  setHue: function($box, hue) {
+    $box.data("hue", hue);
+    $box.css({
       "background-color": "hsl(" + hue + ", 100%, 75%)"
     });
   }
