@@ -114,12 +114,14 @@ window.Main = {
   createBox: function(key) {
     var self = this;
     
+    var index;
     if (key) {
       var parts = key.split("-");
-      var index = parseInt(parts[1], 10);
+      index = parseInt(parts[1], 10);
       this.nextBoxIndex = Math.max(index, this.nextBoxIndex) + 1;
     } else {
-      key = "box-" + this.nextBoxIndex;
+      index = this.nextBoxIndex;
+      key = "box-" + index;
       this.nextBoxIndex++;
       this.offset += 20;
     }
@@ -134,7 +136,8 @@ window.Main = {
       .attr("id", key)
       .css({
         left: this.offset, 
-        top: this.offset
+        top: this.offset, 
+        "z-index": index
       })
       .draggable({
         stop: function(event, ui) {
