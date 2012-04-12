@@ -34,19 +34,6 @@ window.Main = {
       return;
     }
     
-    this.$slider = $("#hue")
-      .slider({
-        min: 0, 
-        max: 360, 
-        slide: function(event, ui) {
-          self.setHue(self.$selectedBox, ui.value);
-        },
-        change: function(event, ui) {
-          self.setHue(self.$selectedBox, ui.value);
-          self.saveBox(self.$selectedBox);
-        }
-      });
-      
     $("#new")
       .button()
       .click(function() {
@@ -65,8 +52,27 @@ window.Main = {
         self.loadAll();
       });
 
+    this.initDialog();
     this.loadAll();
   }, 
+  
+  // ----------
+  initDialog: function() {
+    var self = this;
+    
+    this.$slider = $("#hue")
+      .slider({
+        min: 0, 
+        max: 360, 
+        slide: function(event, ui) {
+          self.setHue(self.$selectedBox, ui.value);
+        },
+        change: function(event, ui) {
+          self.setHue(self.$selectedBox, ui.value);
+          self.saveBox(self.$selectedBox);
+        }
+      });
+  },
   
   // ----------
   loadAll: function() {
@@ -139,29 +145,16 @@ window.Main = {
       
     this.setHue($box, this.offset);
 
-    var $colorButton = $box.find(".change-color")
+    $box.find(".change-color")
       .button()
       .click(function() {
-        var $dialog = $("#dialog")
-          .dialog({
-            resizable: false
-          });
-          
-        var buttonPosition = $colorButton.offset(); 
-        $dialog.dialog("option", "position", [
-          buttonPosition.left + (($colorButton.outerWidth() - $dialog.outerWidth()) / 2), 
-          buttonPosition.top + ($colorButton.outerHeight() * 1.5)
-        ]);
-    
-        self.$selectedBox = $box;
-        self.$slider.slider("value", self.$selectedBox.data("hue")); 
+        self.startDialogFor($box);
       });
       
     $box.find(".remove")
       .button()
       .click(function() {
-        $box.remove();
-        localStorage.removeItem(key);
+        self.removeBox($box);
       });
       
     return $box;
@@ -176,7 +169,31 @@ window.Main = {
       hue: $box.data("hue")
     });
   }, 
+  
+  // ----------
+  removeBox: function($box) {
+    $box.remove();
+    localStorage.removeItem($box.attr("id"));
+  },
 
+  // ----------
+  startDialogFor: function($box) {
+    var $dialog = $("#dialog")
+      .dialog({
+        resizable: false
+      });
+      
+    var $colorButton = $box.find(".change-color")
+    var buttonPosition = $colorButton.offset(); 
+    $dialog.dialog("option", "position", [
+      buttonPosition.left + (($colorButton.outerWidth() - $dialog.outerWidth()) / 2), 
+      buttonPosition.top + ($colorButton.outerHeight() * 1.5)
+    ]);
+
+    this.$selectedBox = $box;
+    this.$slider.slider("value", this.$selectedBox.data("hue")); 
+  },
+  
   // ----------
   setHue: function($box, hue) {
     $box.data("hue", hue);
