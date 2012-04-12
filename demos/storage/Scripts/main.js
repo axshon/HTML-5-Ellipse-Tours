@@ -54,22 +54,22 @@ window.Main = {
         self.saveBox($box);
       });
 
-    $("#reset")
+    $("#clear")
       .button()
       .click(function() {
-        self.resetState();
+        self.clearAll();
       });
 
     $(window)
       .bind("storage", function() {
-        self.loadState();
+        self.loadAll();
       });
 
-    this.loadState();
+    this.loadAll();
   }, 
   
   // ----------
-  loadState: function() {
+  loadAll: function() {
     var ids = [];
     for (var a = 0; a < localStorage.length; a++) {
       var key = localStorage.key(a);
@@ -99,7 +99,7 @@ window.Main = {
   },
   
   // ----------  
-  resetState: function() {
+  clearAll: function() {
     $(".box").remove();
     localStorage.clear();
   },
