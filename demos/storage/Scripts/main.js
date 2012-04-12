@@ -119,8 +119,9 @@ window.Main = {
     }
     
     var html = "<div class='box box-shadow box-round'>"
-      + "<div class='prompt'>Drag me or</div>"
-      + "<button>change color</button>"
+      + "Drag me<br>"
+      + "or <button class='change-color'>change color</button><br>"
+      + "or <button class='remove'>remove</button>"
       + "</div>";
     
     var $box = $(html)
@@ -138,7 +139,7 @@ window.Main = {
       
     this.setHue($box, this.offset);
 
-    var $button = $box.find("button")
+    var $colorButton = $box.find(".change-color")
       .button()
       .click(function() {
         var $dialog = $("#dialog")
@@ -146,14 +147,21 @@ window.Main = {
             resizable: false
           });
           
-        var buttonPosition = $button.offset(); 
+        var buttonPosition = $colorButton.offset(); 
         $dialog.dialog("option", "position", [
-          buttonPosition.left + (($button.outerWidth() - $dialog.outerWidth()) / 2), 
-          buttonPosition.top + ($button.outerHeight() * 1.5)
+          buttonPosition.left + (($colorButton.outerWidth() - $dialog.outerWidth()) / 2), 
+          buttonPosition.top + ($colorButton.outerHeight() * 1.5)
         ]);
     
         self.$selectedBox = $box;
         self.$slider.slider("value", self.$selectedBox.data("hue")); 
+      });
+      
+    $box.find(".remove")
+      .button()
+      .click(function() {
+        $box.remove();
+        localStorage.removeItem(key);
       });
       
     return $box;
