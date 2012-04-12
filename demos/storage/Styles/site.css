@@ -11,6 +11,7 @@ body {
   right: 0;
   bottom: 0;
   overflow: hidden;
+  font-family: sans-serif;
 }
 
 .box {
@@ -20,7 +21,6 @@ body {
   width: 180px;
   height: 140px;
   padding: 20px;
-  font-family: sans-serif;
   font-size: 20px;
   line-height: 2em;
 }
@@ -43,6 +43,31 @@ body {
   position: absolute;
   right: 10px;
   top: 60px;
+}
+
+#info {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  max-width: 500px;
+  color: #999;
+  font-size: 14px;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+a, 
+a:hover,
+a:active,
+a:visited {
+  color: #666;
+}
+
+a, 
+a:visited {
+  text-decoration: none;
 }
 
 .box-round {
