@@ -139,12 +139,12 @@ window.Main = {
         top: this.offset, 
         "z-index": index
       })
+      .appendTo("body")
       .draggable({
         stop: function(event, ui) {
           self.saveBox($box);
         }
-      })
-      .appendTo("body");
+      });
       
     this.setHue($box, this.offset);
 
