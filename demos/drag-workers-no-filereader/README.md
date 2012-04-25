@@ -1,16 +1,7 @@
 # Welcome!
 
-Running demo: http://www.ellipsetours.com/Demos/drag-workers/
+Running demo: http://www.ellipsetours.com/Demos/drag-workers-no-filereader/
 
-# To Do
+# Note
 
-* Animation isn't working on the right unit in Safari
-* There's a little stutter when you drop something new on a unit; due to the last frame already being in progress
-
-# Reference
-
-* https://developer.mozilla.org/en/DragDrop/Drag_and_Drop
-* http://www.html5rocks.com/en/tutorials/dnd/basics/
-* https://developer.mozilla.org/en/DOM/FileReader
-* https://developer.mozilla.org/en/Using_web_workers
-* http://simon.html5.org/dump/html5-canvas-cheat-sheet.html
+This is cut down from the full drag-workers demo (with FileReader removed). The full demo is at https://github.com/axshon/HTML-5-Ellipse-Tours/tree/master/demos/drag-workers.
