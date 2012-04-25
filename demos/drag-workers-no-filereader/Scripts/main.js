@@ -83,32 +83,10 @@ window.Unit = function($container, type) {
       event.stopPropagation();
       
       var url = data.getData("URL");
-      if (url && url.indexOf("file://") != 0) {
+      if (url && url.indexOf("file://") != 0)
         self.useImage(url);
-      } else if ("FileReader" in window) {
-        var files = data.files;
-        var found = false;
-        var a; 
-        for (a = 0; a < files.length; a++) {
-          var file = files[a];
-          if (!file.type.match("image.*")) 
-            continue;
-    
-          var reader = new FileReader();
-          reader.onload = function(loadEvent) {
-            self.useImage(loadEvent.target.result);
-          };
-    
-          reader.readAsDataURL(file);
-          found = true;
-          break;
-        }
-        
-        if (!found)
-          alert("No image files dropped");
-      } else {
-        alert("This browser doesn't support dragging from the desktop");
-      }
+      else 
+        alert("Cannot drag that image into here");
     });
 };
 
