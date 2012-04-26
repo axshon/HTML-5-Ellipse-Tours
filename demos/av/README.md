@@ -19,3 +19,4 @@ Running demo: http://www.ellipsetours.com/Demos/av/
 * https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIDOMHTMLMediaElement
 * https://developer.mozilla.org/en/DOM/Media_events
 * http://stackoverflow.com/questions/2602541/html5-video-volume
+* http://developer.apple.com/library/safari/#documentation/AudioVideo/Reference/HTMLMediaElementClassReference/HTMLMediaElement/HTMLMediaElement.html#//apple_ref/javascript/cl/HTMLMediaElement
