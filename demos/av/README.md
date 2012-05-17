@@ -4,10 +4,6 @@ Running demo: http://www.ellipsetours.com/Demos/av/
 
 # To Do
 
-* IE
-* iOS
-* Canvas + video
-
 # Reference
 
 * https://developer.mozilla.org/en/Using_HTML5_audio_and_video
