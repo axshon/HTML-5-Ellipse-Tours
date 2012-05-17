@@ -49,7 +49,9 @@ window.Main = {
 
     $(window)
       .bind("storage", function() {
-        self.loadAll();
+        setTimeout(function() { // this slight delay is necessary on IE
+          self.loadAll();
+        }, 1);
       });
 
     this.initDialog();
@@ -205,4 +207,3 @@ window.Main = {
     });
   }
 };
-
