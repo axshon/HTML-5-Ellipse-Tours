@@ -5,11 +5,38 @@
 
 html, 
 body {
+  color: #555;
+  font-family: sans-serif;
+}
+
+a, 
+a:visited, 
+a:hover,
+a:active {
+  color: #88a8b7;
+}
+
+a, 
+a:visited {
+  text-decoration: none;
+}
+
+h1 {
+  margin-bottom: .5em;
 }
 
 #content {
   width: 800px;
-  margin: 10px auto;
+  margin: 20px auto;
+}
+
+#cover {
+  float: left;
+  margin-right: 20px;
+}
+
+#info {
+  float: left;
 }
 
 .box-round {
