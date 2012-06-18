@@ -38,14 +38,14 @@ button {
   padding: 5px;
 }
 
-#footer {
+footer {
   margin-top: 50px;
   font-size: 12px;
   color: #888;
 }
 
-#footer a, 
-#footer a:visited {
+footer a, 
+footer a:visited {
   color: #555;
 } 
 
