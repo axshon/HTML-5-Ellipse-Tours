@@ -78,6 +78,7 @@ window.gis = {
     
     $.ajax({
       url: "/GeoService/GetAddress",
+      dataType: "json", 
       data: {
         latitude: loc.latitude,
         longitude: loc.longitude

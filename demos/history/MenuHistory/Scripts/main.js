@@ -40,23 +40,27 @@ function updateState(state) {
   }
     
   var url = "/Preview/Index/" + state.dish;
-  $.get(url, function(data) {
-    var $newDish = $(data);
-
-    $newDish.find("img").load(function() {
-      $newDish.fadeIn(function() {
-        $newDish.css("z-index", 0);
+  $.ajax({
+    url: url, 
+    dataType: "html", 
+    success: function(data) {
+      var $newDish = $(data);
+  
+      $newDish.find("img").load(function() {
+        $newDish.fadeIn(function() {
+          $newDish.css("z-index", 0);
+        });
+  
+        $oldDish.fadeOut(function() {
+          $oldDish.remove();
+        });
       });
-
-      $oldDish.fadeOut(function() {
-        $oldDish.remove();
-      });
-    });
-    
-    $newDish
-      .css("z-index", 1)
-      .hide()
-      .appendTo($dishContainer);
+      
+      $newDish
+        .css("z-index", 1)
+        .hide()
+        .appendTo($dishContainer);
+    }
   });
 }
 
