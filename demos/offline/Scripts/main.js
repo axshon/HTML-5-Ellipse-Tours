@@ -128,9 +128,8 @@ window.Main = {
       return false;
 
     var items = JSON.parse(data);
-    var a;
-    for (a = 0; a < items.length; a++)
-      this.newItem(items[a]);
+    for (var i = 0; i < items.length; i++)
+      this.newItem(items[i]);
     
     return true;
   },
@@ -140,9 +139,8 @@ window.Main = {
     localStorage.itemActions = JSON.stringify(this.itemActions);
     
     var items = [];
-    var a; 
-    for (a = 0; a < this.shoppingItems.length; a++)
-      items.push(this.shoppingItems[a].title);
+    for (var i = 0; i < this.shoppingItems.length; i++)
+      items.push(this.shoppingItems[i].title);
     
     localStorage.shoppingItems = JSON.stringify(items);
   },
@@ -164,15 +162,15 @@ window.Main = {
           alert("Unable to synch with server");
           return;
         }
-          
-        var a;
-        for (a = 0; a < self.shoppingItems.length; a++)
-          self.shoppingItems[a].$element.remove();
+
+        var i;
+        for (i = 0; i < self.shoppingItems.length; i++)
+          self.shoppingItems[i].$element.remove();
           
         self.shoppingItems = [];
 
-        for (a = 0; a < data.length; a++)
-          self.newItem(data[a]);
+        for (i = 0; i < data.length; i++)
+          self.newItem(data[i]);
     
         self.itemActions = [];
         self.saveState();

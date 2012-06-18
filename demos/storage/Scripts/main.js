@@ -79,8 +79,8 @@ window.Main = {
   // ----------
   loadAll: function() {
     var ids = [];
-    for (var a = 0; a < localStorage.length; a++) {
-      var key = localStorage.key(a);
+    for (var i = 0; i < localStorage.length; i++) {
+      var key = localStorage.key(i);
       if (key.indexOf("box-") !== 0)
         continue;
         

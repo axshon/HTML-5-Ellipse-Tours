@@ -20,9 +20,9 @@ $(document).ready(function() {
       imageContext.drawImage($image[0], 0, 0);
       try {
         var imageData = imageContext.getImageData(0, 0, $imageCanvas.width(), $imageCanvas.height());
-        for (var a = 0; a < imageData.data.length; a++) {
-          if (a % 4 != 3) // operate on R, G, B, but not A
-            imageData.data[a] = 255 - imageData.data[a]; // invert
+        for (var i = 0; i < imageData.data.length; i++) {
+          if (i % 4 != 3) // operate on R, G, B, but not A
+            imageData.data[i] = 255 - imageData.data[i]; // invert
         }
   
         imageContext.putImageData(imageData, 0, 0);        
@@ -57,7 +57,7 @@ $(document).ready(function() {
   
   var maxVelocity = 10;
   var points = []; 
-  for (var a = 0; a < 7; a++) {
+  for (var i = 0; i < 7; i++) {
     points.push({
       x: Math.random() * w, 
       y: Math.random() * h,

@@ -38,14 +38,13 @@ var DragWorker = {
   nextFrame: function() {
     switch(this.type) {
       case "cycle":
-        var a;
-        for (a = 0; a < this.imageData.data.length; a++) {
-          if (a % 4 != 3) { // operate on R, G, B, but not A
-            var value = this.imageData.data[a] + 1;
+        for (var i = 0; i < this.imageData.data.length; i++) {
+          if (i % 4 != 3) { // operate on R, G, B, but not A
+            var value = this.imageData.data[i] + 1;
             if (value > 255)
               value = 0;
               
-            this.imageData.data[a] = value;
+            this.imageData.data[i] = value;
           }
         }
         break;

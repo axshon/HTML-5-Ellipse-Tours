@@ -88,9 +88,8 @@ window.Unit = function($container, type) {
       } else if ("FileReader" in window) {
         var files = data.files;
         var found = false;
-        var a; 
-        for (a = 0; a < files.length; a++) {
-          var file = files[a];
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
           if (!file.type.match("image.*")) 
             continue;
     

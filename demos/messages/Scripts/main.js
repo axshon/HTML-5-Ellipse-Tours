@@ -97,12 +97,11 @@ window.Main = {
   
   // ----------
   removeMember: function(data) {
-    var a; 
-    for (a = 0; a < this.members.length; a++) {
-      var member = this.members[a];
+    for (var i = 0; i < this.members.length; i++) {
+      var member = this.members[i];
       if (member.name == data.From) {
         member.$element.remove();
-        this.members.splice(a, 1);
+        this.members.splice(i, 1);
         break;
       }
     }

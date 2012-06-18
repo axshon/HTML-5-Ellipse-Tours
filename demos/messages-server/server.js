@@ -47,9 +47,9 @@ var chatServer = {
   
   // ----------
   removeUser: function(user) {
-    for (var a = 0; a < this.users.length; a++) {
-      if (this.users[a] == user) {
-        this.users.splice(a, 1);
+    for (var i = 0; i < this.users.length; i++) {
+      if (this.users[i] == user) {
+        this.users.splice(i, 1);
         break;
       }
     }
@@ -57,8 +57,8 @@ var chatServer = {
   
   // ----------
   sendToAllBut: function(userException, message) {
-    for (var a = 0; a < this.users.length; a++) {
-      var user = this.users[a];
+    for (var i = 0; i < this.users.length; i++) {
+      var user = this.users[i];
       if (user != userException)
         user.socket.send(message);
     }
@@ -66,8 +66,8 @@ var chatServer = {
   
   // ----------
   sendMembersTo: function(recipient) {
-    for (var a = 0; a < this.users.length; a++) {
-      var user = this.users[a];
+    for (var i = 0; i < this.users.length; i++) {
+      var user = this.users[i];
       if (user != recipient) {
         recipient.socket.send(JSON.stringify({
           method: "memberEnter", 
