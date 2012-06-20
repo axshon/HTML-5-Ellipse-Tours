@@ -1,7 +1,7 @@
 ﻿/// Copyright 2011, Ian Gilman
 /// Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 ///
-/// <reference path="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.js" />
+/// <reference path="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.js" />
 
 // ----------
 window.SocketServer = function(callback) {

@@ -1,7 +1,10 @@
 ﻿/// Copyright 2011, Ian Gilman
 /// Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 ///
-/// <reference path="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.js" />
+/// <reference path="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.js" />
+/// <reference path="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.21/jquery-ui.min.js" />
+/// <reference path="Scripts/jquery.ui.touch-punch.min.js" />
+/// <reference path="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js" />
 
 // ----------
 $(document).ready(function () {
