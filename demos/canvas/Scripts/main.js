@@ -5,6 +5,11 @@
 
 // ----------
 $(document).ready(function() {
+  if (!Modernizr.canvas) {
+    alert("This browser does not support the canvas tag.");
+    return;
+  }
+
   var $canvas = $("#main");
   var context = $canvas[0].getContext("2d");
   var $imageCanvas = null;
@@ -31,7 +36,7 @@ $(document).ready(function() {
           .appendTo("body");
       }
     })
-    .attr("src", "img/smiley.png") // kick off the loading after we've attached the event handler
+    .attr("src", "Images/smiley.png") // kick off the loading after we've attached the event handler
     .hide()
     .appendTo("body"); // we can't get the image's width and height without attaching to the DOM
   
