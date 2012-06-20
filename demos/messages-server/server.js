@@ -1,3 +1,6 @@
+/// Copyright 2012, Ian Gilman
+/// Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+
 // ==========
 // socket server
 var ws = require("ws");
