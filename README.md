@@ -1,9 +1,3 @@
-HTML 5 for .Net Developers  
-[Manning Publications](http://www.manning.com/)  
-Written by [Jim Jackson II](http://twitter.com/#!/axshon)  
-Code by [Ian Gilman](http://iangilman.com/)
+Code repository for [HTML 5 for .Net Developers](http://www.manning.com/jackson) from [Manning Publications](http://www.manning.com/) by [Jim Jackson II](http://twitter.com/#!/axshon) and [Ian Gilman](http://iangilman.com/).
 
-This application is designed to help professional .Net developers familiarize themselves with rich internet applications using HTML 5 and its associated technologies. It also includes work with jQuery, jQuery.UI and jQuery.Validation.
-
-The application is the sample that is used throughout the book.
-
+To see the code in action, go to the [demos page](http://www.ellipsetours.com/demos/).
