@@ -6,6 +6,7 @@ Running demo: http://www.ellipsetours.com/Demos/storage/
 
 # Reference
 
+* http://www.joelennon.ie/html5/localstorage/2011/02/11/basics-of-html5-localstroage.html
 * http://diveintohtml5.info/storage.html
 * https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage
 * http://www.html5rocks.com/en/features/storage
