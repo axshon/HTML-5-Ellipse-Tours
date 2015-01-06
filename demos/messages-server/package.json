@@ -1,6 +1,15 @@
 {
   "name": "manning-socket-demo",
   "author": "iangilman",
-  "version": "0.0.1", 
-  "dependencies": ["ws"]
+  "version": "0.0.1-3",
+  "dependencies": {
+    "ws": "^0.6.5"
+  },
+  "subdomain": "manning-socket-demo",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
 }

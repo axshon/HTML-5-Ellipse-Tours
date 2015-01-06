@@ -4,7 +4,8 @@
 // ==========
 // socket server
 var ws = require("ws");
-var port = 16433; // or whatever port your server is set up for
+var port = 443; // or whatever port your server is set up for
+// var port = 16433; // for localhost
 var socketServer = new ws.Server({port: port}); 
 
 socketServer.on("connection", function(socket) {
