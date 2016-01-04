@@ -17,7 +17,8 @@ SocketServer.prototype = {
     if (method == "connect") {
       var Socket = window.WebSocket || window.MozWebSocket;
       if (Socket) {
-        var url = "wss://manning-socket-demo.jit.su:443";
+        var url = "ws://dev-iangilman.rhcloud.com:8000";
+        // var url = "ws://localhost:8010";
         this.connection = new Socket(url);
         
         this.connection.onopen = function() { 
